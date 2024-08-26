@@ -1,0 +1,49 @@
+---
+layout: post
+title:  "ColBERT: Contextualized Late Interaction over BERT"
+date:   2024-08-26 18:07:02 +0200
+categories: jekyll update
+---
+🍄 **For RAG, and generally any semantic matching task, try ColBERT!**
+
+🥖 **Non-technical TLDR**
+
+- When you ask questions to a generalist model about things it doesn't know (info it hasn't seen/memorized from its training), it won't be helpful.
+
+- BUT, without training it further, you can give context along with the question.
+
+- LLMs have limited input sizes, so you only want to retrieve the useful context. For example, when building a chatbot for your company's internal knowledge, you cannot stuff in your whole Notion workspace; rather, you are going to pick 3-4 documents most relevant to the question.
+
+- To automate this, you:
+  1. Slice your Notion pages into smaller chunks.
+  2. Turn every chunk into a vector with a "retrieval model" (usually much smaller than LLMs).
+  3. Store all those vectors in a "vector database."
+  4. When a question comes, turn it into a vector as well.
+  5. Find the chunks whose vectors are close to your question's.
+  6. Send the retrieved chunks + question to the LLM.
+
+- The quality and speed of the answer to your initial question is highly dependent on how fast the chunks are retrieved and how relevant they are to the question. THAT'S WHERE COLBERT COMES IN: ColBERT is the retrieval model!
+
+- It's a technique that keeps one vector per input word rather than stuffing the whole text into one single vector.
+
+- You can see each vector as a very rich keyword describing the chunk in the model's language.
+
+- Contrary to other paradigms: longer text = more keywords (MAKES SENSE, RIGHT?)
+
+
+🔬 **Technical TLDR**
+
+- **Usual methods**
+  - **Bi-encoders** produce 1 embedding per token in the input sequence, squash them all into 1 single vector (e.g., by averaging), and then apply a basic distance measure (e.g., cosine). This is commonly called dense retrieval in the context of IR.
+    - **Pros:** Fast + decent performance.
+    - **Cons:** Generalizes poorly, struggles with similar but contrastive info (e.g., "I love X" vs "I hate X" can get a high similarity score), requires a lot of parameters to reach the top of the leaderboard in information retrieval (cf e5-mistral), tricky to fine-tune.
+  - **Cross encoders**: Concatenate both sequences you want to compare, run them through the model, and output a similarity score.
+    - **Pros:** Super good matching.
+    - **Cons:** Slow as hell, every time a new query comes in you have to run it through the model once for every document in your DB + you cannot precompute documents' embeddings.
+
+- **ColBERT**
+  - Doesn't squash all vectors into one before the comparison, rather compares every vector of the first sequence with every vector of the second sequence.
+  - The model is not overwhelmed; it can focus on one token at a time and has much more space to represent it: if the sequence is longer, you do the comparison with more vectors (sounds obvious when said like that, huh?).
+  - You can view the vectors it outputs as "contextualized semantic keywords."
+
+Fun fact: this paradigm is called late interaction. The author of ColBERT is so obsessed with it that he chose "lateinteraction" as his Twitter handle!
