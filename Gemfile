@@ -34,5 +34,10 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 # do not have a Java counterpart.
 gem "http_parser.rb", "~> 0.6.0", :platforms => [:jruby]
 
-# Add jekyll-sass-converter gem
-gem "jekyll-sass-converter", "~> 2.0"
+
+# Sass (Syntactically Awesome Style Sheets) files are an extension of CSS
+# that allow for variables, nested rules, mixins, and more. The
+# jekyll-sass-converter gem converts these Sass files to standard CSS
+# that can be used by web browsers.
+gem "jekyll-sass-converter", "~> 1.5.2"
+

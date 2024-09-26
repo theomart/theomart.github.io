@@ -2,29 +2,41 @@
 ---
 
 $grey-color: #828282;
-$primary-color: #10a37f; // A teal color similar to OpenAI's
-$background-color: #ffffff;
-$text-color: #333333;
+$primary-color: #B996FF; // A teal color similar to OpenAI's
+$background-color: #060606;
+$text-color: #ffffff;
+$color-primary: #03FFF1 ;
+$color-secondary: #B996FF;
+$gradient-primary: linear-gradient(45deg, $color-primary, $color-secondary);
+$gradient-hover: linear-gradient(45deg, $color-secondary, $color-primary);
 
-@import "minima";
 
 // Import Inter font
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap');
 
-html, body {
+html.hompage, body.homepage {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
+
 body {
+    background: 
+    radial-gradient(circle at 50% 50%, 
+      rgba(0, 149, 255, 0.15) 0%, 
+      rgba(75, 0, 130, 0.1) 30%, 
+      rgba(0, 0, 0, 0) 50%);
+    background-attachment: fixed;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+
     font-family: 'Inter', sans-serif;
     background-color: $background-color;
     color: $text-color;
     line-height: 1.6;
-}
 
-body.homepage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -72,17 +84,25 @@ body.homepage {
         justify-content: center;
     }
 
+
     .menu-link {
-        font-size: 16px;
-        font-weight: 500;
+        font-size: 18px;
+        font-weight: 300;
         text-decoration: none;
-        color: $primary-color;
-        transition: color 0.3s ease;
+        background: $gradient-primary;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        transition: all 1s ease;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
 
         &:hover {
-            color: darken($primary-color, 10%);
+            // transform: scale(1.05);
+            // background: $gradient-hover;
+            color:#ffffff;
+            // -webkit-background-clip: text;
+            // background-clip: text;
+            -webkit-text-fill-color: #ffffff;
         }
     }
 
@@ -104,6 +124,21 @@ body.homepage {
                 border-bottom-style: solid;
             }
         }
+
+        .contact-me {
+            a {
+                color: transparent;
+                background: $gradient-primary;
+                -webkit-background-clip: text;
+                background-clip: text;
+                transition: color 0.3s ease;
+                border-bottom: none;
+
+                &:hover {
+                    color: $text-color;
+                }
+            }
+        }
     }
 }
 
@@ -119,7 +154,7 @@ body.homepage {
         }
 
         .menu-link {
-            font-size: 14px;
+            font-size: 20px;
         }
 
         .bio {
