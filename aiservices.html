@@ -117,3 +117,30 @@ title: AI Services
                 </ul>
             </div>
 
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add domain badges to all external links in AI services content
+    const contentSections = document.querySelectorAll('.content-section');
+    
+    contentSections.forEach(section => {
+        const links = section.querySelectorAll('a[href^="http"]');
+        
+        links.forEach(link => {
+            try {
+                const url = new URL(link.href);
+                const domain = url.hostname.replace('www.', '');
+                
+                // Create domain badge
+                const badge = document.createElement('span');
+                badge.className = 'domain-badge';
+                badge.textContent = domain;
+                
+                // Append badge to link
+                link.appendChild(badge);
+            } catch (e) {
+                // Skip invalid URLs
+            }
+        });
+    });
+});
+</script>

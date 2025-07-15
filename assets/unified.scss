@@ -3,6 +3,47 @@
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
 
+:root {
+    --primary-color: #3b82f6;
+    --secondary-color: #a855f7;
+    --primary-gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    
+    // Gradient utilities
+    --gradient-text: var(--primary-gradient);
+    --gradient-bg: var(--primary-gradient);
+    --gradient-size: 200% 200%;
+}
+
+// Mixin for gradient text
+@mixin gradient-text {
+    background: var(--gradient-text);
+    background-size: var(--gradient-size);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+// Mixin for gradient text with animation
+@mixin gradient-text-animated($duration: 3s) {
+    @include gradient-text;
+    animation: gradient-shift $duration ease infinite;
+}
+
+// Mixin for gradient background
+@mixin gradient-bg {
+    background: var(--gradient-bg);
+    background-size: var(--gradient-size);
+}
+
+// Mixin for gradient hover effect
+@mixin gradient-hover {
+    transition: background-position 0.3s ease;
+    
+    &:hover {
+        background-position: 100% 100%;
+    }
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -14,6 +55,18 @@ body {
     background: #000;
     color: #fff;
     line-height: 1.6;
+}
+
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .layout {
@@ -39,7 +92,8 @@ body {
     margin-bottom: 40px;
     
     a {
-        color: #00ff00;
+        @include gradient-text;
+        @include gradient-hover;
         text-decoration: none;
     }
 }
@@ -59,12 +113,30 @@ body {
         }
         
         &.active {
-            color: #00ff00;
+            background: var(--primary-gradient);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             
             &::before {
                 content: '> ';
-                color: #00ff00;
+                background: var(--primary-gradient);
+                background-size: 200% 200%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
+        }
+        
+        &:hover:not(.active) {
+            background: var(--primary-gradient);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-position: 100% 100%;
+            transition: background-position 0.3s ease;
         }
     }
     
@@ -83,12 +155,30 @@ body {
         }
         
         &.active {
-            color: #00ff00;
+            background: var(--primary-gradient);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             
             &::before {
                 content: '> ';
-                color: #00ff00;
+                background: var(--primary-gradient);
+                background-size: 200% 200%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
+        }
+        
+        &:hover:not(.active) {
+            background: var(--primary-gradient);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-position: 100% 100%;
+            transition: background-position 0.3s ease;
         }
     }
 }
@@ -98,6 +188,12 @@ body {
     flex: 1;
     padding: 60px 60px;
     min-height: 100vh;
+    
+    h1 {
+        font-size: 2rem;
+        margin-bottom: 40px;
+        font-weight: 300;
+    }
 }
 
 // Homepage styles
@@ -115,7 +211,7 @@ body {
         
         .tagline {
             font-size: 1.1rem;
-            color: #00ff00;
+            @include gradient-text-animated(3s);
             margin-bottom: 24px;
         }
         
@@ -132,16 +228,25 @@ body {
             
             .cta-button {
                 padding: 10px 20px;
-                background: #00ff00;
-                color: #000;
+                @include gradient-bg;
+                @include gradient-hover;
+                color: #fff;
                 text-decoration: none;
                 font-weight: 500;
                 font-size: 0.9rem;
+                border-radius: 4px;
                 
                 &.secondary {
                     background: transparent;
-                    color: #00ff00;
-                    border: 1px solid #00ff00;
+                    color: var(--primary-color);
+                    border: 1px solid var(--primary-color);
+                    
+                    &:hover {
+                        @include gradient-bg;
+                        color: #fff;
+                        border-color: transparent;
+                        background-position: 100% 100%;
+                    }
                 }
             }
         }
@@ -172,16 +277,23 @@ body {
                 position: relative;
                 
                 &::before {
-                    content: '-';
+                    content: '';
                     position: absolute;
                     left: 0;
-                    color: #00ff00;
+                    width: 4px;
+                    height: 4px;
+                    background: #666;
+                    border-radius: 50%;
+                    top: 0.6em;
                 }
             }
         }
         
         a {
-            color: #00ff00;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             
             &:hover {
@@ -211,7 +323,10 @@ body {
             font-size: 0.9rem;
             
             .post-date {
-                color: #00ff00;
+                background: var(--primary-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
                 font-size: 0.85rem;
             }
             
@@ -229,9 +344,15 @@ body {
             color: #fff;
             font-size: 1.2rem;
             text-decoration: none;
+            transition: all 0.3s ease;
             
             &:hover {
-                color: #00ff00;
+                background: var(--primary-gradient);
+                background-size: 200% 200%;
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+                background-position: 100% 100%;
             }
         }
     }
@@ -256,7 +377,10 @@ body {
             color: #666;
             
             .post-date {
-                color: #00ff00;
+                background: var(--primary-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
             
             .post-source {
@@ -290,7 +414,10 @@ body {
         }
         
         a {
-            color: #00ff00;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             text-decoration: none;
             
             &:hover {
@@ -314,7 +441,7 @@ body {
     }
     
     .subtitle {
-        color: #00ff00;
+        @include gradient-text-animated(4s);
         font-style: italic;
         margin-bottom: 24px;
     }
@@ -336,7 +463,10 @@ body {
                 content: '-';
                 position: absolute;
                 left: 0;
-                color: #00ff00;
+                background: var(--primary-gradient);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
             }
         }
     }
@@ -344,9 +474,24 @@ body {
     a {
         color: #00ff00;
         text-decoration: none;
+        position: relative;
         
         &:hover {
             color: #fff;
+        }
+        
+        .domain-badge {
+            display: inline-block;
+            margin-left: 4px;
+            padding: 1px 6px;
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 3px;
+            font-size: 0.7rem;
+            color: #666;
+            vertical-align: middle;
+            font-weight: 400;
+            line-height: 1.3;
         }
     }
 }

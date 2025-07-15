@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title | escape }} - {{ site.title | escape }}</title>
+    <title>{{ page.title | escape }}</title>
     <link rel="stylesheet" href="/assets/unified.css">
     <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
 </head>
@@ -17,7 +17,7 @@
             </h1>
             
             <nav class="nav">
-                <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}">Home / Contact</a>
+                <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}">Home</a>
                 <a href="/blog" class="nav-item {% if page.url contains 'blog' or page.layout == 'post' %}active{% endif %}">Blog</a>
                 
                 <!-- Blog submenu -->

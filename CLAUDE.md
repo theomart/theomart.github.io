@@ -83,3 +83,9 @@ The site runs on `http://localhost:4000` when served locally.
   - GitHub Pages deployment
   - Minimal setup for non-technical users
   - Beautiful rendering of Markdown content
+
+### Design Principles
+- **Minimalistic but aesthetic UI**: Avoid unnecessary separators, dividers, or decorative elements
+- Focus on clean typography and thoughtful spacing
+- Let content breathe with whitespace rather than visual separators
+- Use subtle design elements (like gradient text) sparingly for emphasis
