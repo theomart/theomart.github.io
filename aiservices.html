@@ -1,81 +1,173 @@
 ---
-layout: default
+layout: aiservices
 title: AI Services
 ---
 
-<div>
-    <h1>Stop Talking About AI. Start Using It.</h1>
-    
-    <p>AI isn't magic. It's a tool. A powerful one. Most companies are using it wrong—or not at all. They're stuck in meetings, writing strategy documents that go nowhere.</p>
-    
-    <p>We skip the bullshit. We build things that work. Things that make you more money, save you time, and give you an unfair advantage over your competition. We connect the power of AI directly to your business goals.</p>
+<div class="ai-services-page">
+    <div class="services-layout">
+        <div class="left-panel">
+            <h1 class="page-title">AI Services</h1>
+            <nav class="service-nav">
+                <button class="nav-item active" data-section="strategy">AI Strategy & Roadmap</button>
+                <button class="nav-item" data-section="ml">Custom Machine Learning</button>
+                <button class="nav-item" data-section="genai">Generative AI & LLM Applications</button>
+                <button class="nav-item" data-section="automation">Intelligent Process Automation</button>
+                <button class="nav-item" data-section="contact">Contact</button>
+            </nav>
+        </div>
 
-    <h2>AI Services</h2>
+        <div class="right-panel">
+            <div class="content-section active" id="strategy">
+                <h2>AI Strategy & Roadmap</h2>
+                <p class="subtitle">Your AI Roadmap. No Detours.</p>
+                
+                <p><strong>Why It Matters:</strong> Most AI projects die from bad data, fuzzy objectives, un-shippable code, runaway cloud bills, or lawyers waving new rules. The numbers are brutal—<a href="https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value">70-plus % of initiatives stall before value</a>, <a href="https://digitalcxo.com/article/machine-learning-deployments-suffer-high-failure-rates/">only 32% of models reach production</a>, and <a href="https://www.informationweek.com/it-infrastructure/ai-s-impact-on-cloud-spending-the-hunger-for-capacity">cloud spend spikes 30% once GenAI enters the room</a>.</p>
+                
+                <p><strong>What I Do:</strong></p>
+                <ul>
+                    <li><strong>Data Reality Check:</strong> AI runs on data; most firms' data is a dumpster fire. <a href="https://arxiv.org/pdf/2404.05779">Surveys put "data readiness" as the #1 blocker</a>. I inventory every meaningful table, log, and blob store; kill the noise. Health-scan quality, freshness, lineage.</li>
+                    <li><strong>Proof-of-Value Sprint:</strong> Boards want results in quarters, not years. <a href="https://www.mckinsey.com/~/media/mckinsey/business%20functions/quantumblack/our%20insights/the%20state%20of%20ai/2024/the-state-of-ai-in-early-2024-final.pdf">65% of companies now pilot GenAI but can't prove ROI</a>. One business case, one model, four weeks. Demo on live data, KPI delta calculated.</li>
+                    <li><strong>MLOps & Production Rescue:</strong> <a href="https://digitalcxo.com/article/machine-learning-deployments-suffer-high-failure-rates/">Only a third of models ever leave the lab</a>. I harden code, add tests, CI/CD, feature store, monitoring. Roll to prod behind dark-launch flags; rollback plan included.</li>
+                    <li><strong>Cost Detox & FinOps:</strong> <a href="https://www.informationweek.com/it-infrastructure/ai-s-impact-on-cloud-spending-the-hunger-for-capacity">GenAI inflates cloud bills by ~30%</a>; <a href="https://www.ciodive.com/news/generative-ai-drives-unmanageable-cloud-cost-finops/729126/">72% of CIOs say costs are "unmanageable"</a>. I profile token, GPU, and storage burn. Swap oversized models, implement cache/quantization.</li>
+                    <li><strong>Compliance Shield:</strong> <a href="https://www.credo.ai/blog/key-ai-regulations-in-2025-what-enterprises-need-to-know">EU, US, and California rules are landing fast</a>. I map your use cases to AI Act, HIPAA, GDPR, and local laws. Bias/robustness testing, audit trails, model cards.</li>
+                    <li><strong>Vendor-Stack Vetting:</strong> Tool sprawl kills momentum and budgets. I score AWS, Azure, GCP, Snowflake, Databricks, plus open-source. Model TCO over 3 years—including exit costs.</li>
+                </ul>
+                
+                <p><strong>Example Questions I Answer:</strong></p>
+                <ul>
+                    <li>How exactly would a Proof-of-Value Sprint look for a GenAI customer-support bot?</li>
+                    <li>What hard dollar savings should you expect from a Cost Detox on a 50-M-token/month workload?</li>
+                    <li>Which regulations hit hardest if you deploy a medical-diagnosis model in both the EU and US?</li>
+                </ul>
+            </div>
 
-    <h2>AI Strategy & Roadmap</h2>
-    <h3>Your AI Roadmap. No Detours.</h3>
-    
-    <p>You know you need AI, but you don't know where to start. You're worried about wasting six figures on shiny objects that don't deliver. This service is the fix. We give you a clear, no-bullshit plan. We tell you what to build, in what order, and how to not screw it up.</p>
-    
-    <p><strong>Why It Matters:</strong> Most AI projects fail. The data says 70-80% never deliver value. Why? No clear plan. Bad data. Chasing cool tech instead of solving real business problems. We stop you from becoming a statistic.</p>
-    
-    <p><strong>What We Do:</strong></p>
-    <ul>
-        <li><strong>Opportunity Finding:</strong> We dig into your business to find the best places to apply AI for maximum impact</li>
-        <li><strong>Data Check:</strong> We audit your data and infrastructure. AI runs on data; we make sure yours isn't garbage</li>
-        <li><strong>Prioritization:</strong> We rank potential AI projects based on ROI, feasibility, and strategic fit</li>
-        <li><strong>Tech Stack Advice:</strong> We give you straight answers on what tools to use—no vendor kickbacks</li>
-        <li><strong>Risk & Governance:</strong> We build frameworks for responsible AI, tackling bias, privacy, and compliance</li>
-    </ul>
+            <div class="content-section" id="ml">
+                <h2>Custom Machine Learning & Predictive Analytics</h2>
+                <p class="subtitle">Your Data Is Your Unfair Advantage. Use It.</p>
+                
+                <p><strong>Why It Matters:</strong> Off-the-shelf software gives you off-the-shelf results. Your competitors use the same tools. Custom machine learning models built from your unique business data create intellectual property that only you own. Your data is an asset you're probably wasting. Standard BI dashboards show you what happened yesterday. Predictive analytics shows you what's likely to happen tomorrow.</p>
+                
+                <p><strong>What I Do:</strong></p>
+                <ul>
+                    <li><strong>Data Quality Engineering:</strong> I fix the "bad-data tax" first. <a href="https://www.esri.com/about/newsroom/arcnews/data-quality-across-the-digital-landscape">Gartner pegs the average annual cost of poor data quality at $12.9M per company</a>. I audit your data lineage, set up automated quality tests, and create single sources of truth.</li>
+                    <li><strong>Model Development:</strong> I select and fine-tune the right algorithms—think of these as different types of pattern-recognition engines—to solve your specific problem with maximum accuracy</li>
+                    <li><strong>Training & Validation:</strong> I teach the model using your historical data, then test it against data it's never seen to make sure it works in the real world</li>
+                    <li><strong>MLOps & Deployment:</strong> I don't just build models that sit on laptops. I create production-ready systems with automated testing, one-click deployment, and 24/7 monitoring. <a href="https://www.fortunebusinessinsights.com/mlops-market-108986">The MLOps market is growing 38% annually toward $79B</a> because keeping models running is the #1 enterprise blocker.</li>
+                </ul>
+                
+                <p><strong>Example Use Cases:</strong></p>
+                <ul>
+                    <li><strong>Fraud Detection & Risk Analytics:</strong> Block crooks, not customers. <a href="https://kpmg.com/us/en/articles/2025/fighting-fraud-payments-ai.html">US fraud losses hit $12.5B in 2024</a>. Real-time scoring systems that decide in under 50 milliseconds whether a transaction is legitimate. Example: <a href="https://www.businessinsider.com/riskified-ai-fraud-detection-tickpick-falsely-declined-transactions-2025-7">Ticket marketplace recovered $3M in 3 months</a> after switching to adaptive AI checkout.</li>
+                    <li><strong>Personalization & Recommendation Engines:</strong> Show each user what they'll buy next. <a href="https://wisernotify.com/blog/ecommerce-personalization-stats/">Personalized experiences lift conversion 10-15% and revenue 6-10%</a>. Example: <a href="https://wisernotify.com/blog/ecommerce-personalization-stats/">Fashion e-commerce saw 8% average order value bump after 30-day pilot</a>.</li>
+                    <li><strong>Predictive Maintenance & Quality Control:</strong> Know when machines will break before they do. Analyze sensor data, maintenance logs, and environmental factors to predict equipment failures weeks in advance. Example: <a href="https://www.techradar.com/pro/transforming-dark-data-into-ai-driven-business-value">Manufacturer reduced stock-count errors 70%</a> after implementing hard quality gates.</li>
+                    <li><strong>Customer Churn & Lifetime Value Prediction:</strong> Identify your best customers and save the ones about to leave. Models that score every customer on their likelihood to churn and their predicted lifetime value. Example: Telecommunications company cut monthly churn by 2% by identifying at-risk subscribers.</li>
+                </ul>
+            </div>
 
-    <h2>Custom Machine Learning & Predictive Analytics</h2>
-    <h3>Your Data Is Your Unfair Advantage. Use It.</h3>
-    
-    <p>Off-the-shelf software gives you off-the-shelf results. Your competitors use the same tools. We build custom machine learning models from scratch, using your unique business data. This creates intellectual property that only you own.</p>
-    
-    <p><strong>Why It Matters:</strong> Your data is an asset you're probably wasting. Standard BI dashboards show you what happened yesterday. Predictive analytics shows you what's likely to happen tomorrow. A custom model creates a competitive moat that's impossible to replicate.</p>
-    
-    <p><strong>What We Do:</strong></p>
-    <ul>
-        <li><strong>Data Engineering:</strong> Clean, structure, and prepare your raw data to find the signals that matter</li>
-        <li><strong>Model Development:</strong> Select and fine-tune algorithms to solve your specific problem with maximum accuracy</li>
-        <li><strong>Training & Validation:</strong> Use rigorous methods to ensure models are robust and reliable</li>
-        <li><strong>Deployment & MLOps:</strong> Integrate models into your systems and monitor performance over time</li>
-    </ul>
+            <div class="content-section" id="genai">
+                <h2>Generative AI & LLM Applications</h2>
+                <p class="subtitle">Cut the hype. These are the services companies actually pay for right now, ranked by market pull.</p>
+                
+                <p><strong>Why It Matters:</strong> Everyone is playing with ChatGPT. I build with it. I take the power of Large Language Models like GPT-4o and engineer robust, secure, and scalable applications for your business. This isn't about writing prompts; it's about building systems that solve real problems.</p>
+                
+                <p><strong>What I Do:</strong></p>
+                <ul>
+                    <li><strong>Secure Knowledge-Base Search (RAG):</strong> Ingest every doc you own, vector-index it, add tight access controls, expose a chat or API that cites sources. <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai-2024">3 out of 4 enterprises already use AI in two or more functions, and knowledge-management tops the "revenue impact" list</a>.</li>
+                    <li><strong>24/7 Support Chatbots:</strong> Production-grade bots that resolve the repetitive 60%+ of tickets, hand off cleanly to humans, log to your CRM. <a href="https://saufter.io/conversational-ai-statistics/">68% of service teams already run conversational AI</a>; <a href="https://www.tidio.com/blog/ai-customer-service-statistics/">55% of companies plan a new bot this year</a>.</li>
+                    <li><strong>Marketing Content Pipelines:</strong> Prompt-chained generators that draft emails, ads, landing pages, social posts, auto-A/B test and push to your stack. <a href="https://www.ama.org/marketing-news/generative-ai-takes-off-with-marketers/">82% of marketers use gen-AI weekly, most to crank out copy faster</a>.</li>
+                    <li><strong>AI Code Accelerators:</strong> Set up Copilot-style tooling, context windows fed from your monorepo, custom lint rules, telemetry on ROI. <a href="https://codesignal.com/report-developers-and-ai-coding-assistant-trends/">81% of devs already lean on AI assistants</a>; <a href="https://services.google.com/fh/files/misc/idc-state-of-ai-coding-assistants.pdf">IDC finds >60% of large orgs have widespread adoption</a>.</li>
+                    <li><strong>Compliance & Reg-Doc Summaries:</strong> Pipelines that watch new regulations, auto-summarize, extract obligations, push tasks to Jira/ServiceNow. <a href="https://www.debevoise.com/-/media/files/insights/publications/2025/02/finras-2025-regulatory-oversight-report-focus-on.pdf">FINRA, SEC and other watchdogs now expect firms to prove AI-governed compliance</a>.</li>
+                    <li><strong>Voice & Multimodal Agents:</strong> Phone-line agents, voice-to-workflow tools, image+text chat for field ops. <a href="https://www.techradar.com/pro/small-models-big-wins-four-reasons-enterprises-are-choosing-slms-over-llms">Enterprises pivot to small, domain-tuned models for real-time tasks</a>.</li>
+                </ul>
+                
+                <p><strong>Market Validation:</strong></p>
+                <ul>
+                    <li><strong>Freelance demand:</strong> <a href="https://www.upwork.com/press/releases/upwork-unveils-2025s-most-in-demand-skills">Generative-AI modeling is Upwork's fastest-growing skill (+220% YoY)</a></li>
+                    <li><strong>Org adoption depth:</strong> <a href="https://www.bain.com/insights/survey-generative-ai-uptake-is-unprecedented-despite-roadblocks/">Average live use-cases doubled in 2024</a></li>
+                    <li><strong>Marketing uptake:</strong> <a href="https://www.ama.org/marketing-news/generative-ai-takes-off-with-marketers/">90% of marketers touch gen-AI at work, 20% daily</a></li>
+                </ul>
+                
+                <p><strong>Example Questions I Can Help With:</strong></p>
+                <ul>
+                    <li>How would you like a demo RAG bot on your own docs using open-source models?</li>
+                    <li>Which KPIs matter most for your support queue so I can baseline savings?</li>
+                    <li>Do your devs already use Copilot, or do I need to handle license procurement and SSO?</li>
+                </ul>
+            </div>
 
-    <h2>Generative AI & LLM Application Development</h2>
-    <h3>Build Your Own GPT. For Your Business.</h3>
-    
-    <p>Everyone is playing with ChatGPT. We build with it. We take the power of Large Language Models and engineer robust, secure, and scalable applications for your business. This isn't about writing prompts; it's about building systems.</p>
-    
-    <p><strong>Why It Matters:</strong> The real advantage isn't using public tools; it's securely connecting these models to your private data. This lets you create proprietary systems that competitors can't copy. Imagine an internal AI assistant that has read every document your company has ever produced.</p>
-    
-    <p><strong>What We Do:</strong></p>
-    <ul>
-        <li><strong>Prototyping:</strong> Find the highest-impact use cases and build working prototypes</li>
-        <li><strong>RAG Systems:</strong> Build powerful internal "super-assistants" that give precise answers from your secure data</li>
-        <li><strong>Custom Chatbots:</strong> Create sophisticated conversational AI for support or internal helpdesks</li>
-        <li><strong>Content Automation:</strong> Build workflows that use AI to write marketing copy, reports, and documentation</li>
-    </ul>
+            <div class="content-section" id="automation">
+                <h2>Intelligent Process Automation</h2>
+                <p class="subtitle">Robots That Think, Not Just Click.</p>
+                
+                <p><strong>Why It Matters:</strong> Basic RPA (Robotic Process Automation) can do more than replay clicks—it also handles rules, simple data validation, and system integrations. But Intelligent Process Automation (IPA) is RPA plus AI. "AI" here means two practical tricks: NLP (Natural Language Processing) that reads text or emails, and Computer Vision that understands images or PDFs. <a href="https://www.timesofai.com/news/ai-powered-rpa-revolutionizes-digital-transformation-in-2024/">AI-infused RPA delivers strong ROI in finance functions</a>, with payback often under 12 months.</p>
+                
+                <p><strong>What I Do:</strong></p>
+                <ul>
+                    <li><strong>Process Mining:</strong> Pull log data from your systems to map how work really flows and spot choke points</li>
+                    <li><strong>Document Processing:</strong> AI reads PDFs/emails, grabs key fields (amount, date, names). <a href="https://www.grandviewresearch.com/industry-analysis/intelligent-document-processing-market-report">IDP is a $2.3B market racing to $12.3B by 2030</a> because it kills manual data entry. Systems hit over 95% accuracy on invoices, contracts, and forms.</li>
+                    <li><strong>Workflow Orchestration:</strong> Glue code that passes data between systems (CRM, ERP, email) without manual hand-offs</li>
+                    <li><strong>Human-in-the-Loop:</strong> Bot auto-handles routine 99%, routes weird cases to a human reviewer in under 30 seconds</li>
+                </ul>
+                
+                <p><strong>Example Use Cases:</strong></p>
+                <ul>
+                    <li><strong>Accounting:</strong> Invoice → PO match → payment queue. Zero manual data entry</li>
+                    <li><strong>HR:</strong> New-hire signs offer → accounts, benefits, laptop order, welcome meetings. Onboarding time cut from days to minutes</li>
+                    <li><strong>Logistics:</strong> Purchase-order email → extract details → load into fulfillment system. Order entry time: hours → seconds</li>
+                    <li><strong>Insurance:</strong> Intake claim → read report + photos → route to adjuster. Faster claim triage, fewer errors</li>
+                    <li><strong>Banking:</strong> <a href="https://www.fintechweekly.com/magazine/articles/rpa-and-ai-in-the-financial-sector">Bank automated KYB onboarding, saving 1.5 FTEs per 10k accounts</a> and cutting turnaround from days to hours</li>
+                </ul>
+                
+                <p><strong>Example Questions I Can Help With:</strong></p>
+                <ul>
+                    <li>How would you prioritize which workflows to automate first in a mid-size company?</li>
+                    <li>What metrics would you track to prove the automation is paying off?</li>
+                    <li>Where have IPA projects failed, and what lessons can you steal from those post-mortems?</li>
+                </ul>
+            </div>
 
-    <h2>Intelligent Process Automation (IPA)</h2>
-    <h3>Automate Workflows, Not Just Clicks.</h3>
-    
-    <p>Basic automation is dumb; it just mimics mouse clicks. Intelligent Process Automation is smart. It uses AI to handle end-to-end processes that were previously too complex for machines. It can read unstructured documents, make judgments, and manage exceptions.</p>
-    
-    <p><strong>Why It Matters:</strong> The ROI hits your bottom line directly. By automating complex, high-volume processes, you slash operational costs, eliminate human error, and reduce cycle times from days to minutes. This frees your best people for strategy, creativity, and customer relationships.</p>
-    
-    <p><strong>What We Do:</strong></p>
-    <ul>
-        <li><strong>Process Mining:</strong> Map your current workflows to find bottlenecks and automation opportunities</li>
-        <li><strong>Intelligent Document Processing:</strong> Build systems that read and extract data from unstructured documents</li>
-        <li><strong>AI Workflow Orchestration:</strong> Connect your systems and build automated end-to-end workflows</li>
-        <li><strong>Human-in-the-Loop Design:</strong> AI handles 99% of the work, flags exceptions for human review</li>
-    </ul>
-
-    <h2>Ready to Get Started?</h2>
-    
-    <p>Stop wasting time on AI theater. Let's build something that actually works.</p>
-    
-    <p>Contact me at <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a> to discuss your project.</p>
+            <div class="content-section" id="contact">
+                <h2>Ready to Get Started?</h2>
+                <p>Stop wasting time on AI theater. Let's build something that actually works.</p>
+                <p>The AI consulting market is exploding—$8.75 billion in 2024, projected to hit $58 billion by 2034. North America leads with 36% of the market. Companies have the technology but lack the strategic implementation. That's where I come in.</p>
+                <p>I don't sell you buzzwords. I build systems that create measurable business value, reduce risk, and give you a competitive advantage that's impossible to replicate.</p>
+                
+                <p><strong>Questions to Ask:</strong></p>
+                <ul>
+                    <li>"Which of these areas gives us the fastest ROI with the data we already have?"</li>
+                    <li>"How would you price a 90-day pilot for the GenAI assistant service?"</li>
+                    <li>"Show me a checklist of the data/infrastructure you'd need from us before starting an MLOps engagement."</li>
+                </ul>
+                
+                <p><a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a></p>
+            </div>
+        </div>
+    </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navItems = document.querySelectorAll('.nav-item');
+    const contentSections = document.querySelectorAll('.content-section');
+    
+    navItems.forEach(item => {
+        item.addEventListener('click', function() {
+            // Remove active class from all nav items and content sections
+            navItems.forEach(nav => nav.classList.remove('active'));
+            contentSections.forEach(section => section.classList.remove('active'));
+            
+            // Add active class to clicked nav item
+            this.classList.add('active');
+            
+            // Show corresponding content section
+            const targetSection = document.getElementById(this.dataset.section);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+            
+            // Scroll to top of content when switching sections
+            document.querySelector('.right-panel').scrollTo(0, 0);
+        });
+    });
+});
+</script>
