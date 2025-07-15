@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | escape }} - {{ site.title | escape }}</title>
+    <link rel="stylesheet" href="/assets/blog.css">
+</head>
+<body>
+    <div class="blog-page">
+        <div class="blog-layout">
+            <!-- Left sidebar - fixed navigation -->
+            <div class="left-panel">
+                <h1 class="page-title">Blog</h1>
+                <nav class="blog-nav">
+                    <a href="/" class="nav-item">Home</a>
+                    <a href="/blog" class="nav-item active">Blog</a>
+                    <a href="/aiservices" class="nav-item">AI Services</a>
+                </nav>
+            </div>
+            
+            <!-- Right content area -->
+            <div class="right-panel">
+                {{ content }}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

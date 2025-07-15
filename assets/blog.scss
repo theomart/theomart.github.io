@@ -1,0 +1,454 @@
+---
+---
+
+// Import IBM Plex Mono font
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap');
+
+// Color variables
+$bg-color: #000000;
+$text-color: #ffffff;
+$accent-color: #00ff00;
+$inactive-color: #666666;
+$secondary-color: #333333;
+
+// Complete reset
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// Base styles
+html, body {
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: $bg-color;
+    color: $text-color;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+// Blog Page Container
+.blog-page {
+    background-color: $bg-color;
+    min-height: 100vh;
+}
+
+// Main layout container
+.blog-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+// Left sidebar - fixed navigation
+.left-panel {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 250px;
+    height: 100vh;
+    background-color: $bg-color;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 30px;
+    z-index: 100;
+    
+    // Separator line
+    &::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 20%;
+        bottom: 20%;
+        width: 1px;
+        background-color: $inactive-color;
+    }
+}
+
+// Page title
+.page-title {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 50px;
+    color: $text-color;
+    line-height: 1.2;
+}
+
+// Navigation menu
+.blog-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nav-item {
+    color: $inactive-color;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 1rem;
+    font-weight: 400;
+    text-decoration: none;
+    padding: 12px 0;
+    transition: color 0.3s ease;
+    
+    &:hover {
+        color: $text-color;
+    }
+    
+    &.active {
+        color: $accent-color;
+        font-weight: 500;
+        
+        &::before {
+            content: '> ';
+            color: $accent-color;
+        }
+    }
+}
+
+// Right content area
+.right-panel {
+    margin-left: 250px;
+    flex: 1;
+    padding: 60px 60px;
+    min-height: 100vh;
+    width: calc(100vw - 250px);
+    overflow-x: hidden;
+}
+
+// Blog post list
+.post-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.post-item {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid $secondary-color;
+    
+    &:last-child {
+        border-bottom: none;
+    }
+    
+    .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 12px;
+        font-size: 0.9rem;
+    }
+    
+    .post-date {
+        color: $accent-color;
+        font-weight: 400;
+        font-size: 0.85rem;
+    }
+    
+    .post-source {
+        color: $inactive-color;
+        font-size: 0.8rem;
+        padding: 2px 8px;
+        background-color: $secondary-color;
+        border-radius: 4px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    
+    .post-title {
+        color: $text-color;
+        font-size: 1.2rem;
+        font-weight: 400;
+        text-decoration: none;
+        line-height: 1.4;
+        transition: color 0.3s ease;
+        
+        &:hover {
+            color: $accent-color;
+        }
+    }
+    
+    .post-excerpt {
+        color: $inactive-color;
+        font-size: 0.9rem;
+        margin-top: 12px;
+        line-height: 1.6;
+    }
+}
+
+// Individual post page styles
+.post-content {
+    max-width: none;
+    
+    .post-header {
+        margin-bottom: 40px;
+        padding-bottom: 30px;
+        border-bottom: 1px solid $secondary-color;
+        
+        .post-title {
+            font-size: 1.8rem;
+            font-weight: 500;
+            color: $text-color;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 0.9rem;
+            color: $inactive-color;
+            
+            .post-date {
+                color: $accent-color;
+            }
+            
+            .post-source {
+                background-color: $secondary-color;
+                padding: 2px 8px;
+                border-radius: 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                font-size: 0.8rem;
+            }
+        }
+    }
+    
+    .post-body {
+        h1 {
+            font-size: 1.6rem;
+            font-weight: 500;
+            color: $text-color;
+            margin: 30px 0 20px 0;
+            line-height: 1.3;
+        }
+        
+        h2 {
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: $text-color;
+            margin: 25px 0 15px 0;
+            line-height: 1.3;
+        }
+        
+        h3 {
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: $text-color;
+            margin: 20px 0 12px 0;
+            line-height: 1.3;
+        }
+        
+        p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            color: $text-color;
+            font-weight: 300;
+        }
+        
+        ul, ol {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            
+            li {
+                font-size: 0.9rem;
+                color: $text-color;
+                margin-bottom: 8px;
+                line-height: 1.6;
+                font-weight: 300;
+            }
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+            
+            li {
+                padding-left: 16px;
+                position: relative;
+                
+                &::before {
+                    content: '-';
+                    position: absolute;
+                    left: 0;
+                    color: $accent-color;
+                    font-weight: 500;
+                }
+            }
+        }
+        
+        a {
+            color: $accent-color;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+            
+            &:hover {
+                color: $text-color;
+            }
+        }
+        
+        code {
+            background-color: $secondary-color;
+            color: $accent-color;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+        }
+        
+        pre {
+            background-color: $secondary-color;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+            
+            code {
+                background: none;
+                padding: 0;
+                color: $text-color;
+            }
+        }
+        
+        blockquote {
+            border-left: 3px solid $accent-color;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: $inactive-color;
+            font-style: italic;
+        }
+        
+        hr {
+            border: none;
+            border-top: 1px solid $secondary-color;
+            margin: 30px 0;
+        }
+    }
+}
+
+// Responsive design
+@media (max-width: 1024px) {
+    .left-panel {
+        position: relative;
+        width: 100%;
+        height: auto;
+        padding: 30px 40px 20px 40px;
+        
+        &::after {
+            display: none;
+        }
+    }
+    
+    .page-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+    
+    .blog-nav {
+        flex-direction: row;
+        gap: 20px;
+        margin-bottom: 30px;
+    }
+    
+    .nav-item {
+        font-size: 0.9rem;
+        padding: 8px 0;
+    }
+    
+    .right-panel {
+        margin-left: 0;
+        padding: 30px 40px;
+        width: 100%;
+    }
+    
+    .post-item {
+        .post-title {
+            font-size: 1.1rem;
+        }
+    }
+    
+    .post-content {
+        .post-header {
+            .post-title {
+                font-size: 1.5rem;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .left-panel {
+        padding: 25px 30px 15px 30px;
+    }
+    
+    .page-title {
+        font-size: 1.6rem;
+        margin-bottom: 25px;
+    }
+    
+    .blog-nav {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .nav-item {
+        font-size: 0.85rem;
+    }
+    
+    .right-panel {
+        padding: 25px 30px;
+    }
+    
+    .post-item {
+        margin-bottom: 30px;
+        
+        .post-meta {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        
+        .post-title {
+            font-size: 1rem;
+        }
+    }
+    
+    .post-content {
+        .post-header {
+            .post-title {
+                font-size: 1.3rem;
+            }
+            
+            .post-meta {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+            }
+        }
+        
+        .post-body {
+            h1 {
+                font-size: 1.3rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            h3 {
+                font-size: 1.1rem;
+            }
+            
+            p {
+                font-size: 0.9rem;
+            }
+            
+            ul li, ol li {
+                font-size: 0.85rem;
+            }
+        }
+    }
+}

@@ -1,13 +1,21 @@
 ---
-layout: default
+layout: blog
 title: Blog
 ---
 
 <ul class="post-list">
   {% for post in site.posts %}
     <li class="post-item">
-      <span class="post-date">{{ post.date | date: "%d %b, %Y" }}</span>
+      <div class="post-meta">
+        <span class="post-date">{{ post.date | date: "%d %b, %Y" }}</span>
+        {% if post.source %}
+          <span class="post-source">{{ post.source }}</span>
+        {% endif %}
+      </div>
       <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
+      {% if post.excerpt %}
+        <div class="post-excerpt">{{ post.excerpt | strip_html | truncate: 200 }}</div>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>
