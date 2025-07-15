@@ -29,50 +29,44 @@ The site runs on `http://localhost:4000` when served locally.
 
 ## Architecture
 
-### Site Structure
-- **Homepage**: Custom layout (`homepage.html`) with profile image and navigation
-- **AI Services**: Custom layout (`aiservices.html`) with service descriptions and gradients
-- **Blog**: Standard Jekyll blog with posts in `_posts/` directory using default layout
+### Core System
+- **Single Layout**: `_layouts/unified.html` - unified layout for all pages with sidebar navigation
+- **Pages**: `index.html` (Home/Contact), `blog.html` (Blog listing), `aiservices.html` (AI Services)
+- **Posts**: `_posts/YYYY-MM-DD-title.markdown` format with Jekyll front matter
+- **Styles**: Single `assets/unified.scss` file compiles to `/assets/unified.css`
 
-### Key Components
-- **Layouts**: `_layouts/homepage.html` and `_layouts/aiservices.html` for custom pages
-- **Posts**: Blog posts in `_posts/` following `YYYY-MM-DD-title.markdown` format
-- **Assets**: Custom SCSS files in `assets/` directory:
-  - `homepage.scss` - Homepage styling
-  - `aiservices.scss` - AI services page styling with gradients and animations
-- **Configuration**: `_config.yml` contains site settings, theme (minima), and plugins
+### Navigation System
+- **Sidebar**: Fixed left sidebar with main navigation (Home/Contact, Blog, AI Services)
+- **Contextual Submenus**: Show automatically based on current page
+  - Blog pages: Show 3 most recent posts + "..." link
+  - AI Services pages: Show 4 service sections with URL hash routing
+- **Active States**: CSS classes automatically applied via Jekyll conditionals
 
-### Styling System
-- Uses Jekyll's built-in Sass processing
-- Custom SCSS files compiled to CSS automatically
-- Minima theme as base with custom overrides
-- Custom layouts include specific CSS files
+### Key Files
+- `_layouts/unified.html` - Main layout template with navigation logic
+- `assets/unified.scss` - All CSS styling (IBM Plex Mono font, dark theme)
+- `aiservices.html` - Contains all AI service sections, JavaScript switches between them
+- `_config.yml` - Jekyll configuration, GitHub Pages settings
 
 ### Content Management
-- Blog posts use standard Jekyll front matter with layout, title, date, and categories
-- Pages use custom layouts specified in front matter
-- Site uses jekyll-feed plugin for RSS generation
 
-#### Navigation Blog Posts
-The sidebar navigation shows the 3 most recent blog posts under the "Blog" menu item. These are automatically selected by Jekyll using `{% for post in site.posts limit:3 %}` based on the post date.
+#### Pages
+- All pages use `layout: unified` in front matter
+- `index.html` - Home/Contact page with intro + contact sections
+- `blog.html` - Blog listing page
+- `aiservices.html` - AI services with multiple content sections
 
-**To control which posts appear in the navigation:**
-- Posts are ordered by date (newest first)
-- The 3 most recent posts will automatically appear in the sidebar
-- To "pin" specific posts to the top of the navigation, update their date to be more recent
-- Post dates are set in the filename (`YYYY-MM-DD-title.markdown`) and the `date:` field in the front matter
+#### Blog Posts
+- Format: `_posts/YYYY-MM-DD-title.markdown`
+- Front matter: `layout: post`, `title`, `date`, `categories`
+- Navigation shows 3 most recent posts (by date) + "..." link
+- To pin posts: Update date to be more recent than others
 
-**Example:**
-```yaml
----
-layout: post
-title: "Important Post"
-date: 2025-01-15
-categories: AI
----
-```
-
-If you want a specific post to always appear in the navigation, you can set its date to be in the future or simply more recent than other posts.
+#### AI Services Sections
+- Single page with multiple `<div class="content-section" id="sectionname">` blocks
+- JavaScript shows/hides sections based on URL hash (`#strategy`, `#ml`, etc.)
+- Navigation links use `/aiservices#sectionname` format
+- Sections: strategy, ml, genai, automation
 
 ## GitHub Pages Configuration
 - Domain: `theomart.in` (configured in CNAME and _config.yml)
