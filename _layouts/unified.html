@@ -19,7 +19,7 @@
             <nav class="nav">
                 <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}">Home</a>
                 <a href="/blog" class="nav-item {% if page.url contains 'blog' or page.layout == 'post' %}active{% endif %}">Blog</a>
-                <a href="/resume" class="nav-item {% if page.url contains 'resume' %}active{% endif %}">Resume</a>
+                <a href="/team" class="nav-item {% if page.url contains 'team' %}active{% endif %}">Team</a>
                 
                 <!-- Blog submenu -->
                 {% if page.url contains 'blog' or page.layout == 'post' %}
