@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ page.title | escape }} - {{ site.title | escape }}</title>
+    <link rel="stylesheet" href="/assets/unified.css">
+    <link rel="icon" href="/assets/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="layout">
+        <!-- Left sidebar -->
+        <div class="sidebar">
+            <h1 class="site-title">
+                <a href="/">theomart</a>
+            </h1>
+            
+            <nav class="nav">
+                <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}">Home / Contact</a>
+                <a href="/blog" class="nav-item {% if page.url contains 'blog' or page.layout == 'post' %}active{% endif %}">Blog</a>
+                
+                <!-- Blog submenu -->
+                {% if page.url contains 'blog' or page.layout == 'post' %}
+                {% for post in site.posts limit:3 %}
+                <a href="{{ post.url }}" class="nav-subitem {% if page.url == post.url %}active{% endif %}">{{ post.title | truncate: 40 }}</a>
+                {% endfor %}
+                <a href="/blog" class="nav-subitem">...</a>
+                {% endif %}
+                
+                <a href="/aiservices" class="nav-item {% if page.url contains 'aiservices' %}active{% endif %}">AI Services</a>
+                
+                <!-- AI Services submenu -->
+                {% if page.url contains 'aiservices' %}
+                <a href="/aiservices#strategy" class="nav-subitem active" data-section="strategy">AI Strategy & Roadmap</a>
+                <a href="/aiservices#ml" class="nav-subitem" data-section="ml">Custom Machine Learning</a>
+                <a href="/aiservices#genai" class="nav-subitem" data-section="genai">Generative AI & LLM Applications</a>
+                <a href="/aiservices#automation" class="nav-subitem" data-section="automation">Intelligent Process Automation</a>
+                {% endif %}
+            </nav>
+        </div>
+        
+        <!-- Content area -->
+        <div class="content">
+            {{ content }}
+        </div>
+    </div>
+    
+    <!-- JavaScript for AI Services -->
+    {% if page.url contains 'aiservices' %}
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const items = document.querySelectorAll('.nav-subitem[data-section]');
+        const sections = document.querySelectorAll('.content-section');
+        
+        // Function to show a specific section
+        function showSection(sectionId) {
+            items.forEach(i => i.classList.remove('active'));
+            sections.forEach(s => s.classList.remove('active'));
+            
+            const activeItem = document.querySelector(`.nav-subitem[data-section="${sectionId}"]`);
+            const activeSection = document.getElementById(sectionId);
+            
+            if (activeItem) activeItem.classList.add('active');
+            if (activeSection) activeSection.classList.add('active');
+        }
+        
+        // Check URL hash on page load
+        function checkHash() {
+            const hash = window.location.hash.substring(1);
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+        }
+        
+        // Handle navigation clicks
+        items.forEach(item => {
+            item.addEventListener('click', function() {
+                const sectionId = this.dataset.section;
+                showSection(sectionId);
+                
+                // Update URL hash
+                history.pushState(null, null, `#${sectionId}`);
+            });
+        });
+        
+        // Handle back/forward button
+        window.addEventListener('popstate', checkHash);
+        
+        // Check hash on initial load
+        checkHash();
+    });
+    </script>
+    {% endif %}
+</body>
+</html>

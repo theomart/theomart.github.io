@@ -1,22 +1,7 @@
 ---
-layout: aiservices
+layout: unified
 title: AI Services
 ---
-
-<div class="ai-services-page">
-    <div class="services-layout">
-        <div class="left-panel">
-            <h1 class="page-title">AI Services</h1>
-            <nav class="service-nav">
-                <button class="nav-item active" data-section="strategy">AI Strategy & Roadmap</button>
-                <button class="nav-item" data-section="ml">Custom Machine Learning</button>
-                <button class="nav-item" data-section="genai">Generative AI & LLM Applications</button>
-                <button class="nav-item" data-section="automation">Intelligent Process Automation</button>
-                <button class="nav-item" data-section="contact">Contact</button>
-            </nav>
-        </div>
-
-        <div class="right-panel">
             <div class="content-section active" id="strategy">
                 <h2>AI Strategy & Roadmap</h2>
                 <p class="subtitle">Your AI Advantage—Engineered from the Boardroom Down</p>
@@ -132,48 +117,3 @@ title: AI Services
                 </ul>
             </div>
 
-            <div class="content-section" id="contact">
-                <h2>Ready to Get Started?</h2>
-                <p>Stop wasting time on AI theater. Let's build something that actually works.</p>
-                <p>The AI consulting market is exploding—$8.75 billion in 2024, projected to hit $58 billion by 2034. North America leads with 36% of the market. Companies have the technology but lack the strategic implementation. That's where I come in.</p>
-                <p>I don't sell you buzzwords. I build systems that create measurable business value, reduce risk, and give you a competitive advantage that's impossible to replicate.</p>
-                
-                <p><strong>Questions to Ask:</strong></p>
-                <ul>
-                    <li>"Which of these areas gives us the fastest ROI with the data we already have?"</li>
-                    <li>"How would you price a 90-day pilot for the GenAI assistant service?"</li>
-                    <li>"Show me a checklist of the data/infrastructure you'd need from us before starting an MLOps engagement."</li>
-                </ul>
-                
-                <p><a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a></p>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const navItems = document.querySelectorAll('.nav-item');
-    const contentSections = document.querySelectorAll('.content-section');
-    
-    navItems.forEach(item => {
-        item.addEventListener('click', function() {
-            // Remove active class from all nav items and content sections
-            navItems.forEach(nav => nav.classList.remove('active'));
-            contentSections.forEach(section => section.classList.remove('active'));
-            
-            // Add active class to clicked nav item
-            this.classList.add('active');
-            
-            // Show corresponding content section
-            const targetSection = document.getElementById(this.dataset.section);
-            if (targetSection) {
-                targetSection.classList.add('active');
-            }
-            
-            // Scroll to top of content when switching sections
-            document.querySelector('.right-panel').scrollTo(0, 0);
-        });
-    });
-});
-</script>

@@ -53,6 +53,27 @@ The site runs on `http://localhost:4000` when served locally.
 - Pages use custom layouts specified in front matter
 - Site uses jekyll-feed plugin for RSS generation
 
+#### Navigation Blog Posts
+The sidebar navigation shows the 3 most recent blog posts under the "Blog" menu item. These are automatically selected by Jekyll using `{% for post in site.posts limit:3 %}` based on the post date.
+
+**To control which posts appear in the navigation:**
+- Posts are ordered by date (newest first)
+- The 3 most recent posts will automatically appear in the sidebar
+- To "pin" specific posts to the top of the navigation, update their date to be more recent
+- Post dates are set in the filename (`YYYY-MM-DD-title.markdown`) and the `date:` field in the front matter
+
+**Example:**
+```yaml
+---
+layout: post
+title: "Important Post"
+date: 2025-01-15
+categories: AI
+---
+```
+
+If you want a specific post to always appear in the navigation, you can set its date to be in the future or simply more recent than other posts.
+
 ## GitHub Pages Configuration
 - Domain: `theomart.in` (configured in CNAME and _config.yml)
 - Uses `github-pages` gem for deployment compatibility
