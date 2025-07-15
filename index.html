@@ -1,25 +1,17 @@
 ---
-layout: default
+layout: homepage
 ---
 
-<div style="margin-bottom: 40px;">
-    <p style="font-size: 1.2em; margin-bottom: 15px;">Hi! I'm Theo Martin, an AI engineer.</p>
-    <p style="margin-bottom: 15px;">I live in Paris, France.</p>
-    <p>Contact me at <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>.</p>
+<div class="profile-image">
+    <img src="/assets/my_photo.png" alt="Theo Martin">
 </div>
-
-<div>
-    <h2 style="margin-bottom: 20px;">Latest Posts</h2>
-    <ul class="post-list">
-      {% for post in site.posts limit:5 %}
-        <li class="post-item">
-          <span class="post-date">{{ post.date | date: "%d %b, %Y" }}</span>
-          <a href="{{ post.url }}" class="post-title">{{ post.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-    
-    <p style="margin-top: 30px;">
-        <a href="/blog" style="color: #4A90E2; text-decoration: none;">View all posts →</a>
+<div class="links">
+    <a href="/blog" class="menu-link">Blog</a>
+    <a href="/aiservices" class="menu-link">AI services</a>
+</div>
+<div class="bio">
+    <p>Hi! I'm Theo Martin, an AI engineer.</p>
+    <p>I live in Paris, France.</p>
+    <p class="contact-me">Contact me at <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>.
     </p>
 </div>
