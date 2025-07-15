@@ -16,41 +16,45 @@
                 <a href="/">theomart</a>
             </h1>
             
-            <nav class="nav">
-                <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}">Home</a>
+            <nav class="nav {% if page.url contains 'blog' or page.layout == 'post' %}show-blog-submenu{% endif %} {% if page.url contains 'aiservices' %}show-ai-submenu{% endif %}">
+                <!-- Home -->
+                <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}" style="order: 1;">Home</a>
                 
-                <a href="/blog" class="nav-item {% if page.url contains 'blog' or page.layout == 'post' %}active{% endif %}">Blog</a>
-                <!-- Blog submenu -->
-                {% if page.url contains 'blog' or page.layout == 'post' %}
+                <!-- Blog -->
+                <a href="/blog" class="nav-item {% if page.url contains 'blog' or page.layout == 'post' %}active{% endif %}" style="order: 10;">Blog</a>
+                <!-- Blog submenu items -->
                 {% if site.featured_posts %}
                     {% for filename in site.featured_posts %}
                         {% for post in site.posts %}
                             {% assign post_filename = post.path | split: "/" | last %}
                             {% if post_filename == filename %}
-                            <a href="{{ post.url }}" class="nav-subitem {% if page.url == post.url %}active{% endif %}">{{ post.title | truncate: 40 }}</a>
+                            <a href="{{ post.url }}" class="nav-subitem blog-sub {% if page.url == post.url %}active{% endif %}" style="order: 11;">{{ post.title | truncate: 40 }}</a>
                             {% break %}
                             {% endif %}
                         {% endfor %}
                     {% endfor %}
                 {% else %}
+                    {% assign counter = 11 %}
                     {% for post in site.posts limit:3 %}
-                    <a href="{{ post.url }}" class="nav-subitem {% if page.url == post.url %}active{% endif %}">{{ post.title | truncate: 40 }}</a>
+                    <a href="{{ post.url }}" class="nav-subitem blog-sub {% if page.url == post.url %}active{% endif %}" style="order: {{ counter }};">{{ post.title | truncate: 40 }}</a>
+                    {% assign counter = counter | plus: 1 %}
                     {% endfor %}
                 {% endif %}
-                <a href="/blog" class="nav-subitem">...</a>
-                {% endif %}
+                <a href="/blog" class="nav-subitem blog-sub" style="order: 19;">...</a>
                 
-                <a href="/team" class="nav-item {% if page.url contains 'team' %}active{% endif %}">Team</a>
+                <!-- Team -->
+                <a href="/team" class="nav-item {% if page.url contains 'team' %}active{% endif %}" style="order: 20;">Team</a>
                 
-                <a href="/aiservices" class="nav-item {% if page.url contains 'aiservices' %}active{% endif %}">AI Services</a>
-                
+                <!-- AI Services -->
+                <a href="/aiservices" class="nav-item {% if page.url contains 'aiservices' %}active{% endif %}" style="order: 30;">AI Services</a>
                 <!-- AI Services submenu -->
-                {% if page.url contains 'aiservices' %}
-                <a href="/aiservices#strategy" class="nav-subitem active" data-section="strategy">AI Strategy & Roadmap</a>
-                <a href="/aiservices#ml" class="nav-subitem" data-section="ml">Custom Machine Learning</a>
-                <a href="/aiservices#genai" class="nav-subitem" data-section="genai">Generative AI & LLM Applications</a>
-                <a href="/aiservices#automation" class="nav-subitem" data-section="automation">Intelligent Process Automation</a>
-                {% endif %}
+                <a href="/aiservices#strategy" class="nav-subitem ai-sub {% if page.url contains 'aiservices' %}active{% endif %}" data-section="strategy" style="order: 31;">AI Strategy & Roadmap</a>
+                <a href="/aiservices#ml" class="nav-subitem ai-sub" data-section="ml" style="order: 32;">Custom Machine Learning</a>
+                <a href="/aiservices#genai" class="nav-subitem ai-sub" data-section="genai" style="order: 33;">Generative AI & LLM Applications</a>
+                <a href="/aiservices#automation" class="nav-subitem ai-sub" data-section="automation" style="order: 34;">Intelligent Process Automation</a>
+                
+                <!-- Customer Success -->
+                <a href="/success" class="nav-item {% if page.url contains 'success' %}active{% endif %}" style="order: 40;">Customer Success</a>
             </nav>
         </div>
         
