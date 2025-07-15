@@ -58,3 +58,10 @@ plugins:
 sass:
   sass_dir: _sass
   style: compressed
+
+# Featured posts for navigation
+# Change these filenames to feature different posts in the blog submenu
+featured_posts:
+  - "2024-08-26-colbert.markdown"
+  - "2024-09-21-developers-who-dont-use-ai-assisted-coding-are-already-falli.markdown"
+  - "2025-03-31-rewriting-from-scratch-is-increasingly-viable-due-to-ai-assi.markdown"

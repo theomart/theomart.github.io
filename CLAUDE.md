@@ -55,12 +55,27 @@ The site runs on `http://localhost:4000` when served locally.
 - `index.html` - Home/Contact page with intro + contact sections
 - `blog.html` - Blog listing page
 - `aiservices.html` - AI services with multiple content sections
+- `team.html` - Team page showcasing both consultants
 
 #### Blog Posts
 - Format: `_posts/YYYY-MM-DD-title.markdown`
 - Front matter: `layout: post`, `title`, `date`, `categories`
-- Navigation shows 3 most recent posts (by date) + "..." link
-- To pin posts: Update date to be more recent than others
+
+#### Featured Posts in Navigation
+The blog submenu shows 3 handpicked posts instead of the most recent ones. To change featured posts:
+
+1. Open `_config.yml`
+2. Find the `featured_posts` section
+3. Update the filenames with your desired posts:
+```yaml
+featured_posts:
+  - "2024-08-26-colbert.markdown"
+  - "2024-09-21-developers-who-dont-use-ai-assisted-coding-are-already-falli.markdown"
+  - "2025-03-31-rewriting-from-scratch-is-increasingly-viable-due-to-ai-assi.markdown"
+```
+4. Restart Jekyll server (changes to `_config.yml` require restart)
+
+Note: Use the exact filename from the `_posts` directory, including the date prefix and `.markdown` extension.
 
 #### AI Services Sections
 - Single page with multiple `<div class="content-section" id="sectionname">` blocks
