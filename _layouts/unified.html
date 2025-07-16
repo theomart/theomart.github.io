@@ -13,10 +13,10 @@
         <!-- Left sidebar -->
         <div class="sidebar">
             <h1 class="site-title">
-                <a href="/">theomart</a>
+                <a href="/">theo martin</a>
             </h1>
             
-            <nav class="nav {% if page.url contains 'blog' or page.layout == 'post' %}show-blog-submenu{% endif %} {% if page.url contains 'aiservices' %}show-ai-submenu{% endif %}">
+            <nav class="nav {% if page.url contains 'blog' or page.layout == 'post' %}show-blog-submenu{% endif %} {% if page.url contains 'aiservices' or page.url contains 'team' or page.url contains 'success' %}show-ai-submenu{% endif %}">
                 <!-- Home -->
                 <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}" style="order: 1;">Home</a>
                 
@@ -28,7 +28,7 @@
                         {% for post in site.posts %}
                             {% assign post_filename = post.path | split: "/" | last %}
                             {% if post_filename == filename %}
-                            <a href="{{ post.url }}" class="nav-subitem blog-sub {% if page.url == post.url %}active{% endif %}" style="order: 11;">{{ post.title | truncate: 40 }}</a>
+                            <a href="{{ post.url }}" class="nav-subitem blog-sub {% if page.url == post.url %}active{% endif %}" style="order: 11;">{{ post.title | truncate: 35 }}</a>
                             {% break %}
                             {% endif %}
                         {% endfor %}
@@ -36,25 +36,26 @@
                 {% else %}
                     {% assign counter = 11 %}
                     {% for post in site.posts limit:3 %}
-                    <a href="{{ post.url }}" class="nav-subitem blog-sub {% if page.url == post.url %}active{% endif %}" style="order: {{ counter }};">{{ post.title | truncate: 40 }}</a>
+                    <a href="{{ post.url }}" class="nav-subitem blog-sub {% if page.url == post.url %}active{% endif %}" style="order: {{ counter }};">{{ post.title | truncate: 35 }}</a>
                     {% assign counter = counter | plus: 1 %}
                     {% endfor %}
                 {% endif %}
                 <a href="/blog" class="nav-subitem blog-sub" style="order: 19;">...</a>
                 
-                <!-- Team -->
-                <a href="/team" class="nav-item {% if page.url contains 'team' %}active{% endif %}" style="order: 20;">Team</a>
+                <!-- AI Consulting -->
+                <a href="/aiservices" class="nav-item nav-section {% if page.url contains 'aiservices' or page.url contains 'team' or page.url contains 'success' %}active{% endif %}" style="order: 30;">AI Consulting</a>
                 
-                <!-- AI Services -->
-                <a href="/aiservices" class="nav-item {% if page.url contains 'aiservices' %}active{% endif %}" style="order: 30;">AI Services</a>
-                <!-- AI Services submenu -->
-                <a href="/aiservices#strategy" class="nav-subitem ai-sub {% if page.url contains 'aiservices' %}active{% endif %}" data-section="strategy" style="order: 31;">AI Strategy & Roadmap</a>
-                <a href="/aiservices#ml" class="nav-subitem ai-sub" data-section="ml" style="order: 32;">Custom Machine Learning</a>
-                <a href="/aiservices#genai" class="nav-subitem ai-sub" data-section="genai" style="order: 33;">Generative AI & LLM Applications</a>
-                <a href="/aiservices#automation" class="nav-subitem ai-sub" data-section="automation" style="order: 34;">Intelligent Process Automation</a>
+                <!-- Services subsection -->
+                <span class="nav-subsection ai-sub" style="order: 31;">Services</span>
+                <a href="/aiservices#strategy" class="nav-subsubitem ai-sub" data-section="strategy" style="order: 32;">AI Strategy & Roadmap</a>
+                <a href="/aiservices#ml" class="nav-subsubitem ai-sub" data-section="ml" style="order: 33;">Machine Learning</a>
+                <a href="/aiservices#genai" class="nav-subsubitem ai-sub" data-section="genai" style="order: 34;">Generative AI & LLM</a>
+                <a href="/aiservices#automation" class="nav-subsubitem ai-sub" data-section="automation" style="order: 35;">Process Automation</a>
                 
-                <!-- Customer Success -->
-                <a href="/success" class="nav-item {% if page.url contains 'success' %}active{% endif %}" style="order: 40;">Customer Success</a>
+                <!-- About subsection -->
+                <span class="nav-subsection ai-sub" style="order: 40;">About</span>
+                <a href="/team" class="nav-subsubitem ai-sub {% if page.url contains 'team' %}active{% endif %}" style="order: 41;">Team</a>
+                <a href="/success" class="nav-subsubitem ai-sub {% if page.url contains 'success' %}active{% endif %}" style="order: 42;">Case Studies</a>
             </nav>
         </div>
         
@@ -68,7 +69,7 @@
     {% if page.url contains 'aiservices' %}
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const items = document.querySelectorAll('.nav-subitem[data-section]');
+        const items = document.querySelectorAll('.nav-subsubitem[data-section]');
         const sections = document.querySelectorAll('.content-section');
         
         // Function to show a specific section
@@ -76,7 +77,7 @@
             items.forEach(i => i.classList.remove('active'));
             sections.forEach(s => s.classList.remove('active'));
             
-            const activeItem = document.querySelector(`.nav-subitem[data-section="${sectionId}"]`);
+            const activeItem = document.querySelector(`.nav-subsubitem[data-section="${sectionId}"]`);
             const activeSection = document.getElementById(sectionId);
             
             if (activeItem) activeItem.classList.add('active');
