@@ -39,6 +39,42 @@ title: Customer Success
     </div>
 
     <div class="contact-simple">
-        <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>
+        <span class="email-container">
+            <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>
+            <button class="copy-email" data-email="contacttheomartin@gmail.com" data-tooltip="Copy">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                    <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+            </button>
+        </span>
+        · <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const copyButtons = document.querySelectorAll('.copy-email');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const email = this.getAttribute('data-email');
+            const svg = this.querySelector('svg');
+            const originalPath = svg.innerHTML;
+            
+            navigator.clipboard.writeText(email).then(() => {
+                // Change to checkmark
+                svg.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+                this.classList.add('copied');
+                this.setAttribute('data-tooltip', 'Copied!');
+                
+                // Revert after 2 seconds
+                setTimeout(() => {
+                    svg.innerHTML = originalPath;
+                    this.classList.remove('copied');
+                    this.setAttribute('data-tooltip', 'Copy');
+                }, 2000);
+            });
+        });
+    });
+});
+</script>

@@ -2,7 +2,38 @@
 layout: unified
 title: AI Services
 ---
-            <div class="content-section active" id="strategy">
+            <div class="content-section active" id="intro">
+                <h2>Ready to Get Started?</h2>
+                <p>Stop wasting time on AI theater. Let's build something that actually works.</p>
+                <p>Companies have the technology but lack the strategic implementation. That's where <a href="/team">we</a> come in.</p>
+                <p>We don't sell you buzzwords. We build systems that create measurable business value, reduce risk, and give you a competitive advantage that's impossible to replicate.</p>
+                
+                <p>Your board wants <a href="#strategy">an AI roadmap that actually delivers ROI</a>, not another pilot graveyard. Your data scientists built models that <a href="#ml">never made it past the PowerPoint stage</a>. Your dev team is drowning in <a href="#genai">ChatGPT wrapper requests</a> while real opportunities slip by. Your ops team is still <a href="#automation">copy-pasting between systems</a> like it's 2010.</p>
+                
+                <p>We've been there. We've <a href="/success">fixed it</a>. From fashion marketplaces struggling with search accuracy to B2B platforms bleeding money on invoice mismatches—we deliver solutions that ship, scale, and save real money.</p>
+                
+                <p><strong>Questions to Ask:</strong></p>
+                <ul>
+                    <li>"Which of these areas gives us the fastest ROI with the data we already have?"</li>
+                    <li>"How would you price a 90-day pilot for the GenAI assistant service?"</li>
+                    <li>"Show me a checklist of the data/infrastructure you'd need from us before starting an MLOps engagement."</li>
+                </ul>
+                
+                <p>
+                    <span class="email-container">
+                        <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>
+                        <button class="copy-email" data-email="contacttheomartin@gmail.com" data-tooltip="Copy">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </span>
+                    · <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a>
+                </p>
+            </div>
+
+            <div class="content-section" id="strategy">
                 <h2>AI Strategy & Roadmap</h2>
                 <p class="subtitle">Your AI Advantage—Engineered from the Boardroom Down</p>
                 
@@ -140,6 +171,53 @@ document.addEventListener('DOMContentLoaded', function() {
             } catch (e) {
                 // Skip invalid URLs
             }
+        });
+    });
+    
+    // Handle internal section links
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetSection = document.getElementById(targetId);
+            if (targetSection) {
+                // Show the section
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                targetSection.classList.add('active');
+                
+                // Update nav highlighting
+                document.querySelectorAll('.nav-subsubitem[data-section]').forEach(i => i.classList.remove('active'));
+                const navItem = document.querySelector(`.nav-subsubitem[data-section="${targetId}"]`);
+                if (navItem) navItem.classList.add('active');
+                
+                // Update URL
+                history.pushState(null, null, `#${targetId}`);
+            }
+        });
+    });
+    
+    // Handle email copy buttons
+    const copyButtons = document.querySelectorAll('.copy-email');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const email = this.getAttribute('data-email');
+            const svg = this.querySelector('svg');
+            const originalPath = svg.innerHTML;
+            
+            navigator.clipboard.writeText(email).then(() => {
+                // Change to checkmark
+                svg.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+                this.classList.add('copied');
+                this.setAttribute('data-tooltip', 'Copied!');
+                
+                // Revert after 2 seconds
+                setTimeout(() => {
+                    svg.innerHTML = originalPath;
+                    this.classList.remove('copied');
+                    this.setAttribute('data-tooltip', 'Copy');
+                }, 2000);
+            });
         });
     });
 });

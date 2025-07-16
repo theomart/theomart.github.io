@@ -10,25 +10,49 @@ title: Home
         <div class="description">
             <p>I help companies build AI systems that create measurable business value. From strategic roadmaps to production-ready machine learning models, I bridge the gap between AI hype and practical implementation.</p>
         </div>
-        <div class="cta-buttons">
-            <a href="/aiservices" class="cta-button">AI Services</a>
-            <a href="/blog" class="cta-button secondary">Read Blog</a>
-        </div>
+        <p><a href="/aiservices">AI Services</a> · <a href="/blog">Blog</a></p>
     </div>
     
     <div class="contact-section">
-        <h2>Ready to Get Started?</h2>
-        <p>Stop wasting time on AI theater. Let's build something that actually works.</p>
-        <p>The AI consulting market is exploding—$8.75 billion in 2024, projected to hit $58 billion by 2034. North America leads with 36% of the market. Companies have the technology but lack the strategic implementation. That's where I come in.</p>
-        <p>I don't sell you buzzwords. I build systems that create measurable business value, reduce risk, and give you a competitive advantage that's impossible to replicate.</p>
-        
-        <p><strong>Questions to Ask:</strong></p>
-        <ul>
-            <li>"Which of these areas gives us the fastest ROI with the data we already have?"</li>
-            <li>"How would you price a 90-day pilot for the GenAI assistant service?"</li>
-            <li>"Show me a checklist of the data/infrastructure you'd need from us before starting an MLOps engagement."</li>
-        </ul>
-        
-        <p><a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a> <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a></p>
+        <h2>Contact</h2>
+        <p>
+            <span class="email-container">
+                <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>
+                <button class="copy-email" data-email="contacttheomartin@gmail.com" data-tooltip="Copy">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </span>
+            · <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a>
+        </p>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const copyButtons = document.querySelectorAll('.copy-email');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const email = this.getAttribute('data-email');
+            const svg = this.querySelector('svg');
+            const originalPath = svg.innerHTML;
+            
+            navigator.clipboard.writeText(email).then(() => {
+                // Change to checkmark
+                svg.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+                this.classList.add('copied');
+                this.setAttribute('data-tooltip', 'Copied!');
+                
+                // Revert after 2 seconds
+                setTimeout(() => {
+                    svg.innerHTML = originalPath;
+                    this.classList.remove('copied');
+                    this.setAttribute('data-tooltip', 'Copy');
+                }, 2000);
+            });
+        });
+    });
+});
+</script>

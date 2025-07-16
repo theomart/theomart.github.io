@@ -89,6 +89,9 @@
             const hash = window.location.hash.substring(1);
             if (hash && document.getElementById(hash)) {
                 showSection(hash);
+            } else if (!hash) {
+                // If no hash, show intro section by default
+                showSection('intro');
             }
         }
         

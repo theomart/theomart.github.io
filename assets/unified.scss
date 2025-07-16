@@ -279,32 +279,13 @@ body {
             line-height: 1.7;
         }
         
-        .cta-buttons {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            
-            .cta-button {
-                padding: 10px 20px;
-                @include gradient-bg;
-                @include gradient-hover;
-                color: #fff;
+        p {
+            a {
+                color: var(--primary-color);
                 text-decoration: none;
-                font-weight: 500;
-                font-size: 0.9rem;
-                border-radius: 4px;
                 
-                &.secondary {
-                    background: transparent;
-                    color: var(--primary-color);
-                    border: 1px solid var(--primary-color);
-                    
-                    &:hover {
-                        @include gradient-bg;
-                        color: #fff;
-                        border-color: transparent;
-                        background-position: 100% 100%;
-                    }
+                &:hover {
+                    color: #fff;
                 }
             }
         }
@@ -362,6 +343,27 @@ body {
 }
 
 // Blog styles
+.blog-intro {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #333;
+    
+    p {
+        color: #ccc;
+        line-height: 1.7;
+        font-size: 0.95rem;
+    }
+    
+    a {
+        color: var(--primary-color);
+        text-decoration: none;
+        
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+
 .post-list {
     list-style: none;
     
@@ -900,6 +902,79 @@ body {
             &:hover {
                 color: #fff;
             }
+        }
+    }
+}
+
+// Email copy button styles
+.email-container {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    
+    .copy-email {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        color: #666;
+        transition: color 0.2s ease;
+        line-height: 0;
+        position: relative;
+        
+        &:hover {
+            color: var(--primary-color);
+        }
+        
+        &.copied {
+            color: var(--secondary-color);
+        }
+        
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+        
+        // Tooltip
+        &[data-tooltip]::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: calc(100% + 8px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: #fff;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 400;
+            white-space: nowrap;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 1000;
+        }
+        
+        // Tooltip arrow
+        &[data-tooltip]::before {
+            content: '';
+            position: absolute;
+            bottom: calc(100% + 4px);
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: #333;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+            z-index: 1000;
+        }
+        
+        &:hover[data-tooltip]::after,
+        &:hover[data-tooltip]::before {
+            opacity: 1;
         }
     }
 }
