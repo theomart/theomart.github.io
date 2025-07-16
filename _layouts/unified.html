@@ -16,7 +16,7 @@
                 <a href="/">theo martin</a>
             </h1>
             
-            <nav class="nav {% if page.url contains 'blog' or page.layout == 'post' %}show-blog-submenu{% endif %} {% if page.url contains 'aiservices' or page.url contains 'team' or page.url contains 'success' %}show-ai-submenu{% endif %}">
+            <nav class="nav {% if page.url contains 'blog' or page.layout == 'post' %}show-blog-submenu{% endif %} {% if page.url contains 'aiservices' or page.url contains 'team' or page.url contains 'success' or page.url contains 'talk' %}show-ai-submenu{% endif %}">
                 <!-- Home -->
                 <a href="/" class="nav-item {% if page.url == '/' %}active{% endif %}" style="order: 1;">Home</a>
                 
@@ -43,7 +43,7 @@
                 <a href="/blog" class="nav-subitem blog-sub" style="order: 19;">...</a>
                 
                 <!-- AI Consulting -->
-                <a href="/aiservices" class="nav-item nav-section {% if page.url contains 'aiservices' or page.url contains 'team' or page.url contains 'success' %}active{% endif %}" style="order: 30;">AI Consulting</a>
+                <a href="/aiservices" class="nav-item nav-section {% if page.url contains 'aiservices' or page.url contains 'team' or page.url contains 'success' or page.url contains 'talk' %}active{% endif %}" style="order: 30;">AI Consulting</a>
                 
                 <!-- Services subsection -->
                 <span class="nav-subsection ai-sub" style="order: 31;">Services</span>
@@ -56,6 +56,7 @@
                 <span class="nav-subsection ai-sub" style="order: 40;">About</span>
                 <a href="/team" class="nav-subsubitem ai-sub {% if page.url contains 'team' %}active{% endif %}" style="order: 41;">Team</a>
                 <a href="/success" class="nav-subsubitem ai-sub {% if page.url contains 'success' %}active{% endif %}" style="order: 42;">Case Studies</a>
+                <a href="/talk" class="nav-subsubitem ai-sub {% if page.url contains 'talk' %}active{% endif %}" style="order: 43;">Let's Talk</a>
             </nav>
         </div>
         

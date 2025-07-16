@@ -906,6 +906,128 @@ body {
     }
 }
 
+// Talk page styles
+.talk-content {
+    max-width: 800px;
+    
+    .talk-intro {
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 30px;
+    }
+    
+    .discovery-notice {
+        border-left: 3px solid var(--primary-color);
+        padding-left: 20px;
+        margin-bottom: 60px;
+        
+        p {
+            margin: 0;
+            line-height: 1.7;
+            color: #ccc;
+        }
+        
+        .highlight {
+            color: #fff;
+            font-weight: 500;
+        }
+    }
+    
+    .consultation-option {
+        margin-bottom: 60px;
+        padding: 30px 0;
+        border-bottom: 1px solid #222;
+        
+        &:last-of-type {
+            border-bottom: none;
+        }
+        
+        h2 {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+            font-weight: 400;
+            color: #fff;
+        }
+        
+        .pricing {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            
+            .strikethrough {
+                text-decoration: line-through;
+                color: #666;
+                margin-right: 12px;
+            }
+            
+            .free-text {
+                color: var(--secondary-color);
+                font-weight: 500;
+            }
+        }
+        
+        &.special-offer {
+            .free-text {
+                @include gradient-text-animated(3s);
+            }
+        }
+        
+        p {
+            margin-bottom: 20px;
+            line-height: 1.7;
+            
+            strong {
+                color: #fff;
+            }
+        }
+        
+        ul {
+            list-style: none;
+            margin-bottom: 20px;
+            
+            li {
+                margin-bottom: 10px;
+                padding-left: 20px;
+                position: relative;
+                
+                &::before {
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    width: 4px;
+                    height: 4px;
+                    background: #666;
+                    border-radius: 50%;
+                    top: 0.6em;
+                }
+            }
+        }
+        
+        .booking-link {
+            margin-top: 30px;
+            
+            a {
+                color: var(--primary-color);
+                text-decoration: none;
+                font-weight: 500;
+                
+                &:hover {
+                    color: #fff;
+                }
+            }
+        }
+    }
+    
+    .talk-cta {
+        text-align: center;
+        margin-top: 60px;
+        
+        p {
+            margin-bottom: 20px;
+            color: #ccc;
+        }
+    }
+}
+
 // Email copy button styles
 .email-container {
     display: inline-flex;
