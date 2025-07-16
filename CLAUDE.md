@@ -104,3 +104,22 @@ Note: Use the exact filename from the `_posts` directory, including the date pre
 - Focus on clean typography and thoughtful spacing
 - Let content breathe with whitespace rather than visual separators
 - Use subtle design elements (like gradient text) sparingly for emphasis
+
+### Tone and Writing Style
+Our content uses a direct, no-BS tone that prioritizes clarity and value:
+
+- **Cut through the noise**: No corporate jargon, buzzwords, or filler content. Every sentence should deliver value.
+- **Problem-first approach**: Lead with the customer's pain points, not our capabilities. "Your models never made it past PowerPoint" vs "We offer MLOps services"
+- **Concrete over abstract**: Use specific examples, numbers, and scenarios. "Block crooks in 50ms" vs "Real-time fraud detection"
+- **Conversational but authoritative**: Write like you're explaining to a smart colleague who doesn't have time for fluff
+- **Action-oriented**: Focus on what gets done, not what could be done. "We've fixed it" vs "We can help"
+- **Minimalistic**: If it can be said in 5 words instead of 20, use 5. Remove any sentence that doesn't add new information
+- **Technical honesty**: Don't oversimplify technical concepts, but explain them in accessible terms
+- **Show, don't tell**: Instead of claiming expertise, demonstrate it through specific use cases and results
+
+Example transformations:
+- ❌ "We leverage cutting-edge artificial intelligence solutions to transform your business"
+- ✅ "Your board wants an AI roadmap that actually delivers ROI, not another pilot graveyard"
+
+- ❌ "Our comprehensive suite of services includes..."
+- ✅ "From fashion marketplaces struggling with search accuracy to B2B platforms bleeding money on invoice mismatches—we deliver solutions that ship"
