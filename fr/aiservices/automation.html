@@ -1,0 +1,57 @@
+---
+layout: unified
+title: Automatisation intelligente des processus
+---
+<h2>Automatisation intelligente des processus</h2>
+<p class="subtitle">Des robots qui pensent, pas seulement qui cliquent.</p>
+
+<p><strong>Pourquoi c'est important :</strong> La RPA basique (Robotic Process Automation) peut faire plus que rejouer des clics—elle gère aussi les règles, validation simple de données, et intégrations systèmes. Mais l'Automatisation Intelligente des Processus (IPA) c'est la RPA plus l'IA. "IA" ici signifie deux astuces pratiques : le NLP (Natural Language Processing) qui lit le texte ou emails, et la Vision par Ordinateur qui comprend les images ou PDFs. <a href="https://www.timesofai.com/news/ai-powered-rpa-revolutionizes-digital-transformation-in-2024/">La RPA infusée d'IA délivre un ROI solide dans les fonctions finance</a>, avec payback souvent sous 12 mois.</p>
+
+<p><strong>Ce que nous faisons :</strong></p>
+<ul>
+    <li><strong>Mining des processus :</strong> Tirer les données de log de vos systèmes pour cartographier comment le travail coule vraiment et repérer les goulots d'étranglement</li>
+    <li><strong>Traitement de documents :</strong> L'IA lit PDFs/emails, attrape les champs clés (montant, date, noms). <a href="https://www.grandviewresearch.com/industry-analysis/intelligent-document-processing-market-report">IDP est un marché de 2,3G$ qui race vers 12,3G$ d'ici 2030</a> parce que ça tue la saisie manuelle de données. Les systèmes atteignent plus de 95% de précision sur factures, contrats et formulaires.</li>
+    <li><strong>Orchestration de workflow :</strong> Code de colle qui passe les données entre systèmes (CRM, ERP, email) sans transferts manuels</li>
+    <li><strong>Humain-dans-la-boucle :</strong> Bot auto-gère 99% de routine, route les cas bizarres à un réviseur humain en moins de 30 secondes</li>
+    <li><strong>Bouclier Compliance :</strong> <a href="https://www.credo.ai/blog/key-ai-regulations-in-2025-what-enterprises-need-to-know">Les règles UE, US et Californie atterrissent vite</a>. Nous mappons vos cas d'usage à AI Act, HIPAA, GDPR, et lois locales. Testing biais/robustesse, audit trails, cartes de modèles.</li>
+</ul>
+
+<p><strong>Exemples de cas d'usage :</strong></p>
+<ul>
+    <li><strong>Comptabilité :</strong> Facture → correspondance PO → queue de paiement. Zéro saisie de données manuelle</li>
+    <li><strong>RH :</strong> Nouvel embauché signe l'offre → comptes, avantages, commande laptop, réunions d'accueil. Temps d'intégration coupé de jours à minutes</li>
+    <li><strong>Logistique :</strong> Email bon de commande → extraire détails → charger dans système d'accomplissement. Temps de saisie commande : heures → secondes</li>
+    <li><strong>Assurance :</strong> Intake claim → lire rapport + photos → router vers adjusteur. Triage claims plus rapide, moins d'erreurs</li>
+    <li><strong>Bancaire :</strong> <a href="https://www.fintechweekly.com/magazine/articles/rpa-and-ai-in-the-financial-sector">Banque a automatisé onboarding KYB, économisant 1,5 FTE par 10k comptes</a> et coupant le turnaround de jours à heures</li>
+</ul>
+
+<p><strong>Exemples de questions sur lesquelles nous pouvons aider :</strong></p>
+<ul>
+    <li>Comment prioriseriez-vous quels workflows automatiser en premier dans une entreprise de taille moyenne ?</li>
+    <li>Quelles métriques suivriez-vous pour prouver que l'automatisation paie ?</li>
+    <li>Où les projets IPA ont-ils échoué, et quelles leçons pouvez-vous voler de ces post-mortems ?</li>
+</ul>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Add domain badges to all external links
+    const links = document.querySelectorAll('a[href^="http"]');
+    
+    links.forEach(link => {
+        try {
+            const url = new URL(link.href);
+            const domain = url.hostname.replace('www.', '');
+            
+            // Create domain badge
+            const badge = document.createElement('span');
+            badge.className = 'domain-badge';
+            badge.textContent = domain;
+            
+            // Append badge to link
+            link.appendChild(badge);
+        } catch (e) {
+            // Skip invalid URLs
+        }
+    });
+});
+</script>

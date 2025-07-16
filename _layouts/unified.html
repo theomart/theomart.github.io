@@ -10,6 +10,18 @@
 </head>
 <body>
     <div class="layout">
+        <!-- Mobile header -->
+        <div class="mobile-header">
+            <h1 class="site-title">
+                <a href="/">theo martin</a>
+            </h1>
+            <button class="mobile-menu-toggle" aria-label="Toggle navigation">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+        </div>
+        
         <!-- Left sidebar -->
         <div class="sidebar">
             <h1 class="site-title">
@@ -47,11 +59,11 @@
                 
                 <!-- Services subsection -->
                 <span class="nav-subsection ai-sub" style="order: 31;" data-nav-services>Services</span>
-                <a href="/aiservices#strategy" class="nav-subsubitem ai-sub" data-section="strategy" style="order: 32;" data-nav-ai-strategy>AI Strategy & Roadmap</a>
-                <a href="/aiservices#ml" class="nav-subsubitem ai-sub" data-section="ml" style="order: 33;" data-nav-machine-learning>Machine Learning</a>
-                <a href="/aiservices#genai" class="nav-subsubitem ai-sub" data-section="genai" style="order: 34;" data-nav-generative-ai>Generative AI & LLM</a>
-                <a href="/aiservices#automation" class="nav-subsubitem ai-sub" data-section="automation" style="order: 35;" data-nav-process-automation>Process Automation</a>
-                <a href="/aiservices#productivity" class="nav-subsubitem ai-sub" data-section="productivity" style="order: 36;" data-nav-team-productivity>Team Productivity</a>
+                <a href="/aiservices/strategy" class="nav-subsubitem ai-sub {% if page.url contains 'aiservices/strategy' %}active{% endif %}" style="order: 32;" data-nav-ai-strategy>AI Strategy & Roadmap</a>
+                <a href="/aiservices/ml" class="nav-subsubitem ai-sub {% if page.url contains 'aiservices/ml' %}active{% endif %}" style="order: 33;" data-nav-machine-learning>Machine Learning</a>
+                <a href="/aiservices/genai" class="nav-subsubitem ai-sub {% if page.url contains 'aiservices/genai' %}active{% endif %}" style="order: 34;" data-nav-generative-ai>Generative AI & LLM</a>
+                <a href="/aiservices/automation" class="nav-subsubitem ai-sub {% if page.url contains 'aiservices/automation' %}active{% endif %}" style="order: 35;" data-nav-process-automation>Process Automation</a>
+                <a href="/aiservices/productivity" class="nav-subsubitem ai-sub {% if page.url contains 'aiservices/productivity' %}active{% endif %}" style="order: 36;" data-nav-team-productivity>Team Productivity</a>
                 
                 <!-- About subsection -->
                 <span class="nav-subsection ai-sub" style="order: 40;" data-nav-about>About</span>
@@ -147,11 +159,11 @@
                 if (teamLink) teamLink.href = '/fr/team';
                 if (caseStudiesLink) caseStudiesLink.href = '/fr/success';
                 if (letsTalkLink) letsTalkLink.href = '/fr/talk';
-                if (aiStrategyLink) aiStrategyLink.href = '/fr/aiservices#strategy';
-                if (mlLink) mlLink.href = '/fr/aiservices#ml';
-                if (genaiLink) genaiLink.href = '/fr/aiservices#genai';
-                if (automationLink) automationLink.href = '/fr/aiservices#automation';
-                if (productivityLink) productivityLink.href = '/fr/aiservices#productivity';
+                if (aiStrategyLink) aiStrategyLink.href = '/fr/aiservices/strategy';
+                if (mlLink) mlLink.href = '/fr/aiservices/ml';
+                if (genaiLink) genaiLink.href = '/fr/aiservices/genai';
+                if (automationLink) automationLink.href = '/fr/aiservices/automation';
+                if (productivityLink) productivityLink.href = '/fr/aiservices/productivity';
             }
         }
         
@@ -190,54 +202,37 @@
     });
     </script>
     
-    <!-- JavaScript for AI Services -->
-    {% if page.url contains 'aiservices' %}
+    
+    <!-- Mobile menu toggle -->
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const items = document.querySelectorAll('.nav-subsubitem[data-section]');
-        const sections = document.querySelectorAll('.content-section');
+        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
+        const sidebar = document.querySelector('.sidebar');
         
-        // Function to show a specific section
-        function showSection(sectionId) {
-            items.forEach(i => i.classList.remove('active'));
-            sections.forEach(s => s.classList.remove('active'));
-            
-            const activeItem = document.querySelector(`.nav-subsubitem[data-section="${sectionId}"]`);
-            const activeSection = document.getElementById(sectionId);
-            
-            if (activeItem) activeItem.classList.add('active');
-            if (activeSection) activeSection.classList.add('active');
-        }
-        
-        // Check URL hash on page load
-        function checkHash() {
-            const hash = window.location.hash.substring(1);
-            if (hash && document.getElementById(hash)) {
-                showSection(hash);
-            } else if (!hash) {
-                // If no hash, show intro section by default
-                showSection('intro');
-            }
-        }
-        
-        // Handle navigation clicks
-        items.forEach(item => {
-            item.addEventListener('click', function() {
-                const sectionId = this.dataset.section;
-                showSection(sectionId);
-                
-                // Update URL hash
-                history.pushState(null, null, `#${sectionId}`);
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function() {
+                sidebar.classList.toggle('mobile-open');
+                this.classList.toggle('active');
             });
-        });
-        
-        // Handle back/forward button
-        window.addEventListener('popstate', checkHash);
-        
-        // Check hash on initial load
-        checkHash();
+            
+            // Close mobile menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!sidebar.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                    sidebar.classList.remove('mobile-open');
+                    mobileMenuToggle.classList.remove('active');
+                }
+            });
+            
+            // Close mobile menu when clicking on nav links
+            const navLinks = sidebar.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    sidebar.classList.remove('mobile-open');
+                    mobileMenuToggle.classList.remove('active');
+                });
+            });
+        }
     });
     </script>
-    {% endif %}
 </body>
 </html>
