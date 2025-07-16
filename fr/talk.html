@@ -1,0 +1,85 @@
+---
+layout: unified
+title: Discutons
+---
+
+<h1>Discutons</h1>
+
+<div class="talk-content">
+    <p class="talk-intro">Un problème IA ? Résolvons-le. Pas de sales pitch, juste des solutions.</p>
+    
+    <div class="discovery-notice">
+        <p><strong>Offre limitée :</strong> On collecte des insights cross-industries pour affiner nos offerings et pricing. Partagez vos défis IA spécifiques avec nous, recevez des solutions d'experts en retour.</p>
+    </div>
+
+    <div class="consultation-option special-offer">
+        <h2>Deep Dive (60 minutes + plan d'action)</h2>
+        <p class="pricing"><span class="strikethrough">300€</span> <span class="free-text">GRATUIT pour l'instant</span></p>
+        <p><strong>Pour les problèmes complexes qui ont besoin de vraies solutions.</strong></p>
+        
+        <p><strong>Avant qu'on se parle :</strong></p>
+        <ul>
+            <li>Envoyez vos docs, code, tout ce qui est pertinent</li>
+            <li>On review tout (oui, on lit vraiment)</li>
+            <li>On arrive préparé avec des recommandations spécifiques</li>
+        </ul>
+        
+        <p><strong>Pendant l'appel :</strong></p>
+        <ul>
+            <li>Dissection de vos défis IA—techniques, organisationnels, stratégiques</li>
+            <li>Construction de solutions actionnables ensemble</li>
+            <li>Inclusion de votre équipe si nécessaire</li>
+        </ul>
+        
+        <p><strong>Après :</strong></p>
+        <ul>
+            <li>Mémo avec tout ce qu'on a discuté</li>
+            <li>Next steps concrets que vous pouvez exécuter</li>
+            <li>Pas de fluff, juste ce qui vous fait avancer</li>
+        </ul>
+        
+        <p class="booking-link"><a href="#" class="consultation-link">Booker deep dive gratuit →</a></p>
+    </div>
+
+    <div class="talk-cta">
+        <p>Prêt à résoudre vos défis IA ? Bookez votre deep dive gratuit de 60 minutes pendant qu'on collecte des insights industrie.</p>
+        <p>
+            <span class="email-container">
+                <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>
+                <button class="copy-email" data-email="contacttheomartin@gmail.com" data-tooltip="Copier">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                    </svg>
+                </button>
+            </span>
+        </p>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const copyButtons = document.querySelectorAll('.copy-email');
+    copyButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const email = this.getAttribute('data-email');
+            const svg = this.querySelector('svg');
+            const originalPath = svg.innerHTML;
+            
+            navigator.clipboard.writeText(email).then(() => {
+                // Change to checkmark
+                svg.innerHTML = '<polyline points="20 6 9 17 4 12"></polyline>';
+                this.classList.add('copied');
+                this.setAttribute('data-tooltip', 'Copié!');
+                
+                // Revert after 2 seconds
+                setTimeout(() => {
+                    svg.innerHTML = originalPath;
+                    this.classList.remove('copied');
+                    this.setAttribute('data-tooltip', 'Copier');
+                }, 2000);
+            });
+        });
+    });
+});
+</script>

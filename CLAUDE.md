@@ -123,3 +123,39 @@ Example transformations:
 
 - ❌ "Our comprehensive suite of services includes..."
 - ✅ "From fashion marketplaces struggling with search accuracy to B2B platforms bleeding money on invoice mismatches—we deliver solutions that ship"
+
+## Localization Guidelines
+
+The site supports both English and French versions with a language switcher in the bottom-left sidebar.
+
+### File Structure
+- English pages: Root directory (`/`)
+- French pages: `/fr/` directory
+- Blog: English only (`/blog`) - shared across languages
+
+### Language Switching
+- Language switcher preserves current page path
+- English: `/page` ↔ French: `/fr/page`
+- Blog always redirects to English version
+
+### Content Synchronization
+**IMPORTANT**: When updating any English content, always update the corresponding French version if it exists:
+
+1. **Homepage**: `index.html` ↔ `fr/index.html`
+2. **AI Services**: `aiservices.html` ↔ `fr/aiservices.html`
+3. **Team**: `team.html` ↔ `fr/team.html`
+4. **Case Studies**: `success.html` ↔ `fr/success.html`
+5. **Let's Talk**: `talk.html` ↔ `fr/talk.html`
+6. **Blog**: English only - no French version
+
+### French Translation Guidelines
+- Keep useful business anglicisms for clarity: "roadmap", "board", "data", "tools", "dashboard"
+- Maintain direct, no-BS tone adapted for French business culture
+- Use tech slang where appropriate: "shipper", "scaler", "mapper"
+- Mix French/English naturally: "engineered depuis le boardroom"
+
+### Navigation Updates
+When adding new pages or sections:
+1. Add English version to main navigation
+2. Add French version to conditional French navigation in `_layouts/unified.html`
+3. Ensure language switcher works for new pages

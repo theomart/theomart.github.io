@@ -65,3 +65,48 @@ featured_posts:
   - "2024-08-26-colbert.markdown"
   - "2024-09-21-developers-who-dont-use-ai-assisted-coding-are-already-falli.markdown"
   - "2025-03-31-rewriting-from-scratch-is-increasingly-viable-due-to-ai-assi.markdown"
+
+# Localization configuration
+localization:
+  # Pages that support both English and French
+  localizable_pages:
+    - "/"
+    - "/aiservices"
+    - "/team"
+    - "/success"
+    - "/talk"
+  
+  # Pages that are English-only
+  english_only_pages:
+    - "/blog"
+  
+  # Navigation labels
+  nav_labels:
+    en:
+      home: "Home"
+      blog: "Blog"
+      ai_consulting: "AI Consulting"
+      services: "Services"
+      about: "About"
+      team: "Team"
+      case_studies: "Case Studies"
+      lets_talk: "Let's Talk"
+      ai_strategy: "AI Strategy & Roadmap"
+      machine_learning: "Machine Learning"
+      generative_ai: "Generative AI & LLM"
+      process_automation: "Process Automation"
+      team_productivity: "Team Productivity"
+    fr:
+      home: "Accueil"
+      blog: "Blog"
+      ai_consulting: "Conseil IA"
+      services: "Services"
+      about: "À propos"
+      team: "Équipe"
+      case_studies: "Cas d'étude"
+      lets_talk: "Discutons"
+      ai_strategy: "Stratégie IA & Roadmap"
+      machine_learning: "Machine Learning"
+      generative_ai: "IA Générative & LLM"
+      process_automation: "Automatisation"
+      team_productivity: "Productivité Équipe"
