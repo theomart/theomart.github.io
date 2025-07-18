@@ -911,6 +911,9 @@ title: AI Speed Race Tool
                         <li><a href="https://artificialanalysis.ai/models/o1-mini" target="_blank">OpenAI o1-mini - Performance & Intelligence</a></li>
                         <li><a href="https://artificialanalysis.ai/models/o1-preview" target="_blank">OpenAI o1-preview - Performance & Intelligence</a></li>
                         <li><a href="https://artificialanalysis.ai/models/o3-pro" target="_blank">OpenAI o3-pro - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/gpt-4-1" target="_blank">GPT-4.1 - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/gpt-4-1-mini" target="_blank">GPT-4.1 Mini - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/gpt-4-1-nano" target="_blank">GPT-4.1 Nano - Performance & Intelligence</a></li>
                         <li><a href="https://openai.com/api/pricing/" target="_blank">OpenAI API Pricing - Official Rates</a></li>
                     </ul>
                 </div>
@@ -922,6 +925,9 @@ title: AI Speed Race Tool
                         <li><a href="https://artificialanalysis.ai/models/claude-3-5-sonnet" target="_blank">Claude 3.5 Sonnet - Performance & Intelligence</a></li>
                         <li><a href="https://artificialanalysis.ai/models/claude-3-5-haiku" target="_blank">Claude 3.5 Haiku - Performance & Intelligence</a></li>
                         <li><a href="https://artificialanalysis.ai/models/claude-3-opus" target="_blank">Claude 3 Opus - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/claude-3-7-sonnet" target="_blank">Claude 3.7 Sonnet - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/claude-4-sonnet" target="_blank">Claude 4 Sonnet - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/claude-4-opus" target="_blank">Claude 4 Opus - Performance & Intelligence</a></li>
                         <li><a href="https://docs.anthropic.com/en/docs/about-claude/models/overview" target="_blank">Anthropic Claude Models Overview - Pricing</a></li>
                     </ul>
                 </div>
@@ -1003,7 +1009,13 @@ const models = [
     { name: 'anthropic/claude-3-opus', speed: 28, ttft: 1.13, intelligence: 35, type: 'standard', inputPrice: 15.0, outputPrice: 75.0 },
     { name: 'openai/o1-preview', speed: 151, ttft: 18.37, intelligence: 62, type: 'reasoning', inputPrice: 15.0, outputPrice: 60.0 },
     { name: 'deepseek/deepseek-r1', speed: 23, ttft: 3.85, intelligence: 68, type: 'reasoning', inputPrice: 0.55, outputPrice: 2.19 },
-    { name: 'openai/o3-pro', speed: 15, ttft: 25.0, intelligence: 71, type: 'reasoning', inputPrice: 20.0, outputPrice: 80.0 }
+    { name: 'openai/o3-pro', speed: 15, ttft: 25.0, intelligence: 71, type: 'reasoning', inputPrice: 20.0, outputPrice: 80.0 },
+    { name: 'anthropic/claude-3.7-sonnet', speed: 78.8, ttft: 1.08, intelligence: 48, type: 'reasoning', inputPrice: 3.0, outputPrice: 15.0 },
+    { name: 'anthropic/claude-4-sonnet', speed: 82, ttft: 1.49, intelligence: 53, type: 'standard', inputPrice: 3.0, outputPrice: 15.0 },
+    { name: 'anthropic/claude-4-opus', speed: 63, ttft: 1.97, intelligence: 58, type: 'standard', inputPrice: 15.0, outputPrice: 75.0 },
+    { name: 'openai/gpt-4.1', speed: 111.6, ttft: 0.46, intelligence: 53, type: 'standard', inputPrice: 2.0, outputPrice: 8.0 },
+    { name: 'openai/gpt-4.1-mini', speed: 69.4, ttft: 0.42, intelligence: 53, type: 'standard', inputPrice: 0.40, outputPrice: 1.60 },
+    { name: 'openai/gpt-4.1-nano', speed: 127.5, ttft: 0.42, intelligence: 41, type: 'standard', inputPrice: 0.10, outputPrice: 0.40 }
 ];
 
 let isRunning = false;

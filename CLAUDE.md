@@ -46,6 +46,7 @@ The site runs on `http://localhost:4000` when served locally.
 - `_layouts/unified.html` - Main layout template with navigation logic
 - `assets/unified.scss` - All CSS styling (IBM Plex Mono font, dark theme)
 - `aiservices.html` - Contains all AI service sections, JavaScript switches between them
+- `aispeedrace.html` - AI Speed Race Tool with model comparison and benchmarking
 - `_config.yml` - Jekyll configuration, GitHub Pages settings
 
 ### Content Management
@@ -55,6 +56,7 @@ The site runs on `http://localhost:4000` when served locally.
 - `index.html` - Home/Contact page with intro + contact sections
 - `blog.html` - Blog listing page
 - `aiservices.html` - AI services with multiple content sections
+- `aispeedrace.html` - AI Speed Race Tool for model comparison
 - `team.html` - Team page showcasing both consultants
 
 #### Blog Posts
@@ -159,3 +161,52 @@ When adding new pages or sections:
 1. Add English version to main navigation
 2. Add French version to conditional French navigation in `_layouts/unified.html`
 3. Ensure language switcher works for new pages
+
+## AI Speed Race Tool (`aispeedrace.html`)
+
+Standalone tool for comparing AI model performance, pricing, and capabilities.
+
+### Model Data Management
+**Location**: JavaScript `models` array in `aispeedrace.html` (lines ~637-655)
+
+**When to Update**:
+- New AI models released
+- Pricing changes from providers
+- Performance benchmarks updated
+- New research on reasoning models
+
+### Model Data Structure
+```javascript
+{ 
+  name: 'provider/model-name', 
+  speed: 123, // tokens per second
+  ttft: 0.45, // time to first token (seconds)
+  intelligence: 67, // Artificial Analysis Intelligence Index (0-100)
+  type: 'standard|reasoning', // model classification
+  inputPrice: 1.50, // $ per million input tokens
+  outputPrice: 6.00 // $ per million output tokens
+}
+```
+
+### Update Process
+1. **Verify new data** with authoritative sources (see Sources modal)
+2. **Update model array** with new/changed values
+3. **Update Sources modal** if adding new data sources
+4. **Test sorting and calculations** work correctly
+5. **Update thinking token assumptions** in limitations if reasoning models change
+
+### Key Sources for Updates
+- **Performance/Intelligence**: [Artificial Analysis](https://artificialanalysis.ai/)
+- **Pricing**: Official API documentation (OpenAI, Anthropic, Google, DeepSeek)
+- **Research**: ArXiv papers, official model releases
+
+### Thinking Token Assumptions
+**Current estimates** (update if research changes):
+- OpenAI o1/o3: 8x output tokens
+- DeepSeek R1: 12x output tokens (minimum 5k)
+- Gemini 2.5 Pro: 6x output tokens
+
+**Update locations**:
+- `calculateTokenCosts()` function logic
+- Table assumptions text
+- Limitations modal explanation
