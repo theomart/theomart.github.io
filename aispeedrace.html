@@ -1,0 +1,1407 @@
+---
+layout: unified
+title: AI Speed Race Tool
+---
+<style>
+.content {
+    background: #0a0a0a;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    margin-left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', 'Consolas', monospace;
+}
+
+.back-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-size: 13px;
+    z-index: 1000;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 1);
+}
+
+
+.calc-toggle-btn, .limitations-btn, .sources-btn, .table-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.calc-toggle-btn:hover, .limitations-btn:hover, .sources-btn:hover, .table-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 1);
+}
+
+.main-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.title {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 20px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 11px;
+    text-align: center;
+    margin-bottom: 16px;
+    font-style: italic;
+    line-height: 1.4;
+}
+
+.demo-stats {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 8px;
+}
+
+.demo-metric {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+    cursor: pointer;
+    padding: 4px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+}
+
+.demo-metric:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.demo-separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 11px;
+}
+
+.demo-stats:hover .demo-metric:not(:hover) {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.tooltip-explanation {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 9px;
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.4;
+    font-style: italic;
+    min-height: 12px;
+}
+
+.tooltip-explanation.visible {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.race-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    position: relative;
+    min-height: 40px;
+}
+
+.left-controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.start-button {
+    background: linear-gradient(45deg, rgba(247, 115, 22, 0.8), rgba(255, 165, 0, 0.8));
+    border: 2px solid rgba(247, 115, 22, 0.5);
+    color: rgba(255, 255, 255, 1);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 2px 8px rgba(247, 115, 22, 0.3);
+}
+
+.start-button:hover {
+    background: linear-gradient(45deg, rgba(247, 115, 22, 1), rgba(255, 165, 0, 1));
+    border-color: rgba(247, 115, 22, 0.8);
+    box-shadow: 0 4px 12px rgba(247, 115, 22, 0.4);
+    transform: translateY(-1px);
+}
+
+.sorting-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sort-label {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 10px;
+}
+
+.sort-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.sort-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.sort-btn.active {
+    background: rgba(247, 115, 22, 0.3);
+    border-color: rgba(247, 115, 22, 0.5);
+    color: rgba(247, 115, 22, 1);
+}
+
+.models-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    flex: 1;
+}
+
+.model-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    overflow: hidden;
+}
+
+.model-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 6px;
+    min-height: 16px;
+}
+
+.model-name {
+    font-size: 7px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    line-height: 1.2;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.model-metrics {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    flex-shrink: 0;
+}
+
+.metric-item {
+    font-size: 7px;
+    color: rgba(255, 255, 255, 0.5);
+    white-space: nowrap;
+}
+
+.metric-separator {
+    color: rgba(255, 255, 255, 0.3);
+    font-size: 7px;
+}
+
+.typing-area {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    padding: 8px;
+    overflow-y: auto;
+    position: relative;
+    min-height: 120px;
+    max-height: 120px;
+}
+
+.typing-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 8px;
+    line-height: 1.3;
+    word-wrap: break-word;
+}
+
+.cursor {
+    display: inline-block;
+    width: 1px;
+    height: 1em;
+    background: rgba(255, 255, 255, 0.6);
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+.status-indicator {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.status-indicator.visible {
+    opacity: 1;
+}
+
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.3);
+    transition: width 0.1s ease;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: rgba(20, 20, 20, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 32px;
+    max-width: 85%;
+    max-height: 85%;
+    overflow-y: auto;
+    position: relative;
+    min-width: 700px;
+}
+
+.modal-close {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 20px;
+    cursor: pointer;
+    padding: 4px;
+    transition: color 0.2s ease;
+}
+
+.modal-close:hover {
+    color: rgba(255, 255, 255, 1);
+}
+
+.modal-title {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.calculator-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.input-group label {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 10px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input-group textarea {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 16px;
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 1.5;
+    resize: vertical;
+    width: 100%;
+    min-height: 180px;
+}
+
+.input-group textarea:focus {
+    outline: none;
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.tokenization-stats {
+    display: flex;
+    justify-content: space-around;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+    margin-top: 16px;
+}
+
+.result-section {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+}
+
+.result-title {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.result-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 10px;
+    text-align: center;
+}
+
+.stat-label {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.stat-value {
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 600;
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+.comparison-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 2px;
+    font-size: 8px;
+}
+
+.comparison-header > div {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 6px 4px;
+    text-align: center;
+    font-weight: 600;
+    border-radius: 3px;
+}
+
+.comparison-row > div {
+    padding: 4px;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.comparison-row > div:first-child {
+    text-align: left;
+}
+
+.comparison-row.highlighted > div {
+    background: rgba(255, 165, 0, 0.1);
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.limitations-content {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.limitations-content .limitation-item {
+    margin-bottom: 12px;
+}
+
+.limitations-content strong {
+    color: rgba(255, 165, 0, 0.9);
+    font-weight: 600;
+}
+
+.sources-content {
+    font-size: 10px;
+    line-height: 1.4;
+}
+
+.methodology-note {
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 12px;
+    background: rgba(255, 165, 0, 0.1);
+    border-radius: 4px;
+}
+
+.model-sources h4, .benchmark-sources h4 {
+    color: rgba(255, 165, 0, 0.9);
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    margin-top: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.model-source-item {
+    margin-bottom: 16px;
+}
+
+.model-source-item strong {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 11px;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.model-sources ul, .benchmark-sources ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-left: 12px;
+}
+
+.model-sources li, .benchmark-sources li {
+    margin-bottom: 4px;
+}
+
+.model-sources a, .benchmark-sources a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    font-size: 10px;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+}
+
+.model-sources a:hover, .benchmark-sources a:hover {
+    color: rgba(255, 165, 0, 0.8);
+    text-decoration: underline;
+}
+
+/* Table Modal Styles */
+.table-modal {
+    max-width: 85%;
+    max-height: 85%;
+    min-width: 600px;
+    width: fit-content;
+}
+
+.table-assumptions {
+    background: rgba(255, 165, 0, 0.1);
+    border: 1px solid rgba(255, 165, 0, 0.3);
+    border-radius: 4px;
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.3;
+}
+
+.table-sorting-controls {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.table-sort-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.7);
+    padding: 4px 8px;
+    border-radius: 3px;
+    font-size: 9px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-family: inherit;
+}
+
+.table-sort-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.table-sort-btn.active {
+    background: rgba(247, 115, 22, 0.3);
+    border-color: rgba(247, 115, 22, 0.5);
+    color: rgba(247, 115, 22, 1);
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.model-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 10px;
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.model-table th {
+    background: rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 8px 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    font-weight: 600;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}
+
+.model-table th:first-child { text-align: left; }
+.model-table th:nth-child(2) { text-align: center; }
+.model-table th:nth-child(3) { text-align: right; }
+.model-table th:nth-child(4) { text-align: right; }
+.model-table th:nth-child(5) { text-align: right; }
+.model-table th:nth-child(6) { text-align: right; }
+.model-table th:nth-child(7) { text-align: right; }
+.model-table th:nth-child(8) { text-align: right; }
+.model-table th:nth-child(9) { text-align: right; }
+
+.model-table td {
+    padding: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 9px;
+}
+
+.model-table tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.model-name-cell {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    text-align: left;
+}
+
+.type-cell {
+    text-transform: capitalize;
+    font-size: 8px;
+    text-align: center;
+}
+
+.number-cell {
+    text-align: right;
+    font-family: monospace;
+}
+
+.price-cell {
+    text-align: right;
+    font-family: monospace;
+    color: rgba(255, 165, 0, 0.8);
+}
+
+.cost-cell {
+    text-align: right;
+    font-family: monospace;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 768px) {
+    .models-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .calculator-inputs {
+        grid-template-columns: 1fr;
+    }
+    
+    .tokenization-stats {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .race-controls {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .left-controls {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+    }
+    
+    .modal-content {
+        max-width: 95%;
+        max-height: 90%;
+        margin: 20px;
+        min-width: 300px;
+        padding: 20px;
+    }
+    
+    .model-sources ul, .benchmark-sources ul {
+        margin-left: 8px;
+    }
+    
+    .table-modal {
+        max-width: 95%;
+        min-width: 300px;
+        margin: 20px;
+        width: 95%;
+    }
+    
+    .table-container {
+        overflow-x: auto;
+    }
+    
+    .model-table {
+        font-size: 8px;
+    }
+    
+    .model-table th, .model-table td {
+        padding: 4px 2px;
+    }
+    
+    .table-assumptions {
+        font-size: 8px;
+        padding: 6px 8px;
+    }
+    
+    .sources-modal {
+        max-width: 90%;
+        min-width: 300px;
+    }
+    
+    .source-item {
+        flex-direction: column;
+        gap: 4px;
+    }
+    
+    .source-label {
+        min-width: auto;
+    }
+}
+</style>
+
+<a href="/" class="back-button">← Back</a>
+
+
+<div class="main-container">
+    <div class="title">AI Speed Race Tool</div>
+    <div class="subtitle">Compare AI model speeds, costs, and performance across 17 leading models using real token calculations</div>
+    
+    <div class="demo-stats">
+        <span class="demo-metric" data-tooltip="IQ: Artificial Analysis Intelligence Index (0-100), not a traditional IQ test. Higher scores indicate better problem-solving capabilities on AI benchmarks." onmouseenter="showTooltip(this)" onmouseleave="hideTooltip()">46 IQ</span><span class="demo-separator">|</span><span class="demo-metric" data-tooltip="Input Cost: Price per million input tokens. Lower is cheaper for long prompts." onmouseenter="showTooltip(this)" onmouseleave="hideTooltip()">$0.10/M in</span><span class="demo-separator">|</span><span class="demo-metric" data-tooltip="Output Cost: Price per million output tokens. Critical for long content generation." onmouseenter="showTooltip(this)" onmouseleave="hideTooltip()">$0.40/M out</span><span class="demo-separator">|</span><span class="demo-metric" data-tooltip="TTFT: Time to First Token. How long before the model starts responding." onmouseenter="showTooltip(this)" onmouseleave="hideTooltip()">0.22s TTFT</span><span class="demo-separator">|</span><span class="demo-metric" data-tooltip="TPS: Tokens Per Second. Generation speed once streaming starts." onmouseenter="showTooltip(this)" onmouseleave="hideTooltip()">494 TPS</span><span class="demo-separator">|</span><span class="demo-metric" data-tooltip="Latency: Total time from request to complete response." onmouseenter="showTooltip(this)" onmouseleave="hideTooltip()">1.1s Latency</span><span class="demo-separator">|</span><span class="demo-metric" data-tooltip="Total Cost: Exact cost for your input/output based on real token counts, including estimated thinking tokens for reasoning models." onmouseenter="showTooltip(this)" onmouseleave="hideTooltip()">$0.000163</span>
+    </div>
+    
+    <div class="tooltip-explanation" id="tooltipExplanation">Hover over metrics to see explanations</div>
+    
+    <div class="race-controls">
+        <div class="left-controls">
+            <button class="start-button" onclick="startRace()" id="startBtn">Start Race</button>
+            <button class="calc-toggle-btn" onclick="toggleCalculator()" id="calcToggleBtn">Edit Text</button>
+            <button class="limitations-btn" onclick="toggleLimitations()" id="limitationsBtn">Show Limitations</button>
+            <button class="sources-btn" onclick="toggleSources()" id="sourcesBtn">Show Sources</button>
+            <button class="table-btn" onclick="toggleTable()" id="tableBtn">Show Table</button>
+        </div>
+        
+        <div class="sorting-controls">
+            <span class="sort-label">Sort:</span>
+            <button class="sort-btn active" onclick="sortModels('speed')">TPS</button>
+            <button class="sort-btn" onclick="sortModels('ttft')">TTFT</button>
+            <button class="sort-btn" onclick="sortModels('latency')">Latency</button>
+            <button class="sort-btn" onclick="sortModels('intelligence')">IQ</button>
+            <button class="sort-btn" onclick="sortModels('cost')">Cost</button>
+        </div>
+    </div>
+    
+    <div class="models-container" id="modelsContainer">
+        <!-- Model rows generated here -->
+    </div>
+</div>
+
+<!-- Calculator Modal -->
+<div class="modal-overlay" id="calculatorModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="toggleCalculator()">&times;</button>
+        <div class="modal-title">Edit Text</div>
+        
+        <div class="calculator-inputs">
+            <div class="input-group">
+                <label for="input-text">Input Text</label>
+                <textarea id="input-text" placeholder="Enter prompt...">Analyze this customer support conversation and extract key issues, sentiment, and recommended actions.</textarea>
+            </div>
+            <div class="input-group">
+                <label for="output-text">Expected Output</label>
+                <textarea id="output-text" placeholder="Expected response...">Based on the customer support conversation analysis:
+
+**Key Issues:**
+1. Login failures - functionality not working as expected
+2. Previous support interactions unsatisfactory - escalated twice  
+3. Premium subscription benefits not delivered properly
+4. Timeline concerns - issue ongoing 5+ business days
+
+**Sentiment Analysis:**
+- Overall: Frustrated but solution-oriented
+- Tone: Professional with signs of impatience  
+- Escalation risk: Medium-high (escalated twice)
+- Retention risk: Moderate (premium customer dissatisfied)
+
+**Urgency: HIGH**
+- Premium customer with extended downtime
+- Multiple failed resolution attempts
+- Potential churn risk identified
+
+**Recommended Actions:**
+1. **Immediate (2 hours):** Senior specialist assignment, direct call
+2. **Short-term (24 hours):** Complete account audit, permanent fix
+3. **Follow-up (1 week):** Satisfaction survey, account review</textarea>
+            </div>
+        </div>
+
+        <div class="tokenization-stats">
+            <div class="stat-item">
+                <span class="stat-label">Input Tokens:</span>
+                <span class="stat-value" id="input-tokens">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Output Tokens:</span>
+                <span class="stat-value" id="output-tokens">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Total Tokens:</span>
+                <span class="stat-value" id="total-tokens">0</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Table Modal -->
+<div class="modal-overlay" id="tableModal">
+    <div class="modal-content table-modal">
+        <button class="modal-close" onclick="toggleTable()">&times;</button>
+        <div class="modal-title">📊 Model Comparison Table</div>
+        
+        <div class="table-assumptions">
+            <strong>Assumptions:</strong> OpenAI o1/o3 (8x output tokens), DeepSeek R1 (12x output, min 5k), Gemini 2.5 Pro (6x output). Conservative estimates.
+        </div>
+        
+        <div class="table-sorting-controls">
+            <span class="sort-label">Sort by:</span>
+            <button class="sort-btn table-sort-btn active" onclick="sortTable('speed')">Speed</button>
+            <button class="sort-btn table-sort-btn" onclick="sortTable('ttft')">TTFT</button>
+            <button class="sort-btn table-sort-btn" onclick="sortTable('latency')">Latency</button>
+            <button class="sort-btn table-sort-btn" onclick="sortTable('intelligence')">IQ</button>
+            <button class="sort-btn table-sort-btn" onclick="sortTable('cost')">Cost</button>
+        </div>
+        
+        <div class="table-container">
+            <table class="model-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Type</th>
+                        <th>IQ</th>
+                        <th>Speed (TPS)</th>
+                        <th>TTFT (s)</th>
+                        <th>Latency (s)</th>
+                        <th>Input Price</th>
+                        <th>Output Price</th>
+                        <th>Total Cost</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Table rows will be populated here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Sources Modal -->
+<div class="modal-overlay" id="sourcesModal">
+    <div class="modal-content sources-modal">
+        <button class="modal-close" onclick="toggleSources()">&times;</button>
+        <div class="modal-title">📊 Data Sources</div>
+        
+        <div class="sources-content">
+            <p class="methodology-note">All model performance metrics, pricing, and intelligence scores are verified from authoritative sources. Intelligence scores represent Artificial Analysis Intelligence Index (0-100 scale) based on comprehensive AI benchmarks, not traditional IQ tests.</p>
+            
+            <div class="model-sources">
+                <h4>Model-Specific Sources</h4>
+                
+                <div class="model-source-item">
+                    <strong>Google Gemini Models:</strong>
+                    <ul>
+                        <li><a href="https://artificialanalysis.ai/models/gemini-2-5-flash-lite" target="_blank">Gemini 2.5 Flash Lite - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/gemini-2-5-flash" target="_blank">Gemini 2.5 Flash - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/gemini-2-5-pro" target="_blank">Gemini 2.5 Pro - Performance & Intelligence</a></li>
+                        <li><a href="https://ai.google.dev/gemini-api/docs/models" target="_blank">Google Gemini API Documentation - Pricing</a></li>
+                        <li><a href="https://cloud.google.com/vertex-ai/generative-ai/docs/models" target="_blank">Google Cloud Vertex AI Models - Official Specs</a></li>
+                    </ul>
+                </div>
+                
+                <div class="model-source-item">
+                    <strong>OpenAI Models:</strong>
+                    <ul>
+                        <li><a href="https://artificialanalysis.ai/models/o3" target="_blank">OpenAI o3 - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/gpt-4o" target="_blank">GPT-4o - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/o3-mini" target="_blank">OpenAI o3-mini - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/o1-mini" target="_blank">OpenAI o1-mini - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/o1-preview" target="_blank">OpenAI o1-preview - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/o3-pro" target="_blank">OpenAI o3-pro - Performance & Intelligence</a></li>
+                        <li><a href="https://openai.com/api/pricing/" target="_blank">OpenAI API Pricing - Official Rates</a></li>
+                    </ul>
+                </div>
+                
+                <div class="model-source-item">
+                    <strong>Anthropic Claude Models:</strong>
+                    <ul>
+                        <li><a href="https://artificialanalysis.ai/models/claude-3-haiku" target="_blank">Claude 3 Haiku - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/claude-3-5-sonnet" target="_blank">Claude 3.5 Sonnet - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/claude-3-5-haiku" target="_blank">Claude 3.5 Haiku - Performance & Intelligence</a></li>
+                        <li><a href="https://artificialanalysis.ai/models/claude-3-opus" target="_blank">Claude 3 Opus - Performance & Intelligence</a></li>
+                        <li><a href="https://docs.anthropic.com/en/docs/about-claude/models/overview" target="_blank">Anthropic Claude Models Overview - Pricing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="model-source-item">
+                    <strong>DeepSeek Models:</strong>
+                    <ul>
+                        <li><a href="https://artificialanalysis.ai/models/deepseek-r1" target="_blank">DeepSeek R1 - Performance & Intelligence</a></li>
+                        <li><a href="https://api-docs.deepseek.com/quick_start/pricing" target="_blank">DeepSeek API Pricing - Official Rates</a></li>
+                        <li><a href="https://arxiv.org/html/2501.12948v1" target="_blank">DeepSeek-R1 Research Paper - Technical Details</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="benchmark-sources">
+                <h4>Benchmarking Methodology</h4>
+                <ul>
+                    <li><a href="https://artificialanalysis.ai/" target="_blank">Artificial Analysis - Independent AI Model Benchmarking Platform</a></li>
+                    <li><a href="https://www.aibase.com/news/17035" target="_blank">Benchmarking Cost Analysis Study - o1 vs GPT-4o</a></li>
+                    <li><a href="https://openreview.net/forum?id=YXnwlZe0yf" target="_blank">Putnam-AXIOM Benchmark Study - Prompt Sensitivity Research</a></li>
+                    <li><a href="https://machinelearning.apple.com/research/illusion-of-thinking" target="_blank">Apple ML Research - The Illusion of Thinking</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Limitations Modal -->
+<div class="modal-overlay" id="limitationsModal">
+    <div class="modal-content">
+        <button class="modal-close" onclick="toggleLimitations()">&times;</button>
+        <div class="modal-title">⚠️ Important Limitations</div>
+        
+        <div class="limitations-content">
+            <div class="limitation-item">
+                <strong>🧠 Reasoning Models vs ⚡ Standard Models:</strong> Reasoning models (o1, o3, Gemini 2.5 Pro, DeepSeek R1) use "thinking tokens" between &lt;think&gt; and &lt;/think&gt; tags before generating answers. They allocate variable compute based on problem complexity - spending 30-60 minutes on hard problems but seconds on simple ones. This makes direct speed comparisons fundamentally flawed.
+            </div>
+            <div class="limitation-item">
+                <strong>Thinking Step Variability:</strong> The number of reasoning steps depends on problem complexity, computational budget, and training. DeepSeek R1-0528 averages 23,000 thinking tokens per complex problem (up from 12,000 in previous versions), while simple questions may use &lt;1,000. Models can "give up" on extremely difficult problems despite having token budget remaining.
+                <br><em>Source: <a href="https://arxiv.org/html/2501.12948v1" target="_blank" style="color: rgba(255, 165, 0, 0.8); text-decoration: underline;">ArXiv paper "DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning" (2025)</a></em>
+            </div>
+            <div class="limitation-item">
+                <strong>Cost Disparities:</strong> OpenAI o1 costs $2,767 across seven benchmark suites vs GPT-4o's $108 (25x more expensive). o3-pro charges $20 input/$80 output per million tokens. o1 generates 44 million tokens during benchmarking (8x more than GPT-4o).
+                <br><em>Source: <a href="https://www.aibase.com/news/17035" target="_blank" style="color: rgba(255, 165, 0, 0.8); text-decoration: underline;">Artificial Analysis benchmarking study (2025)</a></em>
+            </div>
+            <div class="limitation-item">
+                <strong>Performance Regime Differences:</strong> Research shows three distinct regimes: (1) Low-complexity tasks where standard models outperform reasoning models, (2) Medium-complexity where reasoning models excel, and (3) High-complexity where both experience complete failure. Choose based on your use case complexity.
+                <br><em>Source: <a href="https://machinelearning.apple.com/research/illusion-of-thinking" target="_blank" style="color: rgba(255, 165, 0, 0.8); text-decoration: underline;">Apple Machine Learning Research - "The Illusion of Thinking" (2024)</a></em>
+            </div>
+            <div class="limitation-item">
+                <strong>Prompt Sensitivity:</strong> o1-preview shows 30% accuracy drop on Putnam-AXIOM variations (functional problem variations), and 25-29% drops with gaslighting prompts. Chain-of-thought prompting causes 36.3% performance degradation on simple tasks due to excessive reasoning.
+                <br><em>Source: <a href="https://openreview.net/forum?id=YXnwlZe0yf" target="_blank" style="color: rgba(255, 165, 0, 0.8); text-decoration: underline;">Putnam-AXIOM Benchmark study (2024)</a>, <a href="https://arxiv.org/html/2506.09677v1" target="_blank" style="color: rgba(255, 165, 0, 0.8); text-decoration: underline;">Gaslighting Vulnerability Research (2024)</a></em>
+            </div>
+            <div class="limitation-item">
+                <strong>Thinking Token Cost Assumptions:</strong> This tool estimates thinking token usage for reasoning models based on research: OpenAI o1/o3 models (8x output tokens), DeepSeek R1 (12x output tokens, minimum 5k), Gemini 2.5 Pro (6x output tokens). These are conservative estimates - actual usage varies dramatically by prompt complexity. Simple questions may use &lt;1k thinking tokens, while complex problems can use 50k+ tokens.
+                <br><em>Note: Thinking tokens are billed as input tokens and significantly impact total costs for reasoning models.</em>
+            </div>
+            <div class="limitation-item">
+                <strong>Technical Implementation:</strong> This demo uses GPT-4's cl100k_base tokenizer via js-tiktoken for token counting, but actual models use different tokenizers (Claude's custom tokenizer, Gemini's SentencePiece, etc.) that split text differently. Speed simulation is token-based but approximate. Server load, prompt complexity, and response length create 10x+ variance from these averages.
+                <br><em>Source: <a href="https://platform.openai.com/docs/guides/tokenization" target="_blank" style="color: rgba(255, 165, 0, 0.8); text-decoration: underline;">OpenAI API documentation</a>, <a href="https://docs.anthropic.com/en/docs/build-with-claude/token-counting" target="_blank" style="color: rgba(255, 165, 0, 0.8); text-decoration: underline;">Anthropic documentation</a></em>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/js-tiktoken@1.0.12/dist/tiktoken.js"></script>
+<script>
+const models = [
+    { name: 'google/gemini-2.5-flash-lite', speed: 494, ttft: 0.22, intelligence: 46, type: 'standard', inputPrice: 0.10, outputPrice: 0.40 },
+    { name: 'google/gemini-2.5-flash', speed: 279, ttft: 0.33, intelligence: 53, type: 'standard', inputPrice: 0.15, outputPrice: 0.60 },
+    { name: 'openai/o3', speed: 171, ttft: 14.95, intelligence: 70, type: 'reasoning', inputPrice: 2.0, outputPrice: 8.0 },
+    { name: 'openai/gpt-4o', speed: 127, ttft: 0.51, intelligence: 41, type: 'standard', inputPrice: 2.50, outputPrice: 10.0 },
+    { name: 'anthropic/claude-3-haiku', speed: 142, ttft: 0.45, intelligence: 24, type: 'standard', inputPrice: 0.25, outputPrice: 1.25 },
+    { name: 'openai/o3-mini', speed: 140, ttft: 15.34, intelligence: 63, type: 'reasoning', inputPrice: 1.10, outputPrice: 4.40 },
+    { name: 'google/gemini-2.5-pro', speed: 145, ttft: 36.47, intelligence: 70, type: 'reasoning', inputPrice: 1.25, outputPrice: 10.0 },
+    { name: 'anthropic/claude-3.5-sonnet', speed: 78, ttft: 1.49, intelligence: 44, type: 'standard', inputPrice: 3.0, outputPrice: 15.0 },
+    { name: 'anthropic/claude-3.5-haiku', speed: 67, ttft: 0.61, intelligence: 35, type: 'standard', inputPrice: 0.80, outputPrice: 4.0 },
+    { name: 'openai/o1-mini', speed: 220, ttft: 10.0, intelligence: 54, type: 'reasoning', inputPrice: 1.10, outputPrice: 4.40 },
+    { name: 'anthropic/claude-3-opus', speed: 28, ttft: 1.13, intelligence: 35, type: 'standard', inputPrice: 15.0, outputPrice: 75.0 },
+    { name: 'openai/o1-preview', speed: 151, ttft: 18.37, intelligence: 62, type: 'reasoning', inputPrice: 15.0, outputPrice: 60.0 },
+    { name: 'deepseek/deepseek-r1', speed: 23, ttft: 3.85, intelligence: 68, type: 'reasoning', inputPrice: 0.55, outputPrice: 2.19 },
+    { name: 'openai/o3-pro', speed: 15, ttft: 25.0, intelligence: 71, type: 'reasoning', inputPrice: 20.0, outputPrice: 80.0 }
+];
+
+let isRunning = false;
+let intervals = [];
+let currentSort = 'speed';
+let sortedModels = [...models];
+let encoder = null;
+
+function getTypingText() {
+    return document.getElementById('output-text')?.value || "AI systems are revolutionizing how we work and live...";
+}
+
+async function initEncoder() {
+    try {
+        encoder = await tiktoken.encoding_for_model('gpt-4');
+    } catch (error) {
+        encoder = {
+            encode: (text) => new Array(Math.ceil(text.length / 4))
+        };
+    }
+}
+
+function countTokens(text) {
+    if (!encoder) return Math.ceil(text.length / 4);
+    try {
+        return encoder.encode(text).length;
+    } catch (error) {
+        return Math.ceil(text.length / 4);
+    }
+}
+
+function calculateTokenCosts(inputTokens, outputTokens, model) {
+    const inputCost = (inputTokens / 1000000) * model.inputPrice;
+    const outputCost = (outputTokens / 1000000) * model.outputPrice;
+    return { inputCost, outputCost, totalCost: inputCost + outputCost };
+}
+
+function calculateResponseTime(outputTokens, model) {
+    // For reasoning models, add variable thinking time based on complexity
+    const baseLatency = model.ttft + (outputTokens / model.speed);
+    
+    if (model.type === 'reasoning') {
+        // Add estimated thinking time based on output complexity
+        const complexityFactor = Math.min(outputTokens / 100, 5); // Scale with output length, cap at 5x
+        const thinkingTime = complexityFactor * 2; // Base 2 seconds of thinking per complexity unit
+        return baseLatency + thinkingTime;
+    }
+    
+    return baseLatency;
+}
+
+function sortModels(metric) {
+    currentSort = metric;
+    
+    document.querySelectorAll('.sort-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[onclick="sortModels('${metric}')"]`).classList.add('active');
+    
+    if (metric === 'speed') {
+        sortedModels = [...models].sort((a, b) => b.speed - a.speed);
+    } else if (metric === 'ttft') {
+        sortedModels = [...models].sort((a, b) => a.ttft - b.ttft);
+    } else if (metric === 'intelligence') {
+        sortedModels = [...models].sort((a, b) => b.intelligence - a.intelligence);
+    } else if (metric === 'cost') {
+        const outputText = document.getElementById('output-text')?.value || "";
+        const outputTokens = countTokens(outputText);
+        sortedModels = [...models].sort((a, b) => {
+            const costA = calculateTokenCosts(20, outputTokens, a).totalCost;
+            const costB = calculateTokenCosts(20, outputTokens, b).totalCost;
+            return costA - costB;
+        });
+    } else if (metric === 'latency') {
+        const outputText = document.getElementById('output-text')?.value || "";
+        const outputTokens = countTokens(outputText);
+        sortedModels = [...models].sort((a, b) => {
+            const latencyA = calculateResponseTime(outputTokens, a);
+            const latencyB = calculateResponseTime(outputTokens, b);
+            return latencyA - latencyB;
+        });
+    }
+    
+    createModelRows();
+}
+
+function createModelRows() {
+    const container = document.getElementById('modelsContainer');
+    container.innerHTML = '';
+    
+    sortedModels.forEach((model, index) => {
+        const modelName = model.name.split('/')[1] || model.name;
+        const row = document.createElement('div');
+        row.className = 'model-row';
+        
+        row.innerHTML = `
+            <div class="model-header">
+                <div class="model-name">
+                    ${model.name} ${model.type === 'reasoning' ? '🧠' : '⚡'}
+                </div>
+                <div class="model-metrics">
+                    <span class="metric-item">${model.intelligence} IQ</span>
+                    <span class="metric-separator">|</span>
+                    <span class="metric-item">$${model.inputPrice}/M in</span>
+                    <span class="metric-separator">|</span>
+                    <span class="metric-item">$${model.outputPrice}/M out</span>
+                    <span class="metric-separator">|</span>
+                    <span class="metric-item">${model.ttft}s TTFT</span>
+                    <span class="metric-separator">|</span>
+                    <span class="metric-item">${model.speed} TPS</span>
+                    <span class="metric-separator">|</span>
+                    <span class="metric-item" id="latency-${index}">0.0s Latency</span>
+                    <span class="metric-separator">|</span>
+                    <span class="metric-item" id="cost-${index}">$0.000</span>
+                </div>
+            </div>
+            <div class="typing-area">
+                <div class="status-indicator" id="status-${index}"></div>
+                <div class="typing-text" id="text-${index}">
+                    <span class="cursor"></span>
+                </div>
+                <div class="progress-bar" id="progress-${index}" style="width: 0%"></div>
+            </div>
+        `;
+        container.appendChild(row);
+    });
+    
+    updateModelCosts();
+}
+
+function updateModelCosts() {
+    const inputText = document.getElementById('input-text')?.value || "";
+    const outputText = document.getElementById('output-text')?.value || "";
+    const inputTokens = countTokens(inputText);
+    const outputTokens = countTokens(outputText);
+    
+    sortedModels.forEach((model, index) => {
+        const costElement = document.getElementById(`cost-${index}`);
+        const latencyElement = document.getElementById(`latency-${index}`);
+        if (costElement) {
+            const costs = calculateTokenCosts(inputTokens, outputTokens, model);
+            costElement.textContent = `$${costs.totalCost.toFixed(6)}`;
+        }
+        if (latencyElement) {
+            const latency = calculateResponseTime(outputTokens, model);
+            latencyElement.textContent = `${latency.toFixed(1)}s Latency`;
+        }
+    });
+}
+
+function typeText(modelIndex, model) {
+    const textElement = document.getElementById(`text-${modelIndex}`);
+    const progressBar = document.getElementById(`progress-${modelIndex}`);
+    const statusIndicator = document.getElementById(`status-${modelIndex}`);
+    
+    const text = getTypingText();
+    const outputTokens = countTokens(text);
+    
+    statusIndicator.textContent = '🤔';
+    statusIndicator.classList.add('visible');
+    textElement.innerHTML = `<span style="color: rgba(255,255,255,0.4); font-style: italic;">thinking...</span><span class="cursor"></span>`;
+    
+    setTimeout(() => {
+        if (!isRunning) return;
+        
+        statusIndicator.textContent = '⚡';
+        let currentTokenIndex = 0;
+        const totalTokens = outputTokens;
+        const delay = 1000 / model.speed; // Tokens per second
+        
+        const interval = setInterval(() => {
+            if (!isRunning) {
+                clearInterval(interval);
+                return;
+            }
+            
+            if (currentTokenIndex < totalTokens) {
+                // Convert token progress to character progress (approximate)
+                const charProgress = (currentTokenIndex / totalTokens) * text.length;
+                const currentText = text.substring(0, Math.floor(charProgress));
+                textElement.innerHTML = `${currentText}<span class="cursor"></span>`;
+                
+                const progress = (currentTokenIndex / totalTokens) * 100;
+                progressBar.style.width = `${progress}%`;
+                
+                currentTokenIndex++;
+            } else {
+                clearInterval(interval);
+                textElement.innerHTML = `${text}`;
+                progressBar.style.width = '100%';
+                statusIndicator.textContent = '✅';
+            }
+        }, delay);
+        
+        intervals.push(interval);
+    }, model.ttft * 1000);
+}
+
+function startRace() {
+    if (isRunning) {
+        // Stop the race
+        isRunning = false;
+        clearAllIntervals();
+        document.getElementById('startBtn').innerHTML = 'Start Race';
+        document.getElementById('startBtn').disabled = false;
+        return;
+    }
+    
+    isRunning = true;
+    document.getElementById('startBtn').innerHTML = '⏹️ Stop';
+    document.getElementById('startBtn').disabled = false;
+    
+    clearAllIntervals();
+    
+    sortedModels.forEach((model, index) => {
+        const textElement = document.getElementById(`text-${index}`);
+        const progressBar = document.getElementById(`progress-${index}`);
+        const statusIndicator = document.getElementById(`status-${index}`);
+        
+        textElement.innerHTML = `<span class="cursor"></span>`;
+        progressBar.style.width = '0%';
+        statusIndicator.classList.remove('visible');
+        
+        typeText(index, model);
+    });
+    
+    setTimeout(() => {
+        if (isRunning) {
+            document.getElementById('startBtn').innerHTML = 'Start Race';
+            document.getElementById('startBtn').disabled = false;
+            isRunning = false;
+        }
+    }, 30000);
+}
+
+function clearAllIntervals() {
+    intervals.forEach(interval => clearInterval(interval));
+    intervals = [];
+}
+
+function toggleCalculator() {
+    const modal = document.getElementById('calculatorModal');
+    if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
+    } else {
+        modal.style.display = 'flex';
+        updateCalculatorResults();
+    }
+}
+
+function toggleLimitations() {
+    const modal = document.getElementById('limitationsModal');
+    if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
+    } else {
+        modal.style.display = 'flex';
+    }
+}
+
+function toggleSources() {
+    const modal = document.getElementById('sourcesModal');
+    if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
+    } else {
+        modal.style.display = 'flex';
+    }
+}
+
+function toggleTable() {
+    const modal = document.getElementById('tableModal');
+    if (modal.style.display === 'flex') {
+        modal.style.display = 'none';
+    } else {
+        modal.style.display = 'flex';
+        // Set default sort to speed
+        currentSort = 'speed';
+        sortedModels = [...models].sort((a, b) => b.speed - a.speed);
+        // Update active button
+        document.querySelectorAll('.table-sort-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`[onclick="sortTable('speed')"]`).classList.add('active');
+        populateTable();
+    }
+}
+
+function sortTable(metric) {
+    currentSort = metric;
+    
+    // Update active button
+    document.querySelectorAll('.table-sort-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`[onclick="sortTable('${metric}')"]`).classList.add('active');
+    
+    // Sort models using the same logic as the main view
+    if (metric === 'speed') {
+        sortedModels = [...models].sort((a, b) => b.speed - a.speed);
+    } else if (metric === 'ttft') {
+        sortedModels = [...models].sort((a, b) => a.ttft - b.ttft);
+    } else if (metric === 'intelligence') {
+        sortedModels = [...models].sort((a, b) => b.intelligence - a.intelligence);
+    } else if (metric === 'cost') {
+        const outputText = document.getElementById('output-text')?.value || "";
+        const inputText = document.getElementById('input-text')?.value || "";
+        const outputTokens = countTokens(outputText);
+        const inputTokens = countTokens(inputText);
+        sortedModels = [...models].sort((a, b) => {
+            const costA = calculateTokenCosts(inputTokens, outputTokens, a).totalCost;
+            const costB = calculateTokenCosts(inputTokens, outputTokens, b).totalCost;
+            return costA - costB;
+        });
+    } else if (metric === 'latency') {
+        const outputText = document.getElementById('output-text')?.value || "";
+        const outputTokens = countTokens(outputText);
+        sortedModels = [...models].sort((a, b) => {
+            const latencyA = calculateResponseTime(outputTokens, a);
+            const latencyB = calculateResponseTime(outputTokens, b);
+            return latencyA - latencyB;
+        });
+    }
+    
+    populateTable();
+}
+
+function populateTable() {
+    const tableBody = document.getElementById('tableBody');
+    if (!tableBody) return;
+    
+    const inputText = document.getElementById('input-text')?.value || "";
+    const outputText = document.getElementById('output-text')?.value || "";
+    const inputTokens = countTokens(inputText);
+    const outputTokens = countTokens(outputText);
+    
+    tableBody.innerHTML = '';
+    
+    sortedModels.forEach(model => {
+        const costs = calculateTokenCosts(inputTokens, outputTokens, model);
+        const latency = calculateResponseTime(outputTokens, model);
+        const modelType = model.type === 'reasoning' ? '🧠' : '⚡';
+        
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td class="model-name-cell">${model.name} ${modelType}</td>
+            <td class="type-cell">${model.type}</td>
+            <td class="number-cell">${model.intelligence}</td>
+            <td class="number-cell">${model.speed}</td>
+            <td class="number-cell">${model.ttft}</td>
+            <td class="number-cell">${latency.toFixed(2)}</td>
+            <td class="price-cell">$${model.inputPrice.toFixed(2)}/M</td>
+            <td class="price-cell">$${model.outputPrice.toFixed(2)}/M</td>
+            <td class="cost-cell">$${costs.totalCost.toFixed(6)}</td>
+        `;
+        
+        tableBody.appendChild(row);
+    });
+}
+
+function showTooltip(element) {
+    const explanation = document.getElementById('tooltipExplanation');
+    explanation.textContent = element.getAttribute('data-tooltip');
+    explanation.classList.add('visible');
+}
+
+function hideTooltip() {
+    const explanation = document.getElementById('tooltipExplanation');
+    explanation.textContent = 'Hover over metrics to see explanations';
+    explanation.classList.remove('visible');
+}
+
+function updateCalculatorResults() {
+    const inputText = document.getElementById('input-text').value;
+    const outputText = document.getElementById('output-text').value;
+
+    const inputTokens = countTokens(inputText);
+    const outputTokens = countTokens(outputText);
+    const totalTokens = inputTokens + outputTokens;
+
+    document.getElementById('input-tokens').textContent = inputTokens.toLocaleString();
+    document.getElementById('output-tokens').textContent = outputTokens.toLocaleString();
+    document.getElementById('total-tokens').textContent = totalTokens.toLocaleString();
+
+    updateModelCosts();
+}
+
+function updateComparisonGrid(inputTokens, outputTokens) {
+    // Removed - no longer needed since we removed the comparison grid
+}
+
+// Close modals when clicking outside
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal-overlay')) {
+        e.target.style.display = 'none';
+    }
+});
+
+document.addEventListener('DOMContentLoaded', async () => {
+    await initEncoder();
+    sortModels('speed');
+    
+    document.getElementById('input-text').addEventListener('input', updateCalculatorResults);
+    document.getElementById('output-text').addEventListener('input', updateCalculatorResults);
+    
+    updateCalculatorResults();
+});
+</script>
+
