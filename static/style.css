@@ -1,0 +1,234 @@
+/* theomart.in — feuille de style unique, écrite à la main.
+   Une colonne, deux thèmes, aucune dépendance. Pour changer l'allure du site,
+   commence par les variables ci-dessous : elles se propagent partout. */
+
+/* ---------- 1. Variables ---------- */
+
+:root {
+  /* Thème clair (défaut) */
+  --bg:        #fdfcfa;
+  --bg-alt:    #f2efe9;   /* fond du code et des encarts */
+  --text:      #1b1a17;
+  --muted:     #6b6862;   /* dates, légendes, footer */
+  --rule:      #ddd8ce;   /* filets horizontaux */
+  --accent:    #a63d1f;   /* seule couleur d'accent du site */
+
+  /* Rythme vertical. Tout l'espacement sort de ces quatre valeurs. */
+  --s1: 0.5rem;
+  --s2: 1rem;
+  --s3: 1.5rem;
+  --s4: 3rem;
+
+  --measure:   38rem;     /* largeur de lecture, ~68 caractères */
+  --font:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg:     #131312;
+    --bg-alt: #1e1d1a;
+    --text:   #e9e6df;
+    --muted:  #9a958b;
+    --rule:   #33312d;
+    --accent: #e8815c;
+  }
+}
+
+/* ---------- 2. Base ---------- */
+
+* { box-sizing: border-box; }
+
+body {
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: var(--s3) var(--s2) var(--s4);
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+a:hover { text-decoration-thickness: 2px; }
+
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ---------- 3. En-tête, navigation, pied ---------- */
+
+body > header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s2);
+  padding-bottom: var(--s2);
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: var(--s4);
+}
+
+nav { display: flex; flex-wrap: wrap; gap: var(--s3); }
+
+nav a, body > header > a {
+  color: var(--muted);
+  text-decoration: none;
+}
+nav a:hover, body > header > a:hover { color: var(--text); }
+
+nav a[aria-current="page"] {
+  color: var(--text);
+  border-bottom: 2px solid var(--accent);
+}
+
+body > header > a { font-family: var(--font-mono); font-size: 0.85rem; }
+
+body > footer {
+  margin-top: var(--s4);
+  padding-top: var(--s2);
+  border-top: 1px solid var(--rule);
+}
+body > footer a { color: var(--muted); }
+
+/* ---------- 4. Typographie ---------- */
+
+h1, h2, h3, h4 {
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  font-weight: 600;
+  margin: var(--s4) 0 var(--s2);
+}
+h1 { font-size: clamp(1.7rem, 1.3rem + 1.8vw, 2.15rem); margin-top: 0; }
+h2 { font-size: 1.4rem; }
+h3 { font-size: 1.15rem; }
+h4 { font-size: 1rem; }
+
+p, ul, ol, blockquote, table, pre { margin: 0 0 var(--s2); }
+ul, ol { padding-left: 1.25rem; }
+li { margin-bottom: 0.25rem; }
+
+blockquote {
+  border-left: 2px solid var(--rule);
+  padding-left: var(--s2);
+  color: var(--muted);
+}
+
+time { font-family: var(--font-mono); font-size: 0.9em; }
+
+hr, .rule {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  height: 0;
+  margin: var(--s4) 0;
+}
+
+img { max-width: 100%; height: auto; display: block; }
+
+/* ---------- 5. Code et tableaux : ça défile dans sa boîte, jamais la page ---------- */
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+code { background: var(--bg-alt); padding: 0.1em 0.3em; }
+pre {
+  background: var(--bg-alt);
+  border-left: 2px solid var(--rule);
+  padding: var(--s2);
+  overflow-x: auto;
+}
+pre code { background: none; padding: 0; }
+
+/* display:block rend le tableau scrollable sans conteneur, le markdown n'en fournit pas */
+table {
+  display: block;
+  overflow-x: auto;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+th, td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.4rem 0.8rem 0.4rem 0;
+  text-align: left;
+  vertical-align: top;
+}
+th { font-weight: 600; }
+
+/* ---------- 6. Vocabulaire de classes partagé ---------- */
+
+.lede {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: var(--s3);
+}
+
+.meta { color: var(--muted); font-size: 0.875rem; }
+
+/* Pile verticale : espace uniquement entre les enfants */
+.stack > * + * { margin-top: var(--s3); }
+
+/* Une offre : un filet, un titre, un prix. Pas une carte de tarifs. */
+.offer {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--s3);
+  margin-top: var(--s3);
+}
+.offer h3 { margin: 0 0 0.15rem; }
+.offer p, .offer ul { margin-bottom: var(--s1); }
+
+.offer-price {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--accent);
+  margin: 0 0 var(--s2);
+}
+
+.cta {
+  display: inline-block;
+  border: 1px solid var(--accent);
+  padding: 0.5rem 0.9rem;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.cta:hover { background: var(--accent); color: var(--bg); }
+
+.note {
+  background: var(--bg-alt);
+  border-left: 2px solid var(--accent);
+  padding: var(--s2);
+  font-size: 0.95rem;
+}
+.note > :last-child { margin-bottom: 0; }
+
+/* Liste d'articles */
+.post-list { list-style: none; padding-left: 0; margin: 0; }
+
+.post-item {
+  border-top: 1px solid var(--rule);
+  padding: var(--s3) 0;
+}
+
+.post-date {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.post-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: 0.15rem 0 0.25rem;
+}
+.post-title a, a.post-title { color: var(--text); text-decoration: none; }
+.post-title a:hover, a.post-title:hover { color: var(--accent); }
+
+.post-summary { color: var(--muted); margin: 0; }

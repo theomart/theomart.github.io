@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{ title }}</title>
+<meta name="description" content="{{ description }}">
+<meta name="author" content="Theo Martin">
+<link rel="canonical" href="{{ canonical }}">
+<link rel="alternate" href="{{ lang_switch_href }}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="{{ title }}">
+<meta property="og:description" content="{{ description }}">
+<meta property="og:url" content="{{ canonical }}">
+<meta property="article:published_time" content="{{ post_iso_date }}">
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="/static/favicon.ico">
+</head>
+<body>
+
+<header>
+  {{ nav }}
+  <a href="{{ lang_switch_href }}" rel="alternate">{{ lang_switch_label }}</a>
+</header>
+
+<main>
+<article>
+  <h1>{{ post_title }}</h1>
+  <p class="meta"><time datetime="{{ post_iso_date }}">{{ post_date }}</time></p>
+{{ post_body }}
+</article>
+<!-- Marqueur du contrat, inutilisé sur un article : build.py peut passer une chaîne vide. -->
+<!--{{ content }}-->
+</main>
+
+<footer>
+  <p class="meta">&copy; {{ year }} Theo Martin &middot; {{ footer_links }} &middot; <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a> &middot; <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a> &middot; <a href="https://github.com/theomart">GitHub</a></p>
+</footer>
+
+</body>
+</html>
