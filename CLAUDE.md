@@ -1,212 +1,92 @@
-# CLAUDE.md
+# CLAUDE.md — site perso theomart.in
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Site statique bilingue, français à la racine et anglais sous `/en/`, construit par un seul script Python et publié sur GitHub Pages.
 
-## Project Overview
+## Ce dépôt est public
 
-This is a Jekyll-based personal blog and portfolio site for Theo Martin, deployed on GitHub Pages. The site features a custom homepage, AI services page, and blog functionality.
+Tout ce qui est commité ici est lisible par n'importe qui, ce fichier compris. Deux règles priment sur toutes les autres.
 
-## Development Commands
+**Mission sous NDA.** Theo est en mission chez un grand compte tenu par un NDA. La seule formule autorisée pour en parler est « un groupe du CAC 40 », employée seule. Ne jamais lui accoler le secteur d'activité, la stack technique de la mission, le nom du client ou un nom de projet interne, et ne jamais donner d'élément qui permettrait de recouper ces choses entre elles. Akeneo et Amazon sont des employeurs passés, librement citables. Devant une formulation qui hésite, ne pas l'écrire.
 
-### Local Development Setup
-```bash
-# Install dependencies
-bundle install
+**Rien de personnel.** La vie privée de Theo n'entre pas ici, même en allusion : santé, la sienne ou celle de ses proches, relations, famille, finances personnelles, patrimoine, situation fiscale ou administrative, adresse postale, numéro de téléphone. Ni chiffre d'affaires, ni taux négocié avec un tiers, ni nom de prospect. La matière source vit dans un dépôt privé séparé, un agent qui l'a sous la main n'en recopie jamais le contenu ici.
 
-# Serve the site locally with auto-reload
-bundle exec jekyll serve
+Les seuls contacts publiables sont `contacttheomartin@gmail.com`, `https://www.linkedin.com/in/theomart/` et `https://github.com/theomart`.
 
-# Build the site for production
-bundle exec jekyll build
+## Arborescence
+
+```
+build.py                   le seul script, 300 lignes maximum
+requirements.txt           markdown, et rien d'autre
+CNAME                      theomart.in, ne pas toucher
+templates/base.html        coquille de toutes les pages
+templates/post.html        coquille des articles
+pages/fr/*.html            fragments HTML éditables à la main
+pages/en/*.html
+posts/AAAA-MM-JJ-slug.md   front matter plat + markdown
+static/                    style.css, favicon.ico, copié tel quel
+.github/workflows/deploy.yml
+_site/                     sortie du build, jamais commitée
 ```
 
-The site runs on `http://localhost:4000` when served locally.
+URLs : `/`, `/offre/`, `/ecrits/`, `/a-propos/`, `/mentions-legales/` en français, `/en/`, `/en/services/`, `/en/writing/`, `/en/about/`, `/en/legal/` en anglais, les articles sous `/ecrits/<slug>/` et `/en/writing/<slug>/`.
 
-### Important Notes
-- Changes to `_config.yml` require restarting the Jekyll server
-- All other files auto-reload when changed during development
-- The site uses GitHub Pages for deployment (automatic on push to gh-pages branch)
+Deux flux RSS, `/feed.xml` pour l'anglais et `/ecrits/feed.xml` pour le français. `/feed.xml` garde son adresse historique, c'est celle que `jekyll-feed` servait, des abonnés en dépendent peut-être.
 
-## Architecture
+Le dictionnaire `REDIRECTS` en haut de `build.py` porte les anciennes URLs du site Jekyll qui n'ont plus de page à elles, `/team`, `/success`, `/talk`, `/aiservices`, les pages `/fr/`. Ne pas le vider, ce sont des liens entrants qui vivent encore.
 
-### Core System
-- **Single Layout**: `_layouts/unified.html` - unified layout for all pages with sidebar navigation
-- **Pages**: `index.html` (Home/Contact), `blog.html` (Blog listing), `aiservices.html` (AI Services)
-- **Posts**: `_posts/YYYY-MM-DD-title.markdown` format with Jekyll front matter
-- **Styles**: Single `assets/unified.scss` file compiles to `/assets/unified.css`
+Les deux pages de liste d'articles sont générées par `build.py` à partir de `posts/`, elles n'ont pas de fragment dans `pages/` et ne s'écrivent pas à la main. Le titre, la meta description et l'URL de bascule de langue de chaque page vivent dans la table `PAGES` en haut de `build.py`. Ajouter une page veut dire ajouter un fragment, une entrée dans `PAGES` et une entrée dans `NAV`.
 
-### Navigation System
-- **Sidebar**: Fixed left sidebar with main navigation (Home/Contact, Blog, AI Services)
-- **Contextual Submenus**: Show automatically based on current page
-  - Blog pages: Show 3 most recent posts + "..." link
-  - AI Services pages: Show 4 service sections with URL hash routing
-- **Active States**: CSS classes automatically applied via Jekyll conditionals
+## Contrat des marqueurs
 
-### Key Files
-- `_layouts/unified.html` - Main layout template with navigation logic
-- `assets/unified.scss` - All CSS styling (IBM Plex Mono font, dark theme)
-- `aiservices.html` - Contains all AI service sections, JavaScript switches between them
-- `aispeedrace.html` - AI Speed Race Tool with model comparison and benchmarking
-- `_config.yml` - Jekyll configuration, GitHub Pages settings
+Le rendu est un `str.replace` sur les gabarits, il n'y a pas de moteur de template et il n'y en aura pas. `templates/base.html` et `templates/post.html` portent ces marqueurs, espaces compris, exactement sous cette forme :
 
-### Content Management
+`{{ lang }}`, `{{ title }}`, `{{ description }}`, `{{ content }}`, `{{ nav }}`, `{{ lang_switch_href }}`, `{{ lang_switch_label }}`, `{{ canonical }}`, `{{ year }}`, `{{ footer_links }}`
 
-#### Pages
-- All pages use `layout: unified` in front matter
-- `index.html` - Home/Contact page with intro + contact sections
-- `blog.html` - Blog listing page
-- `aiservices.html` - AI services with multiple content sections
-- `aispeedrace.html` - AI Speed Race Tool for model comparison
-- `team.html` - Team page showcasing both consultants
+`templates/post.html` porte les mêmes, plus `{{ post_title }}`, `{{ post_date }}` en date longue localisée, `{{ post_iso_date }}` et `{{ post_body }}`.
 
-#### Blog Posts
-- Format: `_posts/YYYY-MM-DD-title.markdown`
-- Front matter: `layout: post`, `title`, `date`, `categories`
+Un marqueur laissé non substitué dans une page produite fait échouer le build. Inventer un marqueur dans un gabarit sans l'alimenter dans `build.py` casse donc le déploiement, ce qui est le comportement voulu.
 
-#### Featured Posts in Navigation
-The blog submenu shows 3 handpicked posts instead of the most recent ones. To change featured posts:
+## Front matter des articles
 
-1. Open `_config.yml`
-2. Find the `featured_posts` section
-3. Update the filenames with your desired posts:
+Plat, une clé par ligne, valeurs éventuellement entre guillemets. Le parseur fait dix lignes et ne gère ni liste ni imbrication, ne pas lui donner de YAML sophistiqué.
+
 ```yaml
-featured_posts:
-  - "2024-08-26-colbert.markdown"
-  - "2024-09-21-developers-who-dont-use-ai-assisted-coding-are-already-falli.markdown"
-  - "2025-03-31-rewriting-from-scratch-is-increasingly-viable-due-to-ai-assi.markdown"
-```
-4. Restart Jekyll server (changes to `_config.yml` require restart)
-
-Note: Use the exact filename from the `_posts` directory, including the date prefix and `.markdown` extension.
-
-#### AI Services Sections
-- Single page with multiple `<div class="content-section" id="sectionname">` blocks
-- JavaScript shows/hides sections based on URL hash (`#strategy`, `#ml`, etc.)
-- Navigation links use `/aiservices#sectionname` format
-- Sections: strategy, ml, genai, automation
-
-## GitHub Pages Configuration
-- Domain: `theomart.in` (configured in CNAME and _config.yml)
-- Uses `github-pages` gem for deployment compatibility
-- Automatic deployment on push to gh-pages branch
-
-## Website Development Considerations
-
-### Simplicity and Content Management
-- Goal: Create the simplest possible personal website with easy content management
-- Key Requirements:
-  - Markdown-based content creation
-  - Lightweight framework or no framework
-  - GitHub Pages deployment
-  - Minimal setup for non-technical users
-  - Beautiful rendering of Markdown content
-
-### Design Principles
-- **Minimalistic but aesthetic UI**: Avoid unnecessary separators, dividers, or decorative elements
-- Focus on clean typography and thoughtful spacing
-- Let content breathe with whitespace rather than visual separators
-- Use subtle design elements (like gradient text) sparingly for emphasis
-
-### Tone and Writing Style
-Our content uses a direct, no-BS tone that prioritizes clarity and value:
-
-- **Cut through the noise**: No corporate jargon, buzzwords, or filler content. Every sentence should deliver value.
-- **Problem-first approach**: Lead with the customer's pain points, not our capabilities. "Your models never made it past PowerPoint" vs "We offer MLOps services"
-- **Concrete over abstract**: Use specific examples, numbers, and scenarios. "Block crooks in 50ms" vs "Real-time fraud detection"
-- **Conversational but authoritative**: Write like you're explaining to a smart colleague who doesn't have time for fluff
-- **Action-oriented**: Focus on what gets done, not what could be done. "We've fixed it" vs "We can help"
-- **Minimalistic**: If it can be said in 5 words instead of 20, use 5. Remove any sentence that doesn't add new information
-- **Technical honesty**: Don't oversimplify technical concepts, but explain them in accessible terms
-- **Show, don't tell**: Instead of claiming expertise, demonstrate it through specific use cases and results
-
-Example transformations:
-- ❌ "We leverage cutting-edge artificial intelligence solutions to transform your business"
-- ✅ "Your board wants an AI roadmap that actually delivers ROI, not another pilot graveyard"
-
-- ❌ "Our comprehensive suite of services includes..."
-- ✅ "From fashion marketplaces struggling with search accuracy to B2B platforms bleeding money on invoice mismatches—we deliver solutions that ship"
-
-## Localization Guidelines
-
-The site supports both English and French versions with a language switcher in the bottom-left sidebar.
-
-### File Structure
-- English pages: Root directory (`/`)
-- French pages: `/fr/` directory
-- Blog: English only (`/blog`) - shared across languages
-
-### Language Switching
-- Language switcher preserves current page path
-- English: `/page` ↔ French: `/fr/page`
-- Blog always redirects to English version
-
-### Content Synchronization
-**IMPORTANT**: When updating any English content, always update the corresponding French version if it exists:
-
-1. **Homepage**: `index.html` ↔ `fr/index.html`
-2. **AI Services**: `aiservices.html` ↔ `fr/aiservices.html`
-3. **Team**: `team.html` ↔ `fr/team.html`
-4. **Case Studies**: `success.html` ↔ `fr/success.html`
-5. **Let's Talk**: `talk.html` ↔ `fr/talk.html`
-6. **Blog**: English only - no French version
-
-### French Translation Guidelines
-- Keep useful business anglicisms for clarity: "roadmap", "board", "data", "tools", "dashboard"
-- Maintain direct, no-BS tone adapted for French business culture
-- Use tech slang where appropriate: "shipper", "scaler", "mapper"
-- Mix French/English naturally: "engineered depuis le boardroom"
-
-### Navigation Updates
-When adding new pages or sections:
-1. Add English version to main navigation
-2. Add French version to conditional French navigation in `_layouts/unified.html`
-3. Ensure language switcher works for new pages
-
-## AI Speed Race Tool (`aispeedrace.html`)
-
-Standalone tool for comparing AI model performance, pricing, and capabilities.
-
-### Model Data Management
-**Location**: JavaScript `models` array in `aispeedrace.html` (lines ~637-655)
-
-**When to Update**:
-- New AI models released
-- Pricing changes from providers
-- Performance benchmarks updated
-- New research on reasoning models
-
-### Model Data Structure
-```javascript
-{ 
-  name: 'provider/model-name', 
-  speed: 123, // tokens per second
-  ttft: 0.45, // time to first token (seconds)
-  intelligence: 67, // Artificial Analysis Intelligence Index (0-100)
-  type: 'standard|reasoning', // model classification
-  inputPrice: 1.50, // $ per million input tokens
-  outputPrice: 6.00 // $ per million output tokens
-}
+---
+title: "Titre de l'article"
+date: 2026-08-25
+lang: fr
+summary: "Une phrase, 160 caractères max, sert de meta description et de résumé dans la liste."
+source: linkedin
+legacy_url: /jekyll/update/2024/08/26/colbert.html
+---
 ```
 
-### Update Process
-1. **Verify new data** with authoritative sources (see Sources modal)
-2. **Update model array** with new/changed values
-3. **Update Sources modal** if adding new data sources
-4. **Test sorting and calculations** work correctly
-5. **Update thinking token assumptions** in limitations if reasoning models change
+`title`, `date` au format `AAAA-MM-JJ` et `lang` valant `fr` ou `en` sont obligatoires, leur absence fait échouer le build en nommant le fichier. `summary`, `source` et `legacy_url` sont facultatifs. Un `legacy_url` fait générer à cette ancienne adresse une page de redirection avec meta refresh, canonical et lien de secours, pour ne pas casser les liens entrants du vieux blog.
 
-### Key Sources for Updates
-- **Performance/Intelligence**: [Artificial Analysis](https://artificialanalysis.ai/)
-- **Pricing**: Official API documentation (OpenAI, Anthropic, Google, DeepSeek)
-- **Research**: ArXiv papers, official model releases
+## Classes CSS autorisées
 
-### Thinking Token Assumptions
-**Current estimates** (update if research changes):
-- OpenAI o1/o3: 8x output tokens
-- DeepSeek R1: 12x output tokens (minimum 5k)
-- Gemini 2.5 Pro: 6x output tokens
+Les fragments n'utilisent que celles-ci, la feuille de style ne stylise que celles-ci. Pas de framework, pas d'utilitaires façon Tailwind, pas de classe inventée hors de cette liste.
 
-**Update locations**:
-- `calculateTokenCosts()` function logic
-- Table assumptions text
-- Limitations modal explanation
+`.lede`, `.offer`, `.offer-price`, `.meta`, `.cta`, `.note`, `.post-list`, `.post-item`, `.post-date`, `.post-title`, `.post-summary`, `.stack`, `.rule`
+
+`.offer` contient un `h3`, un `.offer-price`, un `p` et un `ul`.
+
+## Ton d'écriture
+
+Tout est à la première personne du singulier, Theo est seul, il n'y a ni « nous » ni « notre équipe ».
+
+Franglais assumé, repo et pas dépôt, harness et pas harnais, review et pas relecture, subagents, hooks, skills, prompt, CLAUDE.md. Pas de vocabulaire de cabinet, on nomme la chose concrète plutôt que la catégorie. Phrases longues jointes par des virgules, jamais de tiret cadratin. Chiffres arrondis. Pas de phrase d'introduction qui annonce ce qui va être dit, on entre dans le sujet. Pas de règle de trois, pas de parallélisme négatif à répétition. Une affirmation qui ne vient pas de l'expérience directe de Theo porte sa réserve.
+
+Les prix sont affichés publiquement, en euros HT, c'est une décision prise.
+
+## Modifier le build
+
+`build.py` tient en 300 lignes et se lit de haut en bas. Il n'a qu'une dépendance externe, `markdown`. Pas de moteur de template, pas de Jekyll, pas de npm, pas de classe, pas de plugin. Entre une astuce élégante et trois lignes évidentes, écrire les trois lignes. Un ajout qui ferait dépasser le budget de lignes est le signe qu'il faut retirer autre chose, pas augmenter le budget.
+
+Le build est bavard, une ligne par fichier produit et un décompte final, et il échoue en nommant le fichier fautif plutôt que de publier une page cassée. Les défauts sont accumulés puis affichés ensemble à la fin, un seul build montre donc tout ce qui cloche.
+
+`python3 build.py --serve` construit puis sert `_site/` sur http://localhost:4400 .
+
+## Déploiement
+
+Push sur `main`, le workflow installe Python et `markdown`, lance `python3 build.py` et publie `_site/` via `actions/upload-pages-artifact` et `actions/deploy-pages`. La source Pages du dépôt est réglée sur GitHub Actions. Ne pas committer `_site/`, ne pas remettre de branche `gh-pages`, ne pas toucher au `CNAME`.

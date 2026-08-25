@@ -1,0 +1,63 @@
+<h1>À propos</h1>
+
+<p class="lede">Huit ans à mettre du ML puis des LLM en production, d’abord sur le pricing chez Amazon, ensuite sur des catalogues produit en SaaS. Aujourd’hui, des agents en production tous les jours, et de la place gardée chaque mois pour intervenir dans le repo d’autres équipes, là où le setup agentique est installé depuis des mois et rend encore une fraction de ce qu’il pourrait.</p>
+
+<h2>Le parcours</h2>
+
+<p>J’ai commencé chez Amazon, au Luxembourg, cinq ans dont l’essentiel sur le pricing européen. J’y suis entré par l’optimisation de supply chain puis par l’architecture AWS, avec quatre certifications passées en quatre mois de stage, dont la Solutions Architect Professional qui est le plus haut niveau du catalogue.</p>
+
+<p>Ensuite le pricing, comme seul data scientist d’une équipe passée de trois à treize personnes. De l’inférence causale sur des datasets de plusieurs dizaines de téraoctets, des modèles bayésiens hiérarchiques d’élasticité prix, des prix hédoniques estimés sur des embeddings texte et image avec du ELMo puis du BERT fine-tuné en 2019, et une plateforme d’intelligence prix concurrentielle entre pays, autour de 400 millions d’euros de revenu annuel supplémentaire sur les marchés européens.</p>
+
+<p>De là est sorti le programme de surveillance de la volatilité des prix, que j’ai lancé et qui a fini par être repris à l’échelle mondiale du groupe. Trente milliards de changements de prix analysés, une anomalie repérée sur un milliard de visites, 500 000 articles sans prix de référence retrouvés juste avant le pic Black Friday, une douzaine de millions d’euros de revenu récupérés, et le Just Do It Award européen à la clé.</p>
+
+<p>Ensuite Unifai, où j’étais le premier ingénieur ML de la boîte. Pipeline MLOps de bout en bout sur GCP pour des groupes retail, et des modèles de langage d’avant ChatGPT, du FLAN-T5 quantizé pour catégoriser des catalogues industriels que personne n’arrivait à normaliser à la main. C’est ce travail qui a mis la boîte en position d’être rachetée, et j’ai porté la due diligence technique côté architecture et infra ML jusqu’au rachat par Akeneo en 2023.</p>
+
+<p>Puis deux ans et demi chez Akeneo comme Tech Lead de l’équipe Core AI. J’ai architecturé et exploité la plateforme d’inférence interne dont dépendaient toutes les équipes produit, et derrière elles plus de 900 retailers enterprise : une trentaine de millions d’attributs produit générés par LLM chaque mois, 99,999 % de disponibilité, un p95 sous 150 millisecondes, et tout le trafic modèle centralisé derrière un proxy unique, avec failover et cascading entre GPT, Claude, Gemini et Mistral, ce qui a sorti 40 % du coût d’inférence. Et le Data Architect Agent, un système multi-agents avec gates humaines qui a fait passer l’onboarding catalogue d’un retailer enterprise de plusieurs mois à quelques jours.</p>
+
+<p>Depuis 2026 je suis indépendant.</p>
+
+<h2>De l’outil au harness</h2>
+
+<p>Chez Akeneo, j’ai fait adopter Cursor à mon équipe, puis Claude Code dès sa sortie. J’étais celui vers qui les équipes transverses venaient pour savoir quel outil valait le coup, et je poussais le sujet au leadership.</p>
+
+<p>Puis je suis passé de l’outil au harness, et c’est là que se joue l’essentiel : des CLAUDE.md versionnés dans le repo, pour que le harness de tout le monde s’améliore sans que chacun ait à s’en occuper de son côté. Mon setup a essaimé dans d’autres équipes et a fini par servir de base à une formation interne.</p>
+
+<h2>Ce que je pense</h2>
+
+<p class="meta">Positions datées d’août 2026. Elles bougent avec les outils, donc la date compte autant que la phrase.</p>
+
+<h3>Les outils sont là, et ils sont sous-utilisés partout où je passe</h3>
+
+<p>Je n’ai encore jamais vu une équipe où l’outil était le facteur limitant. Le piège est ailleurs : on installe l’agent, on lui fait écrire quelques tests, ça marche, et cette première réussite suffit à convaincre tout le monde que l’outil est pris en main. C’est en général là que ça se fige. À partir de ce moment, ce qui manque est ce qu’on donne à lire à l’agent avant qu’il commence.</p>
+
+<p>Ce que je vise est qu’un agent devienne un second cerveau, réactif, à qui on délègue pour de bon. Le gain se prend en ambition, en attaquant des choses qu’on ne se serait pas autorisé à commencer avant. L’équipe Claude Code décrit son propre usage à peu près dans ces termes, ça recoupe ce que j’observe sans le démontrer.</p>
+
+<h3>Les harness se valent à peu près aujourd’hui</h3>
+
+<p>Ce n’est pas « l’outil ne compte pas », qui est faux, et qui sonne comme un vendeur en train de dévaluer ce que vous connaissez déjà pour valoriser ce qu’il pousse. C’est une observation datée sur l’état du marché : les harness ont convergé, donc l’écart s’est déplacé ailleurs, sur ce qu’on met dedans. Les CLAUDE.md, les hooks, les skills, la structure du repo, ce que l’agent peut vérifier tout seul avant de vous rendre la main.</p>
+
+<p>Si un outil reprend une avance nette dans six mois, la phrase tombe et je le dirai.</p>
+
+<h3>Ce qui vaut, c’est la date, pas l’artefact</h3>
+
+<p>Décrire ce que j’ai construit ne vaut plus grand-chose en soi. La review automatique des pull requests par un agent, GitHub la propose nativement depuis avril 2025, et l’activer tient dans une case à cocher d’un ruleset de branche. La présenter aujourd’hui comme une prouesse, c’est se présenter comme quelqu’un qui découvre le sujet.</p>
+
+<p>Donc la partie de mon travail qui a le plus compté n’est pas l’outillage de review, que GitHub a banalisé depuis. Ce sont les CLAUDE.md versionnés à l’échelle d’une équipe entière, et ça, ça reste rare.</p>
+
+<p class="note">En cherchant publiquement, les seules équipes que j’aie trouvées à le faire sérieusement sont GitLab, Camunda et Ledger, et sur une dizaine de milliers de commentaires de retours publics dépouillés par mes propres agents, aucune équipe ne nomme de propriétaire pour ces fichiers. Je dis ça de l’extérieur et sur des sources publiques, donc si votre équipe le fait déjà, écrivez-moi, ça m’intéresse davantage que l’inverse.</p>
+
+<h2>Ce sur quoi je travaille</h2>
+
+<p>Je suis à temps plein sur une mission d’IA en entreprise dans un groupe du CAC 40, sous NDA. Je n’en dirai rien de plus ici, et c’est la même discrétion que vous aurez de moi si on travaille ensemble. En grand compte, ce qui bloque l’adoption des agents n’est presque jamais technique : c’est qui décide, sur quel critère, et à quel moment quelqu’un écrit la décision quelque part.</p>
+
+<p>À côté de ça, quelques jours par mois restent libres pour des missions courtes, chez des équipes qui veulent que leur harness serve vraiment. Un audit du setup agentique pour savoir où vous en êtes, une journée d’atelier dans votre repo, ou des office hours régulières pour tenir la chose dans le temps. L’audit est la porte d’entrée la plus simple.</p>
+
+<p><a class="cta" href="/offre/">Voir l’offre et les prix</a></p>
+
+<p>J’écris aussi de temps en temps sur ce que je casse et ce que je répare en chemin.</p>
+
+<p><a class="cta" href="/ecrits/">Lire les écrits</a></p>
+
+<hr class="rule">
+
+<p class="meta"><a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>, <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a>, <a href="https://github.com/theomart">GitHub</a>.</p>
