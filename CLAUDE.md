@@ -12,6 +12,10 @@ Tout ce qui est commité ici est lisible par n'importe qui, ce fichier compris. 
 
 Les seuls contacts publiables sont `contacttheomartin@gmail.com`, `https://www.linkedin.com/in/theomart/` et `https://github.com/theomart`.
 
+## Ce dossier a un parent privé
+
+Le repo vit dans `projects/site-perso/site/` d'un dépôt privé. La recherche, les relevés de prix des concurrents, les arbitrages commerciaux et le journal des sessions sont dans le dossier parent, `../wiki/`, `../raw/`, `../log.md`. Rien de tout ça ne descend ici, et ce qui est écrit ici est destiné à être lu par n'importe qui.
+
 ## Arborescence
 
 ```
