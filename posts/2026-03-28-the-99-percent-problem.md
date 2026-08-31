@@ -59,3 +59,5 @@ Design agent pipelines with hard ceilings on step count per segment. 5 is good. 
 Complex work structured as multiple bounded agents in sequence, each with a clear input and a clear output, has a completely different failure profile than one long agent doing everything in a single context window. The work is the same amount of work either way.
 
 The 82% end-to-end success rate for a 20-step pipeline at 99% per-step is not a temporary limitation of current models. It's arithmetic. Models will get more reliable per step over time. The compound math won't.
+
+Bounded segments need explicit artifacts between them, which is the [resumption contract](/en/writing/every-agent-works-in-the-demo/). And the per-step reliability you are multiplying moves with [the scaffolding](/en/writing/the-model-is-the-easy-part/) more than with the model.

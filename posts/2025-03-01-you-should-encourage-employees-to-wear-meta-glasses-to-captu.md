@@ -2,6 +2,7 @@
 title: "Tribal knowledge never reaches the coding agent"
 date: 2025-03-01
 lang: en
+noindex: true
 summary: "Coding agents only get the context you hand them, while human developers pull from Slack, meetings and hallway talk that never reaches a repo."
 source: linkedin
 legacy_url: /thoughts/2025/03/01/you-should-encourage-employees-to-wear-meta-glasses-to-captu.html

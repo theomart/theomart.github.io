@@ -44,11 +44,13 @@ Les deux pages de liste d'articles sont générées par `build.py` à partir de 
 
 Le rendu est un `str.replace` sur les gabarits, il n'y a pas de moteur de template et il n'y en aura pas. `templates/base.html` et `templates/post.html` portent ces marqueurs, espaces compris, exactement sous cette forme :
 
-`{{ lang }}`, `{{ alt_lang }}`, `{{ title }}`, `{{ description }}`, `{{ content }}`, `{{ nav }}`, `{{ lang_switch_href }}`, `{{ lang_switch_label }}`, `{{ canonical }}`, `{{ og_locale }}`, `{{ og_image }}`, `{{ feed_url }}`, `{{ year }}`, `{{ footer_links }}`
+`{{ lang }}`, `{{ alt_lang }}`, `{{ title }}`, `{{ description }}`, `{{ content }}`, `{{ nav }}`, `{{ lang_switch_href }}`, `{{ lang_switch_label }}`, `{{ canonical }}`, `{{ og_locale }}`, `{{ og_image }}`, `{{ feed_url }}`, `{{ year }}`, `{{ footer_links }}`, `{{ robots }}`
 
 `og_image` est l'URL absolue de `static/og-image.png` (français) ou `static/og-image-en.png` (anglais), une carte 1200×630 aux couleurs du thème clair, texte à gauche et le portrait de `static/theo.jpg` à droite. Les deux se régénèrent en rasterisant un HTML, elles ne sont pas produites par le build. `feed_url` est l'URL absolue du flux RSS de la langue courante.
 
 `lang_switch_href` est l'URL absolue de la page équivalente dans l'autre langue. `alt_lang` et `og_locale` en découlent, `fr`/`en` et `fr_FR`/`en_US`. `templates/base.html` seul pose le `hreflang` réciproque, `{{ lang }}`/`{{ alt_lang }}` sur `{{ canonical }}`/`{{ lang_switch_href }}` : les articles n'ont pas de traduction, `lang_switch_href` y mène à l'index de l'autre langue, une cible fausse pour du `hreflang`.
+
+`{{ robots }}` ne vit que dans `templates/post.html`, collé au `canonical`, et vaut la balise `noindex,follow` pour un article marqué `noindex` et la chaîne vide sinon.
 
 `templates/post.html` porte les mêmes marqueurs sauf le `hreflang`, plus `{{ post_title }}`, `{{ post_date }}` en date longue localisée, `{{ post_iso_date }}`, `{{ post_body }}` et `{{ ld_json }}`, le JSON-LD `BlogPosting` de l'article, déjà sérialisé par `build.py`.
 
@@ -66,10 +68,13 @@ lang: fr
 summary: "Une phrase, 160 caractères max, sert de meta description et de résumé dans la liste."
 source: linkedin
 legacy_url: /jekyll/update/2024/08/26/colbert.html
+noindex: true
 ---
 ```
 
-`title`, `date` au format `AAAA-MM-JJ` et `lang` valant `fr` ou `en` sont obligatoires, leur absence fait échouer le build en nommant le fichier. `summary`, `source` et `legacy_url` sont facultatifs. Un `legacy_url` fait générer à cette ancienne adresse une page de redirection avec meta refresh, canonical et lien de secours, pour ne pas casser les liens entrants du vieux blog.
+`title`, `date` au format `AAAA-MM-JJ` et `lang` valant `fr` ou `en` sont obligatoires, leur absence fait échouer le build en nommant le fichier. `summary`, `source`, `legacy_url` et `noindex` sont facultatifs. Un `legacy_url` fait générer à cette ancienne adresse une page de redirection avec meta refresh, canonical et lien de secours, pour ne pas casser les liens entrants du vieux blog.
+
+`noindex: true` sort l'article de l'index des écrits, du sitemap et du flux RSS, et lui met un `noindex,follow`. Sa page et sa redirection restent servies, les liens entrants continuent de marcher. Les 40 posts LinkedIn recyclés d'avant 2026 le portent : ils parlent de ML généraliste, ils faisaient la moitié du sitemap, et ils disaient au moteur que le domaine parle d'autre chose que de ce qui est vendu. Un article de 2026 ne le porte pas.
 
 ## Classes CSS autorisées
 

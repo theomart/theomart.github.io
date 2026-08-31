@@ -1,12 +1,12 @@
 # Theo Martin
 
-> Independent consultant, coding agents in production. Eight years of ML and production LLM systems, five of them at Amazon, then Tech Lead of the Core AI team at Akeneo. Sells four formats: an agentic setup audit, an in-house workshop, office hours, and building an agent system, priced publicly in euros excluding VAT.
+> Independent consultant, coding agents in production. Eight years of ML and production LLM systems, five of them at Amazon, then Tech Lead of the Core AI team at Akeneo. Based in Paris, works across France and remotely. Sells four formats: an agentic setup audit, in-house Claude Code training on your own repo, office hours, and building an agent system, priced publicly in euros excluding VAT. Not a Qualiopi-certified training body, so it cannot be funded through a French OPCO.
 
 ## Pages
 
 - [Home (French)](https://theomart.in/): who Theo is and what he sells, in one page
 - [Home (English)](https://theomart.in/en/): same, in English
-- [Offre / Services](https://theomart.in/offre/): the four formats, prices, who they are and are not for ([English](https://theomart.in/en/services/))
+- [Offre / Services](https://theomart.in/offre/): the four formats, prices, how this differs from a catalog Claude Code course, who it is and is not for ([English](https://theomart.in/en/services/))
 - [À propos / About](https://theomart.in/a-propos/): background at Amazon, Unifai, Akeneo, and dated positions on coding agents ([English](https://theomart.in/en/about/))
 - [Écrits / Writing](https://theomart.in/ecrits/): articles on coding agents, LLM systems in production, and what goes into a harness ([English](https://theomart.in/en/writing/))
 

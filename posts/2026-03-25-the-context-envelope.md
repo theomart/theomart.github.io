@@ -232,3 +232,5 @@ The context envelope isn't new. It's a name for something every team building LL
 You probably have all the data already. Route names, user roles, plan tiers, feature flags. It's sitting in your frontend state and backend services. The envelope just packages it up and delivers it where it matters.
 
 Stop letting your LLM guess. Give it the envelope.
+
+The envelope has a ceiling, and what happens when you push past it is [here](/en/writing/your-agent-isnt-confused-its-drowning/). If your agent lives across more than one session, the [resumption contract](/en/writing/every-agent-works-in-the-demo/) is the other half of the same problem.

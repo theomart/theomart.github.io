@@ -2,6 +2,7 @@
 title: "The manifold hypothesis, explained with a shoelace"
 date: 2022-08-19
 lang: en
+noindex: true
 summary: "The manifold hypothesis explained with a tied shoelace: hidden layers untangle the data until a hyperplane can separate the two classes."
 source: linkedin
 legacy_url: /thoughts/2022/08/19/one-cool-idea-behind-deep-learning-is-the-manifold-hypothesi.html

@@ -2,6 +2,7 @@
 title: "Dont trust AI experts"
 date: 2024-08-30
 lang: en
+noindex: true
 summary: "The AI expert label as marketing, what a real one would have to be able to do, and why you never need that profile anyway."
 source: linkedin
 legacy_url: /thoughts/2024/08/30/dont-trust-ai-experts.html

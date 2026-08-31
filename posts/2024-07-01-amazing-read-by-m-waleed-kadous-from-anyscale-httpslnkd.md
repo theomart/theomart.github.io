@@ -2,6 +2,7 @@
 title: "Numbers every LLM developer should know"
 date: 2024-07-01
 lang: en
+noindex: true
 summary: "Numbers every LLM developer should know, from Waleed Kadous at Anyscale: cost ratios, tokens per word, and GPU memory per token."
 source: linkedin
 legacy_url: /thoughts/2024/07/01/amazing-read-by-m-waleed-kadous-from-anyscale-httpslnkd.html

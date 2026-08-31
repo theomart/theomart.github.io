@@ -2,6 +2,7 @@
 title: "Token facts cheat sheet"
 date: 2024-06-21
 lang: en
+noindex: true
 summary: "Order of magnitude figures for tokens: counts per word, page and book, training set sizes, context lengths, and latency per input or output token."
 source: linkedin
 legacy_url: /thoughts/2024/06/21/token-facts-cheat-sheet-for-practical-estimations-tokens.html

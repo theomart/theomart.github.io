@@ -194,3 +194,5 @@ MCP's next chapter will probably involve standards for tool discovery and select
 That's how progress works. You solve the problem in front of you and create the problem behind it. The measure of a good solution isn't whether it creates new problems—they all do. It's whether the new problems are better than the old ones.
 
 Having too many tools is a better problem than having no way to connect them. We'll take it.
+
+The constraint underneath all of this is attention, and what it looks like when an agent runs out of it is in [a separate piece](/en/writing/your-agent-isnt-confused-its-drowning/). The tool descriptions you load up front spend the same budget as [the skills you write](/en/writing/most-skill-md-files-work-once/), which is the part most teams never measure.

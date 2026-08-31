@@ -2,6 +2,7 @@
 title: "A non technical dive into alignment"
 date: 2024-07-09
 lang: en
+noindex: true
 summary: "A non technical walk through alignment: knowledge comes from pretraining, behaviour from RLHF, and what it took OpenAI to build InstructGPT."
 source: linkedin
 legacy_url: /thoughts/2024/07/09/how-do-we-get-llms-to-know-what-a-software-bug-is-without-m.html

@@ -2,6 +2,7 @@
 title: "Developers who don't use AI assisted coding are falling behind"
 date: 2024-09-21
 lang: en
+noindex: true
 summary: "A short and blunt take from September 2024 on developers who refuse to try AI assisted coding."
 source: linkedin
 legacy_url: /thoughts/2024/09/21/developers-who-dont-use-ai-assisted-coding-are-already-falli.html

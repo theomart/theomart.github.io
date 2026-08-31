@@ -74,3 +74,5 @@ Most teams build harnesses by accident. They start with a prompt, add a few tool
 The teams that get it right treat the harness as the product. The model is a commodity, rented by the token. The infrastructure around it, the skills, the state management, the stage separation, the context discipline, that's what you own. That's what compounds over time as production failures get engineered back into the system.
 
 A 26% improvement in task completion from changing the scaffolding around an unchanged model is not a small number. It's a measurement of how much was being left on the table by the surrounding system. The model capability question is mostly settled. The infrastructure question is not. That's where the work is.
+
+Context discipline is the piece of this I see missed most often, [here](/en/writing/your-agent-isnt-confused-its-drowning/), and the skills are [the part that decays](/en/writing/most-skill-md-files-work-once/) once nobody owns them. If you want someone to look at your own harness, [that is what I sell](/en/services/).

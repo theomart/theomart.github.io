@@ -79,6 +79,8 @@ If the codebase will grow large enough that you'd use AI agents to modify it, st
 
 The self-healing loop isn't a nice-to-have. At agent scale, it's the difference between 2% regression and 8%.
 
+The compiler is one piece of scaffolding among others, and the scaffolding is [where the completion rate actually moves](/en/writing/the-model-is-the-easy-part/), not the model you picked.
+
 ---
 
 *Sources: Builder.io TypeScript vs JavaScript analysis 2026, pmdartus TypeScript AI-aided development 2025, GitHub Blog on TypeScript's rise (Anders Hejlsberg), Claude Code GitHub issues #1344 and #6928, Cursor agent mode documentation, Markaicode Windsurf Cascade guide 2026.*

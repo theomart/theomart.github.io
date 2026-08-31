@@ -13,12 +13,15 @@ On me demande régulièrement en quoi ce que je vends diffère d'une formation C
 | Xebia Academy | deux jours | 1 795 € HT par personne |
 | Zenika | à la journée | 1 050 € par jour |
 | Les-Tilleuls | une journée | 900 € par participant |
+| Moi | une journée intra dans votre repo | 2 500 € HT la journée, quel que soit le nombre de participants |
+
+Je me mets dans le tableau parce qu'une comparaison où celui qui la publie n'apparaît pas est une comparaison arrangée. Ma ligne se lit autrement que les autres, elle est au jour et pas à la tête, donc à huit développeurs dans la salle la journée revient à un peu plus de 300 € par personne et à douze elle tombe vers 210 €. Ce n'est pas le même produit pour autant, je ne suis pas un organisme certifié Qualiopi, ça ne se finance donc pas par un OPCO, et ce que j'anime se passe dans votre repo sur vos tickets plutôt que sur un projet d'exemple.
 
 Ces chiffres viennent des pages publiques à une date donnée, ils bougent, et une session intra se négocie de toute façon autrement qu'un billet au catalogue. Je regarde ça depuis l'extérieur, sur ce qui est publié, et je veux bien être corrigé.
 
 L'autre relevé est plus intéressant que les prix. Sur une quarantaine d'acteurs français dont mes propres agents ont dépouillé les catalogues en août, les hooks et les skills n'apparaissent au programme que chez deux d'entre eux, et la gestion des secrets quand c'est un agent qui lit le repo n'apparaît nulle part. Il faut prendre ce résultat pour ce qu'il est, un crawl prouve mal la présence, un programme peut très bien traiter le sujet sans le nommer dans son plan, et il prouve bien mieux l'absence. Si vous enseignez déjà ça et que je vous ai raté, écrivez-moi, ça m'intéresse davantage que l'inverse.
 
-D'après ce que je vois chez mes clients, c'est justement la partie qui coûte cher six mois après, quand le CLAUDE.md a doublé de taille sans que personne ne le relise et que la facture de tokens monte sans qu'on sache d'où.
+D'après ce que je vois chez mes clients, c'est justement la partie qui coûte cher six mois après, celle que j'appelle [le harness](/ecrits/le-modele-cest-la-partie-facile/), quand le CLAUDE.md a doublé de taille sans que personne ne le relise et que la facture de tokens monte sans qu'on sache d'où.
 
 La différence entre ces formations et ce que je fais n'est pas de qualité, les programmes sont solides et les gens qui les animent connaissent le sujet. Elle est de nature. Eux forment, dans leur salle, sur leur matériel, au nombre de têtes, ce qui est le bon format quand une équipe entière découvre l'outil. J'arrive dans votre repo, sur vos tickets, ce qui n'a de sens que si les agents y sont déjà depuis quelques mois et que le gain ne se voit pas.
 

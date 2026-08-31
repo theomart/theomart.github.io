@@ -2,6 +2,7 @@
 title: "Training LLMs from scratch as a startup"
 date: 2024-07-29
 lang: en
+noindex: true
 summary: "Yi Tay on training LLMs from scratch as a startup: hardware roulette, multi cluster juggling, thin codebases, and the cost of every idle minute."
 source: linkedin
 legacy_url: /thoughts/2024/07/29/amazing-post-by-yi-tay-about-the-challenges-of-training-llm.html

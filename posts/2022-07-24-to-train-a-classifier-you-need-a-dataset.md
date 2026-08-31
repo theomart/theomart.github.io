@@ -2,6 +2,7 @@
 title: "To train a classifier, you need a dataset"
 date: 2022-07-24
 lang: en
+noindex: true
 summary: "Building a labelled dataset with experts or with Mechanical Turk, and why keeping the full answer distribution beats collapsing it to the mode."
 source: linkedin
 legacy_url: /thoughts/2022/07/24/to-train-a-classifier-you-need-a-dataset.html

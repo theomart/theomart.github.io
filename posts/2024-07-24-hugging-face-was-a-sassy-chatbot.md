@@ -2,6 +2,7 @@
 title: "Hugging Face was a sassy chatbot"
 date: 2024-07-24
 lang: en
+noindex: true
 summary: "Hugging Face started in 2016 as a chatbot for teenagers, published papers and open source tools along the way, and pivoted at the end of 2019."
 source: linkedin
 legacy_url: /thoughts/2024/07/24/hugging-face-was-a-sassy-chatbot.html

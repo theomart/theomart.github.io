@@ -62,3 +62,5 @@ Token discipline forces a question most agent designs skip: what does this agent
 Answering that for each stage produces a different architecture than "give the agent everything." You end up with a pipeline with explicit information contracts between stages, where each stage produces a specific artifact in a specific format, and the next stage reads that artifact and nothing else. Bounded, reproducible, debuggable.
 
 That's a different system than a single context-stuffed agent. And it completes tasks reliably at scale in ways the stuffed version doesn't.
+
+Where the tool descriptions come from, and why MCP made that budget worse before it made it better, is in [the MCP paradox](/en/writing/the-mcp-paradox/). What you should be putting in the window instead is [the context envelope](/en/writing/the-context-envelope/). Auditing that on a real repo is [one of the things I do](/en/services/).

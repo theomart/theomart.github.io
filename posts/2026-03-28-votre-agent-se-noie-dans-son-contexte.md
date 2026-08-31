@@ -62,3 +62,5 @@ La discipline de tokens force une question que la plupart des designs d'agents q
 Y répondre étape par étape produit une autre architecture que « on donne tout à l'agent ». Vous vous retrouvez avec un pipeline où chaque étape a un contrat d'information explicite avec la suivante, où chaque étape produit un artefact précis dans un format précis, et où l'étape suivante lit cet artefact et rien d'autre. Borné, reproductible, débuggable.
 
 C'est un système différent d'un agent unique bourré de contexte, et il finit les tâches de façon fiable à l'échelle là où la version bourrée n'y arrive pas.
+
+C'est la même conclusion que [le modèle, c'est la partie facile](/ecrits/le-modele-cest-la-partie-facile/), prise par l'autre bout, et le découpage en segments bornés a son propre calcul dans [le problème des 99 %](/ecrits/le-probleme-des-99-pourcent/). Regarder ça dans un vrai repo est [ce que je vends](/offre/).

@@ -2,6 +2,7 @@
 title: "Humans only look more sample efficient than neural nets"
 date: 2022-07-16
 lang: en
+noindex: true
 summary: "Humans look more sample efficient than neural nets until you count evolution, innate priors and the DNA bottleneck as part of the training budget."
 source: linkedin
 legacy_url: /thoughts/2022/07/16/a-human-brain-requires-less-data-to-be-trained-on-a-given-ta.html

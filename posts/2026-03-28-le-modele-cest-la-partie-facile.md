@@ -79,6 +79,8 @@ Quatorze points de taux de réussite gagnés en changeant le scaffolding autour 
 
 ---
 
+La discipline de contexte est la partie que je vois sautée le plus souvent, [ici](/ecrits/votre-agent-se-noie-dans-son-contexte/), et l'arithmétique qui décide si un pipeline long arrive au bout est [là](/ecrits/le-probleme-des-99-pourcent/). Si vous voulez que quelqu'un regarde votre harness, [c'est ce que je vends](/offre/).
+
 ## Sources
 
 - LangChain, « Improving Deep Agents with harness engineering » : https://www.langchain.com/blog/improving-deep-agents-with-harness-engineering

@@ -2,6 +2,7 @@
 title: "GauGAN2, NVIDIAs model keeps amazing me"
 date: 2022-07-08
 lang: en
+noindex: true
 summary: "NVIDIA's GauGAN2 turning a few strokes and the words neon fire into a semi abstract image, with a link to the live demo."
 source: linkedin
 legacy_url: /thoughts/2022/07/08/gaugan2-nvidias-model-keeps-amazing-me.html

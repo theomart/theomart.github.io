@@ -2,6 +2,7 @@
 title: "Groq and LPUs, why they run LLMs faster"
 date: 2024-07-12
 lang: en
+noindex: true
 summary: "Why Groq ran Mixtral faster than GPU providers: deterministic LPUs, on chip memory, a compiler first design, and the scaling question that follows."
 source: linkedin
 legacy_url: /thoughts/2024/07/12/what-you-need-to-know-about-groq-and-lpus-how-can-groq-run-l.html

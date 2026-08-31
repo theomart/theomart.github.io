@@ -2,6 +2,7 @@
 title: "OCR just got better"
 date: 2024-07-15
 lang: en
+noindex: true
 summary: "Surya, a Python package that locates each line of text in an image or PDF, what it handles, what it does not, and its licence."
 source: linkedin
 legacy_url: /thoughts/2024/07/15/ocr-just-got-better.html

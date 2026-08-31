@@ -2,6 +2,7 @@
 title: "Learning rate schedules, explained with a radar"
 date: 2022-08-02
 lang: en
+noindex: true
 summary: "Learning rate schedules explained with a radar that gives you direction but not distance, plus three schedules worth knowing."
 source: linkedin
 legacy_url: /thoughts/2022/08/02/learning-rate-schedules-allow-for-changing-the-learning-rate.html

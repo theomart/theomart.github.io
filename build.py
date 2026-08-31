@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 """Construit le site theomart.in dans _site/. Une seule dépendance externe, markdown, et le
 rendu est une substitution de chaînes dans templates/, sans moteur de template.
-
-    python3 build.py            construit
-    python3 build.py --serve    construit puis sert sur http://localhost:4400
+`python3 build.py --serve` construit puis sert sur http://localhost:4400 .
 """
 import functools, json, re, shutil, sys
 from datetime import date, datetime, timezone
@@ -26,21 +24,21 @@ YEAR = str(date.today().year)
 # `other` est l'URL de la même page dans l'autre langue.
 PAGES = [
     {"src": "fr/index.html", "url": "/", "other": "/en/", "title": "Theo Martin, agents de code en production",
-     "description": "Je construis des agents de code en production et j'aide les équipes d'ingénierie à tirer vraiment parti des leurs."},
-    {"src": "fr/offre.html", "url": "/offre/", "other": "/en/services/", "title": "Offre · Theo Martin",
-     "description": "Audit du setup agentique, atelier intra sur votre repo, office hours, build d'un système d'agents. Les prix sont affichés, en euros HT."},
+     "description": "Je construis des agents de code en production et j'aide les équipes à tirer vraiment parti des leurs, audit du repo, formation Claude Code intra, office hours. À Paris."},
+    {"src": "fr/offre.html", "url": "/offre/", "other": "/en/services/", "title": "Formation Claude Code intra, audit, office hours · Theo Martin",
+     "description": "Audit du setup agentique, formation Claude Code intra sur votre repo, office hours, build d'un système d'agents. Prix affichés en euros HT, depuis Paris."},
     {"heading": "Écrits", "url": "/ecrits/", "other": "/en/writing/", "title": "Écrits · Theo Martin",
-     "description": "Des notes sur les agents de code, les LLM en production et ce qu'on met dans un harness."},
+     "description": "Des notes sur Claude Code, les agents de code, les LLM en production et ce qu'on met dans un harness."},
     {"src": "fr/a-propos.html", "url": "/a-propos/", "other": "/en/about/", "title": "À propos · Theo Martin",
-     "description": "Huit ans de ML et de systèmes LLM en production, dont cinq chez Amazon, puis Tech Lead de l'équipe Core AI chez Akeneo."},
+     "description": "Huit ans de ML et de systèmes LLM en production, dont cinq chez Amazon, puis Tech Lead de l'équipe Core AI chez Akeneo. Indépendant à Paris."},
     {"src": "en/index.html", "url": "/en/", "other": "/", "title": "Theo Martin, coding agents in production",
-     "description": "I build coding agents that run in production, and I help engineering teams get real value out of theirs."},
-    {"src": "en/services.html", "url": "/en/services/", "other": "/offre/", "title": "Services · Theo Martin",
-     "description": "Agentic setup audit, in-house workshop on your own repo, office hours, building an agent system. Prices are public, in euros excluding VAT."},
+     "description": "I build coding agents that run in production, and I help teams get real value out of theirs, repo audit, in-house Claude Code training, office hours. Based in Paris."},
+    {"src": "en/services.html", "url": "/en/services/", "other": "/offre/", "title": "Claude Code training on your repo, audit · Theo Martin",
+     "description": "Agentic setup audit, in-house Claude Code training on your own repo, office hours, building an agent system. Public prices in euros, based in Paris."},
     {"heading": "Writing", "url": "/en/writing/", "other": "/ecrits/", "title": "Writing · Theo Martin",
-     "description": "Notes on coding agents, LLMs in production, and what goes into a harness."},
+     "description": "Notes on Claude Code, coding agents, LLMs in production, and what goes into a harness."},
     {"src": "en/about.html", "url": "/en/about/", "other": "/a-propos/", "title": "About · Theo Martin",
-     "description": "Eight years of ML and production LLM systems, five of them at Amazon, then Tech Lead of the Core AI team at Akeneo."},
+     "description": "Eight years of ML and production LLM systems, five of them at Amazon, then Tech Lead of the Core AI team at Akeneo. Independent, based in Paris."},
     {"src": "fr/mentions-legales.html", "url": "/mentions-legales/", "other": "/en/legal/", "title": "Mentions légales · Theo Martin",
      "description": "Éditeur, hébergeur, absence de cookies et de traceurs."},
     {"src": "en/legal.html", "url": "/en/legal/", "other": "/mentions-legales/", "title": "Legal notice · Theo Martin",
@@ -229,13 +227,15 @@ def build():
     base = read(ROOT / "templates" / "base.html")
     post_template = read(ROOT / "templates" / "post.html")
     posts = load_posts()
+    # Un post `noindex` reste servi et redirigé, mais sort de l'index, du sitemap et des flux.
+    live = [post for post in posts if not post.get("noindex")]
 
     print("Pages :")
     for page in PAGES:
         values = shell(page["url"], page["title"], page["description"], page["other"])
         if "heading" in page:
             values["content"] = (f'<h1>{page["heading"]}</h1>\n<p class="lede">{page["description"]}</p>\n'
-                                 + post_list([p for p in posts if WRITING_URL[p["lang"]] == page["url"]]))
+                                 + post_list([p for p in live if WRITING_URL[p["lang"]] == page["url"]]))
         elif (ROOT / "pages" / page["src"]).exists():
             values["content"] = read(ROOT / "pages" / page["src"])
         else:
@@ -248,7 +248,7 @@ def build():
         other = "en" if post["lang"] == "fr" else "fr"
         # Les articles ne sont pas traduits, la bascule de langue mène à l'index de l'autre langue.
         values = shell(post["url"], f"{post['title']} · Theo Martin", post.get("summary", ""), WRITING_URL[other], nav_url=WRITING_URL[post["lang"]])
-        values.update(post_title=escape(post["title"]), post_date=post["long_date"], post_iso_date=post["date"], post_body=post["body"],
+        values.update(robots='<meta name="robots" content="noindex,follow">' if post.get("noindex") else "", post_title=escape(post["title"]), post_date=post["long_date"], post_iso_date=post["date"], post_body=post["body"],
                       ld_json=json.dumps({"@context": "https://schema.org", "@type": "BlogPosting", "headline": post["title"], "datePublished": post["date"],
                           "inLanguage": post["lang"], "description": post.get("summary", ""), "url": values["canonical"], "author": {"@type": "Person", "name": "Theo Martin"}}, ensure_ascii=False))
         write(path_for(post["url"]), render(post_template, values), f"posts/{post['slug']}")
@@ -268,15 +268,15 @@ def build():
 
     print("Flux RSS :")
     # /feed.xml garde son adresse historique, il portait le blog anglais sous Jekyll.
-    write(OUT / "feed.xml", feed([p for p in posts if p["lang"] == "en"], "en", "/feed.xml"), "feed.xml")
-    write(OUT / "ecrits" / "feed.xml", feed([p for p in posts if p["lang"] == "fr"], "fr", "/ecrits/feed.xml"), "ecrits/feed.xml")
+    write(OUT / "feed.xml", feed([p for p in live if p["lang"] == "en"], "en", "/feed.xml"), "feed.xml")
+    write(OUT / "ecrits" / "feed.xml", feed([p for p in live if p["lang"] == "fr"], "fr", "/ecrits/feed.xml"), "ecrits/feed.xml")
 
     print("Pages 404 et fichiers annexes :")
     for lang, (title, body) in NOT_FOUND.items():
         values = shell("/" if lang == "fr" else "/en/", title, title, "/en/" if lang == "fr" else "/", nav_url="")
         values["content"] = body
         write(OUT / "404.html" if lang == "fr" else OUT / "en" / "404.html", render(base, values), f"404 {lang}")
-    locs = "".join(f"  <url><loc>{SITE_URL}{p['url']}</loc>" + (f"<lastmod>{p['date']}</lastmod>" if p.get("date") else "") + "</url>\n" for p in PAGES + posts)
+    locs = "".join(f"  <url><loc>{SITE_URL}{p['url']}</loc>" + (f"<lastmod>{p['date']}</lastmod>" if p.get("date") else "") + "</url>\n" for p in PAGES + live)
     write(OUT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{locs}</urlset>\n', "sitemap.xml")
     write(OUT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", "robots.txt")

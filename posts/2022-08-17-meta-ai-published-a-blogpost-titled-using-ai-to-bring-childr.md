@@ -2,6 +2,7 @@
 title: "Meta AI animates children's drawings"
 date: 2022-08-17
 lang: en
+noindex: true
 summary: "Meta AI's four step pipeline that detects, masks, rigs and animates children's drawings, tested here on a drawing of Rick."
 source: linkedin
 legacy_url: /thoughts/2022/08/17/meta-ai-published-a-blogpost-titled-using-ai-to-bring-childr.html

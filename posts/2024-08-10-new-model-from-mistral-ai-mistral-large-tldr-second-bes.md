@@ -2,6 +2,7 @@
 title: "Mistral AI releases Mistral Large"
 date: 2024-08-10
 lang: en
+noindex: true
 summary: "Mistral Large at launch: benchmarks, price against GPT-4, 32k context, function calling, the Azure partnership, and Le Chat."
 source: linkedin
 legacy_url: /thoughts/2024/08/10/new-model-from-mistral-ai-mistral-large-tldr-second-bes.html

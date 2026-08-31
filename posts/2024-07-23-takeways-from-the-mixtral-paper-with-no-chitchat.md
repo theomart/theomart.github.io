@@ -2,6 +2,7 @@
 title: "Takeways from the Mixtral paper with no chitchat"
 date: 2024-07-23
 lang: en
+noindex: true
 summary: "Takeaways from the Mixtral paper: sparse mixture of experts per transformer block, 47B total for 13B active, MegaBlocks, and a 32k context that holds."
 source: linkedin
 legacy_url: /thoughts/2024/07/23/takeways-from-the-mixtral-paper-with-no-chitchat.html

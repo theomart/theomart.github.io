@@ -2,6 +2,7 @@
 title: "Why ReLU dominates"
 date: 2022-07-26
 lang: en
+noindex: true
 summary: "ReLU dominates because a neural net only slices the input space hyperplane after hyperplane, and piecewise linearity is the non linearity that fits."
 source: linkedin
 legacy_url: /thoughts/2022/07/26/relu-is-so-dominant-in-the-field-because-it-embraces-the-fac.html

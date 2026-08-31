@@ -19,6 +19,8 @@ That's the job now. Building the workspace where agents can work without you in 
 
 ---
 
+None of this is about the model. The [scaffolding around it](/en/writing/the-model-is-the-easy-part/) is what you own, and the skills you write for it [go stale on their own](/en/writing/most-skill-md-files-work-once/) unless someone keeps them.
+
 ## Sources
 
 - TechCrunch, "Vibe coding turned senior devs into AI babysitters" (Sep 2025): https://techcrunch.com/2025/09/14/vibe-coding-has-turned-senior-devs-into-ai-babysitters-but-they-say-its-worth-it/

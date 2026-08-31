@@ -2,6 +2,7 @@
 title: "Three minutes to generate, two hours to debug"
 date: 2025-02-05
 lang: en
+noindex: true
 summary: "The answer to the three minutes to generate, two hours to debug line: the quality of the code is still yours, review it or write better tests."
 source: linkedin
 legacy_url: /thoughts/2025/02/05/people-saying-with-ai-you-take-3-min-to-generate-code-and-2.html

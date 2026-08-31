@@ -2,6 +2,7 @@
 title: "Can a gorilla ride a camel?"
 date: 2020-07-30
 lang: en
+noindex: true
 summary: "A McGill and Microsoft paper on models that answer plausibility questions from text alone, and the idea of asking one who wins between Batman and Spider-Man."
 source: linkedin
 legacy_url: /thoughts/2020/07/30/some-friday-ai-fun-can-a-gorilla-ride-a-camel-this-is-the.html

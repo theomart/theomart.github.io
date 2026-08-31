@@ -2,6 +2,7 @@
 title: "The AI market is crowded with promises, not products"
 date: 2024-08-19
 lang: en
+noindex: true
 summary: "The AI market is crowded with promises rather than working products, with the ERP, wearables and low code precedents to back the pattern."
 source: linkedin
 legacy_url: /thoughts/2024/08/19/the-ai-product-market-is-overcrowdednot-with-effective-tool.html

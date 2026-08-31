@@ -66,3 +66,5 @@ Description written for trigger clarity with "use when" conditions. SKILL.md und
 The architecture that comes out of this isn't complex. It's specific about what each component does and where information lives. An agent that follows a well-built skill isn't doing creative work during the deterministic stages, it's executing a documented sequence against a durable file system. The judgment gets applied to the parts that actually require judgment, not to manifest building and batch packing.
 
 Build the skill like it will outlive the session. It probably will.
+
+The resumption contract is the part that separates a demo from a pipeline, and it has [its own piece](/en/writing/every-agent-works-in-the-demo/). Reference files exist for the same reason: what you load up front is [what the agent drowns in](/en/writing/your-agent-isnt-confused-its-drowning/).

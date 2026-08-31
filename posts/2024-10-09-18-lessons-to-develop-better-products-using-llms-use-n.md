@@ -2,6 +2,7 @@
 title: "18 lessons for building products on LLMs"
 date: 2024-10-09
 lang: en
+noindex: true
 summary: "Practical rules for building on LLMs: few shot sample counts, prompt splitting, chain of thought, guardrails, LLM as judge, and assertion tests."
 source: linkedin
 legacy_url: /thoughts/2024/10/09/18-lessons-to-develop-better-products-using-llms-use-n.html

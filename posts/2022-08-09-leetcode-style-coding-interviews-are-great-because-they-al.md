@@ -2,6 +2,7 @@
 title: "What Leetcode interviews get right, and what they don't"
 date: 2022-08-09
 lang: en
+noindex: true
 summary: "An honest list of what Leetcode style interviews get right and everything they get wrong, ending on the proof of work comparison."
 source: linkedin
 legacy_url: /thoughts/2022/08/09/leetcode-style-coding-interviews-are-great-because-they-al.html

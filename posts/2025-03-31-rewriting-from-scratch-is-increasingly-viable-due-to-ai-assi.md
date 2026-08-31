@@ -2,6 +2,7 @@
 title: "Rewriting from scratch is becoming viable"
 date: 2025-03-31
 lang: en
+noindex: true
 summary: "Rewriting a codebase from scratch becomes viable with AI assisted coding, with parity checked by tests generated from high level specs."
 source: linkedin
 legacy_url: /thoughts/2025/03/31/rewriting-from-scratch-is-increasingly-viable-due-to-ai-assi.html

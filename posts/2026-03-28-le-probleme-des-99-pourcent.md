@@ -59,3 +59,5 @@ Mettez un plafond dur sur le nombre d'étapes par segment. Cinq, c'est bien. Dix
 Un travail compliqué découpé en plusieurs agents bornés à la suite, chacun avec une entrée claire et une sortie claire, a un profil de panne complètement différent d'un agent unique qui fait tout dans une seule context window. C'est la même quantité de travail dans les deux cas, c'est juste que l'une des deux versions arrive au bout.
 
 Les 82 % de réussite d'un pipeline de vingt étapes à 99 % par étape ne sont pas une limite temporaire des modèles actuels, c'est de l'arithmétique. Les modèles vont devenir plus fiables par étape avec le temps, le calcul composé, lui, ne bougera pas.
+
+Le taux par étape que vous multipliez bouge avec [le harness](/ecrits/le-modele-cest-la-partie-facile/) plus qu'avec le modèle, et la première chose qui le fait tomber est [le contexte gonflé](/ecrits/votre-agent-se-noie-dans-son-contexte/).

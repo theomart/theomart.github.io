@@ -2,6 +2,7 @@
 title: "The sample efficiency comparison is unfair"
 date: 2024-06-25
 lang: en
+noindex: true
 summary: "Sample efficiency comparisons between humans and models are unfair, and in context learning changes what counts as an example."
 source: linkedin
 legacy_url: /thoughts/2024/06/25/we-often-talk-about-the-sample-efficiency-of-ml-models-and.html

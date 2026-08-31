@@ -2,6 +2,7 @@
 title: "Takeaways from Lex Fridman's interview with Sam Altman"
 date: 2024-08-09
 lang: en
+noindex: true
 summary: "Takeaways from the Lex Fridman interview with Sam Altman: compute as the currency of the future, the board saga, GPT-5, and governance."
 source: linkedin
 legacy_url: /thoughts/2024/08/09/some-takeaways-i-got-from-the-conversation-between-lex-frid.html

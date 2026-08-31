@@ -2,6 +2,7 @@
 title: "Qwen releases QwQ-32B"
 date: 2025-03-17
 lang: en
+noindex: true
 summary: "Qwen's QwQ-32B at release, a 32B reasoning model measured against DeepSeek-R1, and the two stage reinforcement learning behind it."
 source: linkedin
 legacy_url: /thoughts/2025/03/17/qwen-releases-qwq-32b-small-reasoning-model-which-rivals-wi.html

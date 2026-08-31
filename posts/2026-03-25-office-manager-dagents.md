@@ -19,6 +19,8 @@ Le métier est là maintenant, construire l'endroit où les agents peuvent trava
 
 ---
 
+Rien de tout ça ne se joue sur le modèle, ça se joue sur [le scaffolding autour](/ecrits/le-modele-cest-la-partie-facile/), et sur ce que vous donnez à lire à l'agent avant qu'il commence, ce qui est [le problème le moins diagnostiqué](/ecrits/votre-agent-se-noie-dans-son-contexte/) que je croise.
+
 ## Sources
 
 - TechCrunch, « Vibe coding turned senior devs into AI babysitters » (septembre 2025) : https://techcrunch.com/2025/09/14/vibe-coding-has-turned-senior-devs-into-ai-babysitters-but-they-say-its-worth-it/

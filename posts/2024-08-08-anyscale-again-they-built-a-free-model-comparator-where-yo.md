@@ -2,6 +2,7 @@
 title: "A free comparator for open source LLMs"
 date: 2024-08-08
 lang: en
+noindex: true
 summary: "A free comparator to run the same prompt through several open source LLMs, and an open question about prompt formats."
 source: linkedin
 legacy_url: /thoughts/2024/08/08/anyscale-again-they-built-a-free-model-comparator-where-yo.html

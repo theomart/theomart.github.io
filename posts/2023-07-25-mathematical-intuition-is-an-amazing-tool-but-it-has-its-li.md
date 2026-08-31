@@ -2,6 +2,7 @@
 title: "Good intuition cannot be handed to you"
 date: 2023-07-25
 lang: en
+noindex: true
 summary: "Terence Tao's pre-rigorous, rigorous and post-rigorous stages, and why good intuition cannot be handed to you without the formal detour."
 source: linkedin
 legacy_url: /thoughts/2023/07/25/mathematical-intuition-is-an-amazing-tool-but-it-has-its-li.html

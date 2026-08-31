@@ -2,6 +2,7 @@
 title: "Continual pretraining instead of retraining from scratch"
 date: 2024-08-09
 lang: en
+noindex: true
 summary: "Continuing pretraining instead of retraining from scratch: re-warm and re-decay the learning rate, and replay a small slice of the old data."
 source: linkedin
 legacy_url: /thoughts/2024/08/09/how-do-you-continue-training-on-an-already-pre-trained-llm.html

@@ -56,3 +56,5 @@ Skip this step and you end up bolting state management onto an agent designed ar
 Start with the state contract. What files does each stage produce? What does an execution log entry look like? What goes in the next-steps file after each stage? Answer those questions before writing a single line of agent logic.
 
 The demo runs without any of this. Production pipelines that span more than one session don't. The gap is a design decision that most teams postpone until the first failure makes it urgent.
+
+A skill is usually where the state contract gets written down, and [most SKILL.md files work once](/en/writing/most-skill-md-files-work-once/) because they skip it. The arithmetic that makes long pipelines fail regardless of the contract is in [the 99% problem](/en/writing/the-99-percent-problem/).

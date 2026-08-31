@@ -2,6 +2,7 @@
 title: "Google's Gemma, don't use the 7B yet"
 date: 2024-08-15
 lang: en
+noindex: true
 summary: "Google's Gemma 2B and 7B at release, the gap between the reported benchmarks and what the community measured, and the parameter count discrepancy."
 source: linkedin
 legacy_url: /thoughts/2024/08/15/tldrs-on-googles-gemma-spoiler-dont-use-gemma-7b-yet-n.html

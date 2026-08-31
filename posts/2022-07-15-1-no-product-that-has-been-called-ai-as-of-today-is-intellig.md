@@ -2,6 +2,7 @@
 title: "Intelligence is the ability to generalize"
 date: 2022-07-15
 lang: en
+noindex: true
 summary: "Three claims about intelligence as the ability to generalize, and why nothing shipped under the AI label in 2022 generalizes globally."
 source: linkedin
 legacy_url: /thoughts/2022/07/15/1-no-product-that-has-been-called-ai-as-of-today-is-intellig.html

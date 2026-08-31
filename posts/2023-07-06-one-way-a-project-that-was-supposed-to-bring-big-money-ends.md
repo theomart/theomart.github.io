@@ -2,6 +2,7 @@
 title: "How a point estimate turns a project into a loss"
 date: 2023-07-06
 lang: en
+noindex: true
 summary: "How a project sold on a point estimate, with the uncertainty interval ignored, turns into a loss, and the three ways teams cover it up."
 source: linkedin
 legacy_url: /thoughts/2023/07/06/one-way-a-project-that-was-supposed-to-bring-big-money-ends.html

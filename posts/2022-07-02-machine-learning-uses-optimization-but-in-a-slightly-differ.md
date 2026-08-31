@@ -2,6 +2,7 @@
 title: "Machine learning is not classical optimization"
 date: 2022-07-02
 lang: en
+noindex: true
 summary: "Why machine learning is not classical optimization: the target is generalization error, which changes how the objective and the data feed are handled."
 source: linkedin
 legacy_url: /thoughts/2022/07/02/machine-learning-uses-optimization-but-in-a-slightly-differ.html

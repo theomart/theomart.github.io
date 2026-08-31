@@ -2,6 +2,7 @@
 title: "The logarithm is not a hack"
 date: 2023-07-31
 lang: en
+noindex: true
 summary: "The logarithm was invented to turn multiplication into addition, in Napier's own words from 1614. It is not a hack."
 source: linkedin
 legacy_url: /thoughts/2023/07/31/a-lot-of-people-when-they-hear-that-we-are-using-logarithm.html
