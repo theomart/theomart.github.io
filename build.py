@@ -5,7 +5,7 @@ rendu est une substitution de chaînes dans templates/, sans moteur de template.
     python3 build.py            construit
     python3 build.py --serve    construit puis sert sur http://localhost:4400
 """
-import functools, re, shutil, sys
+import functools, json, re, shutil, sys
 from datetime import date, datetime, timezone
 from email.utils import format_datetime
 from html import escape
@@ -52,6 +52,8 @@ FOOTER = {
     "fr": '<a href="/ecrits/feed.xml">RSS</a> &middot; <a href="/mentions-legales/">Mentions légales</a>',
     "en": '<a href="/feed.xml">RSS</a> &middot; <a href="/en/legal/">Legal</a>',
 }
+FEED_URL = {"fr": "/ecrits/feed.xml", "en": "/feed.xml"}
+OG_IMAGE = {"fr": "/static/og-image.png", "en": "/static/og-image-en.png"}
 
 # Anciennes URLs du site Jekyll qui n'ont plus de page à elles. La clé est le fichier produit
 # dans _site/, ce qui couvre d'un coup /team et /team.html sur GitHub Pages.
@@ -153,10 +155,11 @@ def shell(url, title, description, other, nav_url=None):
     """Les marqueurs communs à base.html et post.html. `nav_url` sert aux articles, dont le lien
     de nav à souligner est l'index des écrits et pas leur propre URL."""
     lang = "en" if url.startswith("/en") else "fr"  # tout l'anglais vit sous /en/
-    return {"lang": lang, "title": escape(title), "description": escape(description),
-            "nav": nav(lang, url if nav_url is None else nav_url),
-            "lang_switch_href": other, "lang_switch_label": "EN" if lang == "fr" else "FR",
-            "canonical": SITE_URL + url, "year": YEAR, "content": "", "footer_links": FOOTER[lang]}
+    alt = "fr" if lang == "en" else "en"
+    return {"lang": lang, "alt_lang": alt, "title": escape(title), "description": escape(description),
+            "nav": nav(lang, url if nav_url is None else nav_url), "lang_switch_href": SITE_URL + other, "lang_switch_label": alt.upper(),
+            "canonical": SITE_URL + url, "year": YEAR, "content": "", "footer_links": FOOTER[lang], "og_locale": "fr_FR" if lang == "fr" else "en_US",
+            "feed_url": SITE_URL + FEED_URL[lang], "og_image": SITE_URL + OG_IMAGE[lang]}
 
 def long_date(iso, lang):
     year, month, day = iso.split("-")
@@ -244,10 +247,10 @@ def build():
     for post in posts:
         other = "en" if post["lang"] == "fr" else "fr"
         # Les articles ne sont pas traduits, la bascule de langue mène à l'index de l'autre langue.
-        values = shell(post["url"], f"{post['title']} · Theo Martin", post.get("summary", ""),
-                       WRITING_URL[other], nav_url=WRITING_URL[post["lang"]])
-        values.update(post_title=escape(post["title"]), post_date=post["long_date"],
-                      post_iso_date=post["date"], post_body=post["body"])
+        values = shell(post["url"], f"{post['title']} · Theo Martin", post.get("summary", ""), WRITING_URL[other], nav_url=WRITING_URL[post["lang"]])
+        values.update(post_title=escape(post["title"]), post_date=post["long_date"], post_iso_date=post["date"], post_body=post["body"],
+                      ld_json=json.dumps({"@context": "https://schema.org", "@type": "BlogPosting", "headline": post["title"], "datePublished": post["date"],
+                          "inLanguage": post["lang"], "description": post.get("summary", ""), "url": values["canonical"], "author": {"@type": "Person", "name": "Theo Martin"}}, ensure_ascii=False))
         write(path_for(post["url"]), render(post_template, values), f"posts/{post['slug']}")
 
     print("Redirections des anciennes URLs :")
@@ -273,11 +276,11 @@ def build():
         values = shell("/" if lang == "fr" else "/en/", title, title, "/en/" if lang == "fr" else "/", nav_url="")
         values["content"] = body
         write(OUT / "404.html" if lang == "fr" else OUT / "en" / "404.html", render(base, values), f"404 {lang}")
-    locs = "".join(f"  <url><loc>{SITE_URL}{url}</loc></url>\n" for url in [p["url"] for p in PAGES] + [p["url"] for p in posts])
+    locs = "".join(f"  <url><loc>{SITE_URL}{p['url']}</loc>" + (f"<lastmod>{p['date']}</lastmod>" if p.get("date") else "") + "</url>\n" for p in PAGES + posts)
     write(OUT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{locs}</urlset>\n', "sitemap.xml")
     write(OUT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", "robots.txt")
-    for name, copy in (("static", shutil.copytree), ("CNAME", shutil.copy)):
+    for name, copy in (("static", shutil.copytree), ("CNAME", shutil.copy), ("llms.txt", shutil.copy)):
         if not (ROOT / name).exists():
             problem(f"{name} est absent de la racine du projet")
             continue

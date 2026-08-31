@@ -44,9 +44,13 @@ Les deux pages de liste d'articles sont générées par `build.py` à partir de 
 
 Le rendu est un `str.replace` sur les gabarits, il n'y a pas de moteur de template et il n'y en aura pas. `templates/base.html` et `templates/post.html` portent ces marqueurs, espaces compris, exactement sous cette forme :
 
-`{{ lang }}`, `{{ title }}`, `{{ description }}`, `{{ content }}`, `{{ nav }}`, `{{ lang_switch_href }}`, `{{ lang_switch_label }}`, `{{ canonical }}`, `{{ year }}`, `{{ footer_links }}`
+`{{ lang }}`, `{{ alt_lang }}`, `{{ title }}`, `{{ description }}`, `{{ content }}`, `{{ nav }}`, `{{ lang_switch_href }}`, `{{ lang_switch_label }}`, `{{ canonical }}`, `{{ og_locale }}`, `{{ og_image }}`, `{{ feed_url }}`, `{{ year }}`, `{{ footer_links }}`
 
-`templates/post.html` porte les mêmes, plus `{{ post_title }}`, `{{ post_date }}` en date longue localisée, `{{ post_iso_date }}` et `{{ post_body }}`.
+`og_image` est l'URL absolue de `static/og-image.png` (français) ou `static/og-image-en.png` (anglais), une carte texte 1200×630 sans photo. `feed_url` est l'URL absolue du flux RSS de la langue courante.
+
+`lang_switch_href` est l'URL absolue de la page équivalente dans l'autre langue. `alt_lang` et `og_locale` en découlent, `fr`/`en` et `fr_FR`/`en_US`. `templates/base.html` seul pose le `hreflang` réciproque, `{{ lang }}`/`{{ alt_lang }}` sur `{{ canonical }}`/`{{ lang_switch_href }}` : les articles n'ont pas de traduction, `lang_switch_href` y mène à l'index de l'autre langue, une cible fausse pour du `hreflang`.
+
+`templates/post.html` porte les mêmes marqueurs sauf le `hreflang`, plus `{{ post_title }}`, `{{ post_date }}` en date longue localisée, `{{ post_iso_date }}`, `{{ post_body }}` et `{{ ld_json }}`, le JSON-LD `BlogPosting` de l'article, déjà sérialisé par `build.py`.
 
 Un marqueur laissé non substitué dans une page produite fait échouer le build. Inventer un marqueur dans un gabarit sans l'alimenter dans `build.py` casse donc le déploiement, ce qui est le comportement voulu.
 
