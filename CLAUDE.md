@@ -27,7 +27,7 @@ templates/post.html        coquille des articles
 pages/fr/*.html            fragments HTML éditables à la main
 pages/en/*.html
 posts/AAAA-MM-JJ-slug.md   front matter plat + markdown
-static/                    style.css, favicon.ico, copié tel quel
+static/                    style.css, favicon.ico, theo.jpg, og-image*.png, copié tel quel
 .github/workflows/deploy.yml
 _site/                     sortie du build, jamais commitée
 ```
@@ -46,7 +46,7 @@ Le rendu est un `str.replace` sur les gabarits, il n'y a pas de moteur de templa
 
 `{{ lang }}`, `{{ alt_lang }}`, `{{ title }}`, `{{ description }}`, `{{ content }}`, `{{ nav }}`, `{{ lang_switch_href }}`, `{{ lang_switch_label }}`, `{{ canonical }}`, `{{ og_locale }}`, `{{ og_image }}`, `{{ feed_url }}`, `{{ year }}`, `{{ footer_links }}`
 
-`og_image` est l'URL absolue de `static/og-image.png` (français) ou `static/og-image-en.png` (anglais), une carte texte 1200×630 sans photo. `feed_url` est l'URL absolue du flux RSS de la langue courante.
+`og_image` est l'URL absolue de `static/og-image.png` (français) ou `static/og-image-en.png` (anglais), une carte 1200×630 aux couleurs du thème clair, texte à gauche et le portrait de `static/theo.jpg` à droite. Les deux se régénèrent en rasterisant un HTML, elles ne sont pas produites par le build. `feed_url` est l'URL absolue du flux RSS de la langue courante.
 
 `lang_switch_href` est l'URL absolue de la page équivalente dans l'autre langue. `alt_lang` et `og_locale` en découlent, `fr`/`en` et `fr_FR`/`en_US`. `templates/base.html` seul pose le `hreflang` réciproque, `{{ lang }}`/`{{ alt_lang }}` sur `{{ canonical }}`/`{{ lang_switch_href }}` : les articles n'ont pas de traduction, `lang_switch_href` y mène à l'index de l'autre langue, une cible fausse pour du `hreflang`.
 
@@ -75,7 +75,7 @@ legacy_url: /jekyll/update/2024/08/26/colbert.html
 
 Les fragments n'utilisent que celles-ci, la feuille de style ne stylise que celles-ci. Pas de framework, pas d'utilitaires façon Tailwind, pas de classe inventée hors de cette liste.
 
-`.lede`, `.offer`, `.offer-price`, `.meta`, `.cta`, `.note`, `.post-list`, `.post-item`, `.post-date`, `.post-title`, `.post-summary`, `.stack`, `.rule`
+`.lede`, `.offer`, `.offer-price`, `.meta`, `.cta`, `.note`, `.portrait`, `.post-list`, `.post-item`, `.post-date`, `.post-title`, `.post-summary`, `.stack`, `.rule`
 
 `.offer` contient un `h3`, un `.offer-price`, un `p` et un `ul`.
 

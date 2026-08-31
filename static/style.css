@@ -170,6 +170,17 @@ th { font-weight: 600; }
 
 .meta { color: var(--muted); font-size: 0.875rem; }
 
+/* Portrait : un seul visage sur le site, carré, jamais plus large que la colonne. */
+.portrait {
+  display: block;
+  width: 11rem;
+  max-width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  margin: 0 0 var(--s3);
+}
+
 /* Pile verticale : espace uniquement entre les enfants */
 .stack > * + * { margin-top: var(--s3); }
 
