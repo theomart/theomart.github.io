@@ -43,14 +43,14 @@ PAGES = [
      "description": "Éditeur, hébergeur, absence de cookies et de traceurs."},
     {"src": "en/legal.html", "url": "/en/legal/", "other": "/mentions-legales/", "title": "Legal notice · Theo Martin",
      "description": "Publisher, host, and the absence of cookies and trackers."},
-    {"src": "fr/corner-trainer-confidentialite.html", "url": "/corner-trainer/confidentialite/", "other": "/en/corner-trainer/privacy/", "title": "Corner Trainer, confidentialité · Theo Martin",
-     "description": "Corner Trainer, l'app iOS de muay-thaï, ne collecte rien, pas de compte, pas de serveur, aucune requête réseau, tout reste sur le téléphone."},
-    {"src": "en/corner-trainer-privacy.html", "url": "/en/corner-trainer/privacy/", "other": "/corner-trainer/confidentialite/", "title": "Corner Trainer, privacy · Theo Martin",
-     "description": "Corner Trainer, the muay thai iOS app, collects nothing, no account, no server, no network request, everything stays on the phone."},
-    {"src": "fr/corner-trainer-support.html", "url": "/corner-trainer/support/", "other": "/en/corner-trainer/support/", "title": "Corner Trainer, support · Theo Martin",
-     "description": "Aide et contact pour Corner Trainer, l'app iOS qui appelle des enchaînements de muay-thaï à voix haute, hors ligne et sans compte."},
-    {"src": "en/corner-trainer-support.html", "url": "/en/corner-trainer/support/", "other": "/corner-trainer/support/", "title": "Corner Trainer, support · Theo Martin",
-     "description": "Help and contact for Corner Trainer, the iOS app that calls muay thai combinations out loud, offline and without an account."},
+    {"src": "fr/corner-trainer-confidentialite.html", "url": "/corner-trainer/confidentialite/", "other": "/en/corner-trainer/privacy/", "title": "Combo Caller, confidentialité · Theo Martin",
+     "description": "Combo Caller, l'app iOS de muay-thaï, ne collecte rien, pas de compte, pas de serveur, aucune requête réseau, tout reste sur le téléphone."},
+    {"src": "en/corner-trainer-privacy.html", "url": "/en/corner-trainer/privacy/", "other": "/corner-trainer/confidentialite/", "title": "Combo Caller, privacy · Theo Martin",
+     "description": "Combo Caller, the muay thai iOS app, collects nothing, no account, no server, no network request, everything stays on the phone."},
+    {"src": "fr/corner-trainer-support.html", "url": "/corner-trainer/support/", "other": "/en/corner-trainer/support/", "title": "Combo Caller, support · Theo Martin",
+     "description": "Aide et contact pour Combo Caller, l'app iOS qui appelle des enchaînements de muay-thaï à voix haute, hors ligne et sans compte."},
+    {"src": "en/corner-trainer-support.html", "url": "/en/corner-trainer/support/", "other": "/corner-trainer/support/", "title": "Combo Caller, support · Theo Martin",
+     "description": "Help and contact for Combo Caller, the iOS app that calls muay thai combinations out loud, offline and without an account."},
 ]
 
 # Pied de page, par langue. Le site n'a pas de moteur de gabarit, donc le lien change ici.
