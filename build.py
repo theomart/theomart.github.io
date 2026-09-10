@@ -67,9 +67,7 @@ REDIRECTS = {
     "blog.html": "/en/writing/",
     "aiservices.html": "/en/services/", "aiservices/strategy.html": "/en/services/", "aiservices/ml.html": "/en/services/",
     "aiservices/genai.html": "/en/services/", "aiservices/automation.html": "/en/services/", "aiservices/productivity.html": "/en/services/",
-    "team.html": "/en/about/",
-    "success.html": "/en/services/",
-    "talk.html": "/en/",
+    "team.html": "/en/about/", "resume.html": "/en/about/", "success.html": "/en/services/", "talk.html": "/en/",
     "about/index.html": "/en/about/",
     "aispeedrace.html": "/en/",
     "fr/index.html": "/",
@@ -156,7 +154,7 @@ def shell(url, title, description, other, nav_url=None):
     alt = "fr" if lang == "en" else "en"
     return {"lang": lang, "alt_lang": alt, "title": escape(title), "description": escape(description),
             "nav": nav(lang, url if nav_url is None else nav_url), "lang_switch_href": SITE_URL + other, "lang_switch_label": alt.upper(),
-            "canonical": SITE_URL + url, "year": YEAR, "content": "", "footer_links": FOOTER[lang], "og_locale": "fr_FR" if lang == "fr" else "en_US",
+            "canonical": SITE_URL + url, "year": YEAR, "content": "", "robots": "", "footer_links": FOOTER[lang], "og_locale": "fr_FR" if lang == "fr" else "en_US",
             "feed_url": SITE_URL + FEED_URL[lang], "og_image": SITE_URL + OG_IMAGE[lang]}
 
 def long_date(iso, lang):
@@ -273,9 +271,10 @@ def build():
 
     print("Pages 404 et fichiers annexes :")
     for lang, (title, body) in NOT_FOUND.items():
-        values = shell("/" if lang == "fr" else "/en/", title, title, "/en/" if lang == "fr" else "/", nav_url="")
-        values["content"] = body
-        write(OUT / "404.html" if lang == "fr" else OUT / "en" / "404.html", render(base, values), f"404 {lang}")
+        own = "/404.html" if lang == "fr" else "/en/404.html"
+        values = shell(own, title, title, "/en/404.html" if lang == "fr" else "/404.html", nav_url="")
+        values.update(content=body, robots='<meta name="robots" content="noindex">')
+        write(OUT / own.lstrip("/"), render(base, values), f"404 {lang}")
     locs = "".join(f"  <url><loc>{SITE_URL}{p['url']}</loc>" + (f"<lastmod>{p['date']}</lastmod>" if p.get("date") else "") + "</url>\n" for p in PAGES + live)
     write(OUT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{locs}</urlset>\n', "sitemap.xml")

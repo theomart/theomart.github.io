@@ -36,7 +36,7 @@ URLs : `/`, `/offre/`, `/ecrits/`, `/a-propos/`, `/mentions-legales/` en frança
 
 Deux flux RSS, `/feed.xml` pour l'anglais et `/ecrits/feed.xml` pour le français. `/feed.xml` garde son adresse historique, c'est celle que `jekyll-feed` servait, des abonnés en dépendent peut-être.
 
-Le dictionnaire `REDIRECTS` en haut de `build.py` porte les anciennes URLs du site Jekyll qui n'ont plus de page à elles, `/team`, `/success`, `/talk`, `/aiservices`, les pages `/fr/`. Ne pas le vider, ce sont des liens entrants qui vivent encore.
+Le dictionnaire `REDIRECTS` en haut de `build.py` porte les anciennes URLs du site Jekyll qui n'ont plus de page à elles, `/team`, `/resume`, `/success`, `/talk`, `/aiservices`, les pages `/fr/`. Ne pas le vider, ce sont des liens entrants qui vivent encore.
 
 Les deux pages de liste d'articles sont générées par `build.py` à partir de `posts/`, elles n'ont pas de fragment dans `pages/` et ne s'écrivent pas à la main. Le titre, la meta description et l'URL de bascule de langue de chaque page vivent dans la table `PAGES` en haut de `build.py`. Ajouter une page veut dire ajouter un fragment, une entrée dans `PAGES` et une entrée dans `NAV`.
 
@@ -50,7 +50,7 @@ Le rendu est un `str.replace` sur les gabarits, il n'y a pas de moteur de templa
 
 `lang_switch_href` est l'URL absolue de la page équivalente dans l'autre langue. `alt_lang` et `og_locale` en découlent, `fr`/`en` et `fr_FR`/`en_US`. `templates/base.html` seul pose le `hreflang` réciproque, `{{ lang }}`/`{{ alt_lang }}` sur `{{ canonical }}`/`{{ lang_switch_href }}` : les articles n'ont pas de traduction, `lang_switch_href` y mène à l'index de l'autre langue, une cible fausse pour du `hreflang`.
 
-`{{ robots }}` ne vit que dans `templates/post.html`, collé au `canonical`, et vaut la balise `noindex,follow` pour un article marqué `noindex` et la chaîne vide sinon.
+`{{ robots }}` est collé au `canonical` dans les deux gabarits et vaut la chaîne vide par défaut. Il porte `noindex,follow` pour un article marqué `noindex`, et `noindex` sur les deux pages 404, qui sont servies en 200 à leur propre adresse, `/404.html` et `/en/404.html`, et se déclarent canoniques d'elles-mêmes plutôt que de l'accueil.
 
 `templates/post.html` porte les mêmes marqueurs sauf le `hreflang`, plus `{{ post_title }}`, `{{ post_date }}` en date longue localisée, `{{ post_iso_date }}`, `{{ post_body }}` et `{{ ld_json }}`, le JSON-LD `BlogPosting` de l'article, déjà sérialisé par `build.py`.
 
