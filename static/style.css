@@ -1,11 +1,11 @@
 /* theomart.in — feuille de style unique, écrite à la main.
-   Une colonne, deux thèmes, aucune dépendance. Pour changer l'allure du site,
-   commence par les variables ci-dessous : elles se propagent partout. */
+   Une colonne, deux thèmes, aucune dépendance, aucune police chargée. Pour changer
+   l'allure du site, commence par les variables ci-dessous : elles se propagent partout. */
 
 /* ---------- 1. Variables ---------- */
 
 :root {
-  /* Thème clair (défaut) */
+  /* Thème clair (défaut). Neutres chauds, une seule couleur d'accent. */
   --bg:        #fdfcfa;
   --bg-alt:    #f2efe9;   /* fond du code et des encarts */
   --text:      #1b1a17;
@@ -17,16 +17,20 @@
   --s1: 0.5rem;
   --s2: 1rem;
   --s3: 1.5rem;
-  --s4: 3rem;
+  --s4: 3.5rem;
 
   --measure:   38rem;     /* largeur de lecture, ~68 caractères */
-  --font:      -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+  /* Serif système pour la lecture, sans système pour l'interface, mono pour dates et prix.
+     Rien n'est téléchargé : Iowan Old Style sur Apple, Palatino sur Windows. */
+  --font:      "Iowan Old Style", "Palatino Linotype", "URW Palladio L", P052, Georgia, serif;
+  --font-ui:   -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg:     #131312;
+    --bg:     #141311;
     --bg-alt: #1e1d1a;
     --text:   #e9e6df;
     --muted:  #9a958b;
@@ -46,19 +50,31 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font);
-  font-size: 1.0625rem;
-  line-height: 1.65;
+  font-size: 1.125rem;
+  line-height: 1.55;
+  hanging-punctuation: first last;
   -webkit-text-size-adjust: 100%;
 }
 
+/* Le lien garde la couleur du texte, seul le souligné porte l'accent. */
 a {
-  color: var(--accent);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+  text-decoration-skip-ink: auto;
 }
-a:hover { text-decoration-thickness: 2px; }
+@media (hover: hover) {
+  a:hover { text-decoration-thickness: 0.14em; }
+}
+
+::selection { background: var(--accent); color: var(--bg); }
 
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* Fondu de 250 ms entre deux pages du site, ignoré par les navigateurs sans support. */
+@view-transition { navigation: auto; }
 
 /* ---------- 3. En-tête, navigation, pied ---------- */
 
@@ -71,6 +87,8 @@ body > header {
   padding-bottom: var(--s2);
   border-bottom: 1px solid var(--rule);
   margin-bottom: var(--s4);
+  font-family: var(--font-ui);
+  view-transition-name: masthead;
 }
 
 nav { display: flex; flex-wrap: wrap; gap: var(--s3); }
@@ -97,18 +115,20 @@ body > footer a { color: var(--muted); }
 
 /* ---------- 4. Typographie ---------- */
 
+/* Échelle fluide, ratio 1.2 en bas, 1.25 en haut, sur un corps de 18 à 20 px. */
 h1, h2, h3, h4 {
-  line-height: 1.2;
-  letter-spacing: -0.015em;
-  font-weight: 600;
-  margin: var(--s4) 0 var(--s2);
+  line-height: 1.15;
+  font-weight: 700;
+  margin: var(--s4) 0 var(--s1);
+  text-wrap: balance;
 }
-h1 { font-size: clamp(1.7rem, 1.3rem + 1.8vw, 2.15rem); margin-top: 0; }
-h2 { font-size: 1.4rem; }
-h3 { font-size: 1.15rem; }
-h4 { font-size: 1rem; }
+h1 { font-size: clamp(1.8rem, 1.5rem + 1.4vw, 2.44rem); letter-spacing: -0.02em; margin-top: 0; }
+h2 { font-size: clamp(1.44rem, 1.3rem + 0.6vw, 1.56rem); }
+h3 { font-size: 1.2rem; line-height: 1.25; }
+h4 { font-size: 1rem; line-height: 1.3; }
 
 p, ul, ol, blockquote, table, pre { margin: 0 0 var(--s2); }
+p, li, blockquote { text-wrap: pretty; }
 ul, ol { padding-left: 1.25rem; }
 li { margin-bottom: 0.25rem; }
 
@@ -118,7 +138,8 @@ blockquote {
   color: var(--muted);
 }
 
-time { font-family: var(--font-mono); font-size: 0.9em; }
+time { font-family: var(--font-mono); font-size: 0.85em; }
+time, td, th { font-variant-numeric: tabular-nums lining-nums; }
 
 hr, .rule {
   border: 0;
@@ -129,18 +150,20 @@ hr, .rule {
 
 img { max-width: 100%; height: auto; display: block; }
 
-/* ---------- 5. Code et tableaux : ça défile dans sa boîte, jamais la page ---------- */
+/* ---------- 5. Code et tableaux : le code se replie, le tableau défile dans sa boîte, jamais la page ---------- */
 
 code, pre {
   font-family: var(--font-mono);
-  font-size: 0.875em;
+  font-size: 0.85em;
 }
 code { background: var(--bg-alt); padding: 0.1em 0.3em; }
 pre {
   background: var(--bg-alt);
-  border-left: 2px solid var(--rule);
+  border: 1px solid var(--rule);
   padding: var(--s2);
-  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.45;
 }
 pre code { background: none; padding: 0; }
 
@@ -158,23 +181,24 @@ th, td {
   text-align: left;
   vertical-align: top;
 }
-th { font-weight: 600; }
+th { font-weight: 700; }
 
 /* ---------- 6. Vocabulaire de classes partagé ---------- */
 
 .lede {
-  font-size: 1.2rem;
-  line-height: 1.5;
+  font-size: 1.3rem;
+  line-height: 1.4;
   margin-bottom: var(--s3);
+  text-wrap: balance;
 }
 
-.meta { color: var(--muted); font-size: 0.875rem; }
+.meta { color: var(--muted); font-family: var(--font-ui); font-size: 0.875rem; line-height: 1.5; }
 
-/* Portrait : un seul visage sur le site, détouré, posé sur le fond de la page.
+/* Portrait : un seul visage sur le site, noir et blanc, détouré, posé sur le fond de la page.
    Le fondu du bas dissout le t-shirt dans le fond, clair ou sombre, sans boîte ni disque. */
 .portrait {
   display: block;
-  width: 12rem;
+  width: 9rem;
   max-width: 100%;
   height: auto;
   margin: 0 0 var(--s3);
@@ -196,7 +220,8 @@ th { font-weight: 600; }
 
 .offer-price {
   font-family: var(--font-mono);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums lining-nums;
   color: var(--accent);
   margin: 0 0 var(--s2);
 }
@@ -204,17 +229,23 @@ th { font-weight: 600; }
 .cta {
   display: inline-block;
   border: 1px solid var(--accent);
-  padding: 0.5rem 0.9rem;
+  padding: 0.55rem 1.1rem;
   color: var(--accent);
-  text-decoration: none;
+  font-family: var(--font-ui);
+  font-size: 1rem;
   font-weight: 500;
+  text-decoration: none;
 }
 .cta:hover { background: var(--accent); color: var(--bg); }
+@media (prefers-reduced-motion: no-preference) {
+  .cta { transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1); }
+  .cta:active { transform: scale(0.97); }
+}
 
 .note {
   background: var(--bg-alt);
-  border-left: 2px solid var(--accent);
-  padding: var(--s2);
+  border: 1px solid var(--rule);
+  padding: var(--s2) var(--s3);
   font-size: 0.95rem;
 }
 .note > :last-child { margin-bottom: 0; }
@@ -230,15 +261,16 @@ th { font-weight: 600; }
 .post-date {
   display: block;
   font-family: var(--font-mono);
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   color: var(--muted);
 }
 
 .post-title {
-  font-size: 1.15rem;
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.25;
   margin: 0.15rem 0 0.25rem;
+  text-wrap: balance;
 }
 .post-title a, a.post-title { color: var(--text); text-decoration: none; }
 .post-title a:hover, a.post-title:hover { color: var(--accent); }

@@ -1,10 +1,14 @@
-<h1>Theo Martin</h1>
+<img class="portrait" src="/static/theo-portrait.webp" width="512" height="640" alt="Theo Martin, portrait" fetchpriority="high">
 
-<img class="portrait" src="/static/theo-portrait.webp" width="512" height="640" alt="Theo Martin, portrait">
+<h1>Your coding agents are worth what you wrote around them</h1>
 
-<p class="meta">Coding agents all look alike now, what makes the difference at your company is what you wrote around them, CLAUDE.md, skills, hooks, permissions, and six months after the licenses were bought that part is still empty.</p>
+<p class="lede">The agents all look alike now, what makes the difference at your company is CLAUDE.md, skills, hooks, permissions, and six months after the licenses were bought that part is still empty.</p>
 
-<p class="lede">The tools are here and they are very good. Everywhere I have worked people underuse them, not out of laziness and not for lack of appetite, but because it is very easy to believe you have got the hang of a tool when you have not.</p>
+<p class="meta">Theo Martin. Eight years of ML in production, five at Amazon, Tech Lead Core AI at Akeneo, an inference platform at 99.999% uptime for 900 retailers. Based in Paris.</p>
+
+<p><a class="cta" href="mailto:contacttheomartin@gmail.com?subject=My%20agentic%20setup">Tell me about your setup</a></p>
+
+<p>The tools are here and they are very good. Everywhere I have worked people underuse them, not out of laziness and not for lack of appetite, but because it is very easy to believe you have got the hang of a tool when you have not.</p>
 
 <p>What I sell is building agents that become a second brain, responsive, and that actually make a team faster, and when what you need is shipped code rather than an opinion, I ship it.</p>
 
@@ -21,6 +25,20 @@
 <p class="note">The NDA means I say nothing about the client, its sector, or its stack. The method I can describe in full, the artifacts I cannot, and I would rather say that before the call than during it.</p>
 
 <p><a class="cta" href="/en/about/">The full background</a></p>
+
+<hr class="rule">
+
+<h2>What the work looks like</h2>
+
+<p>What gets written during an engagement is a set of rules kept in the repo and reviewed like code. The CLAUDE.md of this very site is one, in French, readable in full on GitHub. An excerpt, roughly: the build script stays under 300 lines, prefer three obvious lines to one clever trick, and a template marker left unsubstituted fails the build on purpose.</p>
+
+<pre><code>## Modifier le build
+
+`build.py` tient en 300 lignes et se lit de haut en bas. Il n'a qu'une dépendance externe, `markdown`. Entre une astuce élégante et trois lignes évidentes, écrire les trois lignes. Un ajout qui ferait dépasser le budget de lignes est le signe qu'il faut retirer autre chose, pas augmenter le budget.
+
+Un marqueur laissé non substitué dans une page produite fait échouer le build. Inventer un marqueur dans un gabarit sans l'alimenter dans `build.py` casse donc le déploiement, ce qui est le comportement voulu.</code></pre>
+
+<p class="meta"><a href="https://github.com/theomart/theomart.github.io/blob/main/CLAUDE.md">The full file</a>, with the NDA rules, the marker contract and the CSS class vocabulary the agent is allowed to use.</p>
 
 <hr class="rule">
 
@@ -54,7 +72,7 @@
 
 </div>
 
-<p class="meta">Prices in euros, excluding VAT.</p>
+<p class="meta">Prices in euros, excluding VAT. I take on few engagements at a time, enough to actually be in your repo. Based in Paris, on site around Paris and remote anywhere in France.</p>
 
 <p><a class="cta" href="/en/services/">The four formats in detail</a></p>
 
@@ -62,10 +80,10 @@
 
 <h2>Get in touch</h2>
 
-<p>An email is enough, with your situation and what is not working. I answer fast.</p>
+<p>An email with your situation and what is stuck. I answer fast, and I say fast if it is not for me.</p>
 
-<p><a class="cta" href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a></p>
+<p><a class="cta" href="mailto:contacttheomartin@gmail.com?subject=My%20agentic%20setup">Tell me about your setup</a></p>
 
-<p class="meta">Based in Paris, EU timezone, overlap with US East until 5pm ET. <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a>, <a href="https://github.com/theomart">GitHub</a>.</p>
+<p class="meta">contacttheomartin@gmail.com · <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a></p>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Theo Martin","address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"image":"https://theomart.in/static/theo.jpg","url":"https://theomart.in/en/","jobTitle":"Independent coding agents consultant","sameAs":["https://www.linkedin.com/in/theomart/","https://github.com/theomart"],"knowsAbout":["Coding agents","Production LLM systems","Claude Code","AI engineering"]}</script>
