@@ -3,6 +3,7 @@ title: "Votre nouveau poste, c'est office manager d'agents"
 date: 2026-03-25
 lang: fr
 summary: "Le plus gros de la journée autour d'un agent de code est de la plomberie, ce qui compte c'est les CLAUDE.md, les skills et les connecteurs."
+translation: your-new-job-title-is-ai-office-manager
 ---
 
 Le copier-coller entre l'IA et vos outils n'a pas disparu, il a changé de place.

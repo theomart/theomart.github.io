@@ -3,6 +3,7 @@ title: "Your new job title is AI office manager"
 date: 2026-03-25
 lang: en
 summary: "Most of the day around a coding agent is plumbing. What compounds is the CLAUDE.md files, the skills, and the connectors that make a workspace usable."
+translation: office-manager-dagents
 ---
 
 The copy-paste between AI and your tools didn't disappear. It moved.

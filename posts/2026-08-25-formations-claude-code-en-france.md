@@ -3,6 +3,7 @@ title: "Ce que coûtent les formations Claude Code en France"
 date: 2026-08-25
 lang: fr
 summary: "Les prix publics relevés en août 2026 chez quatre organismes français, et ce qu'un crawl de catalogues prouve vraiment."
+translation: claude-code-training-in-france
 ---
 
 On me demande régulièrement en quoi ce que je vends diffère d'une formation Claude Code, alors j'ai relevé en août 2026 les prix affichés sur les pages publiques des organismes français que je croise le plus souvent chez mes interlocuteurs.
@@ -25,4 +26,4 @@ D'après ce que je vois chez mes clients, c'est justement la partie qui coûte c
 
 La différence entre ces formations et ce que je fais n'est pas de qualité, les programmes sont solides et les gens qui les animent connaissent le sujet. Elle est de nature. Eux forment, dans leur salle, sur leur matériel, au nombre de têtes, ce qui est le bon format quand une équipe entière découvre l'outil. J'arrive dans votre repo, sur vos tickets, ce qui n'a de sens que si les agents y sont déjà depuis quelques mois et que le gain ne se voit pas.
 
-Les prix de mes formats sont sur [la page offre](/offre/), en euros HT, comme ceux-là.
+Les prix de mes formats sont sur [la page offre](/offre/), en euros HT, comme ceux-là, et le déroulé de la journée est sur [la page de la formation Claude Code sur votre repo](/formation-claude-code/).

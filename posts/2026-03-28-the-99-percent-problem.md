@@ -3,6 +3,7 @@ title: "The 99% problem"
 date: 2026-03-28
 lang: en
 summary: "Compound error rates in long agent pipelines, the success table at 99, 95 and 90 percent per step, and why shorter segments beat better models."
+translation: le-probleme-des-99-pourcent
 ---
 
 99% reliable per step sounds good. Run it 20 times and you're at 82%.

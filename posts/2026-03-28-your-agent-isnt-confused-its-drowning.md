@@ -3,6 +3,7 @@ title: "Your agent isn't confused. It's drowning."
 date: 2026-03-28
 lang: en
 summary: "Context bloat as the main undiagnosed failure mode: tool overload, raw corpora handed to agents, and subagents used as context firewalls."
+translation: votre-agent-se-noie-dans-son-contexte
 ---
 
 Context bloat is the main undiagnosed failure mode in agent systems. The agent gets handed everything it might possibly need, fails to find the relevant parts, pattern-matches on the wrong signal, and produces output that looks plausible but is wrong. The model gets blamed. The problem is the context.

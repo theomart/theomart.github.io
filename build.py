@@ -1,8 +1,6 @@
 #!/usr/bin/env python3
-"""Construit le site theomart.in dans _site/. Une seule dépendance externe, markdown, et le
-rendu est une substitution de chaînes dans templates/, sans moteur de template.
-`python3 build.py --serve` construit puis sert sur http://localhost:4400 .
-"""
+"""Construit theomart.in dans _site/, une dépendance, markdown, un str.replace sur templates/.
+`python3 build.py --serve` construit puis sert sur http://localhost:4400 ."""
 import functools, json, re, shutil, sys
 from datetime import date, datetime, timezone
 from email.utils import format_datetime
@@ -18,15 +16,15 @@ ROOT = Path(__file__).parent
 OUT = ROOT / "_site"
 YEAR = str(date.today().year)
 
-# Toutes les pages du site, une entrée par page, éditable à la main.
-# `src` est un fragment HTML de pages/. Une entrée sans `src` mais avec `heading` est un index
-# d'écrits, dont la liste d'articles est fabriquée à partir de posts/.
-# `other` est l'URL de la même page dans l'autre langue.
+# Une entrée par page. `src` est un fragment HTML de pages/, une entrée sans `src` mais avec `heading`
+# est un index d'écrits fabriqué à partir de posts/. `other` est l'URL de la page dans l'autre langue.
 PAGES = [
     {"src": "fr/index.html", "url": "/", "other": "/en/", "title": "Theo Martin, agents de code en production",
      "description": "Je construis des agents de code en production et j'aide les équipes à tirer vraiment parti des leurs, audit du repo, formation Claude Code intra, office hours. À Paris."},
     {"src": "fr/offre.html", "url": "/offre/", "other": "/en/services/", "title": "Formation Claude Code intra, audit, office hours · Theo Martin",
      "description": "Audit du setup agentique, formation Claude Code intra sur votre repo, office hours, build d'un système d'agents. Prix affichés en euros HT, depuis Paris."},
+    {"src": "fr/formation-claude-code.html", "url": "/formation-claude-code/", "other": "/en/claude-code-training/", "title": "Formation Claude Code sur votre repo, à Paris et à distance · Theo Martin",
+     "description": "Formation Claude Code intra, une journée sur votre propre repo et vos vrais tickets, 2 500 € HT la journée quel que soit le nombre de développeurs. Prix, déroulé, questions fréquentes."},
     {"heading": "Écrits", "url": "/ecrits/", "other": "/en/writing/", "title": "Écrits · Theo Martin",
      "description": "Des notes sur Claude Code, les agents de code, les LLM en production et ce qu'on met dans un harness."},
     {"src": "fr/a-propos.html", "url": "/a-propos/", "other": "/en/about/", "title": "À propos · Theo Martin",
@@ -35,6 +33,8 @@ PAGES = [
      "description": "I build coding agents that run in production, and I help teams get real value out of theirs, repo audit, in-house Claude Code training, office hours. Based in Paris."},
     {"src": "en/services.html", "url": "/en/services/", "other": "/offre/", "title": "Claude Code training on your repo, audit · Theo Martin",
      "description": "Agentic setup audit, in-house Claude Code training on your own repo, office hours, building an agent system. Public prices in euros, based in Paris."},
+    {"src": "en/claude-code-training.html", "url": "/en/claude-code-training/", "other": "/formation-claude-code/", "title": "Claude Code training on your own repo, Paris and remote · Theo Martin",
+     "description": "In-house Claude Code training, one day on your own repo and your real tickets, 2,500 € per day whatever the number of developers. Price, format, frequently asked questions."},
     {"heading": "Writing", "url": "/en/writing/", "other": "/ecrits/", "title": "Writing · Theo Martin",
      "description": "Notes on Claude Code, coding agents, LLMs in production, and what goes into a harness."},
     {"src": "en/about.html", "url": "/en/about/", "other": "/a-propos/", "title": "About · Theo Martin",
@@ -65,14 +65,12 @@ OG_IMAGE = {"fr": "/static/og-image.png", "en": "/static/og-image-en.png"}
 # dans _site/, ce qui couvre d'un coup /team et /team.html sur GitHub Pages.
 REDIRECTS = {
     "blog.html": "/en/writing/",
-    "aiservices.html": "/en/services/", "aiservices/strategy.html": "/en/services/", "aiservices/ml.html": "/en/services/",
-    "aiservices/genai.html": "/en/services/", "aiservices/automation.html": "/en/services/", "aiservices/productivity.html": "/en/services/",
+    **{f"{prefix}aiservices{page}.html": target for prefix, target in (("", "/en/services/"), ("fr/", "/offre/"))
+       for page in ("", "/strategy", "/ml", "/genai", "/automation", "/productivity")},
     "team.html": "/en/about/", "resume.html": "/en/about/", "success.html": "/en/services/", "talk.html": "/en/",
     "about/index.html": "/en/about/",
     "aispeedrace.html": "/en/",
     "fr/index.html": "/",
-    "fr/aiservices.html": "/offre/", "fr/aiservices/strategy.html": "/offre/", "fr/aiservices/ml.html": "/offre/",
-    "fr/aiservices/genai.html": "/offre/", "fr/aiservices/automation.html": "/offre/", "fr/aiservices/productivity.html": "/offre/",
     "fr/team.html": "/a-propos/",
     "fr/success.html": "/offre/",
     "fr/talk.html": "/",
@@ -121,8 +119,7 @@ def parse_front_matter(text, source):
             meta[key.strip()] = value.strip().strip('"').strip("'")
     return meta, body.lstrip()
 
-def render(template, values):
-    """Substitution bête et méchante, chaque {{ cle }} devient sa valeur."""
+def render(template, values):  # substitution bête et méchante, chaque {{ cle }} devient sa valeur
     for key, value in values.items():
         template = template.replace("{{ " + key + " }}", value)
     return template
@@ -133,8 +130,7 @@ def path_for(url):
 
 def write(path, html, source):
     """Écrit une page. Un marqueur non substitué est une erreur, jamais une page publiée."""
-    left = MARKER.search(html)
-    if left:
+    if left := MARKER.search(html):
         problem(f"{source} : marqueur {left.group(0)} laissé tel quel dans la page produite")
         return
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -147,24 +143,26 @@ def nav(lang, current_url):
     links = (f'<a href="{url}"{here if url == current_url else ""}>{label}</a>' for url, label in NAV[lang])
     return "<nav>\n" + "\n".join(links) + "\n</nav>"
 
+def alternates(url, other):
+    """Les hreflang d'une paire de pages, la langue de chacune et x-default sur le français."""
+    fr, en = (other, url) if url.startswith("/en") else (url, other)
+    return "\n".join(f'<link rel="alternate" hreflang="{code}" href="{SITE_URL}{page}">' for code, page in (("fr", fr), ("en", en), ("x-default", fr)))
+
 def shell(url, title, description, other, nav_url=None):
-    """Les marqueurs communs à base.html et post.html. `nav_url` sert aux articles, dont le lien
-    de nav à souligner est l'index des écrits et pas leur propre URL."""
+    """Les marqueurs communs à base.html et post.html, `nav_url` est le lien de nav à souligner."""
     lang = "en" if url.startswith("/en") else "fr"  # tout l'anglais vit sous /en/
     alt = "fr" if lang == "en" else "en"
     return {"lang": lang, "alt_lang": alt, "title": escape(title), "description": escape(description),
             "nav": nav(lang, url if nav_url is None else nav_url), "lang_switch_href": SITE_URL + other, "lang_switch_label": alt.upper(),
             "canonical": SITE_URL + url, "year": YEAR, "content": "", "robots": "", "footer_links": FOOTER[lang], "og_locale": "fr_FR" if lang == "fr" else "en_US",
-            "feed_url": SITE_URL + FEED_URL[lang], "og_image": SITE_URL + OG_IMAGE[lang]}
+            "feed_url": SITE_URL + FEED_URL[lang], "og_image": SITE_URL + OG_IMAGE[lang], "alternates": alternates(url, other)}
 
 def long_date(iso, lang):
     year, month, day = iso.split("-")
-    name = MONTHS[lang][int(month) - 1]
-    return f"{int(day)} {name} {year}" if lang == "fr" else f"{name} {int(day)}, {year}"
+    return f"{int(day)} {MONTHS[lang][int(month) - 1]} {year}" if lang == "fr" else f"{MONTHS[lang][int(month) - 1]} {int(day)}, {year}"
 
 def escape_lone_hashes(text):
-    """Les hashtags LinkedIn en début de ligne, #AI, deviendraient des titres de niveau un :
-    Python-Markdown n'exige pas d'espace après le dièse. On les échappe, hors blocs de code."""
+    """Un hashtag LinkedIn en début de ligne, #AI, deviendrait un titre, on l'échappe hors blocs de code."""
     lines, fenced = [], False
     for line in text.splitlines():
         if line.lstrip().startswith("```"):
@@ -244,9 +242,12 @@ def build():
     print("Articles :")
     for post in posts:
         other = "en" if post["lang"] == "fr" else "fr"
-        # Les articles ne sont pas traduits, la bascule de langue mène à l'index de l'autre langue.
-        values = shell(post["url"], f"{post['title']} · Theo Martin", post.get("summary", ""), WRITING_URL[other], nav_url=WRITING_URL[post["lang"]])
-        values.update(robots='<meta name="robots" content="noindex,follow">' if post.get("noindex") else "", post_title=escape(post["title"]), post_date=post["long_date"], post_iso_date=post["date"], post_body=post["body"],
+        # Un article traduit nomme le slug de sa jumelle dans `translation`, sinon la bascule mène à l'index.
+        twin = WRITING_URL[other] + post["translation"] + "/" if post.get("translation") else WRITING_URL[other]
+        if post.get("translation") and not any(p["url"] == twin for p in posts):
+            problem(f"posts/{post['slug']} : translation '{post['translation']}' ne correspond à aucun article {other}")
+        values = shell(post["url"], f"{post['title']} · Theo Martin", post.get("summary", ""), twin, nav_url=WRITING_URL[post["lang"]])
+        values.update(alternates=alternates(post["url"], twin) if post.get("translation") else "", robots='<meta name="robots" content="noindex,follow">' if post.get("noindex") else "", post_title=escape(post["title"]), post_date=post["long_date"], post_iso_date=post["date"], post_body=post["body"],
                       ld_json=json.dumps({"@context": "https://schema.org", "@type": "BlogPosting", "headline": post["title"], "datePublished": post["date"],
                           "inLanguage": post["lang"], "description": post.get("summary", ""), "url": values["canonical"], "author": {"@type": "Person", "name": "Theo Martin"}}, ensure_ascii=False))
         write(path_for(post["url"]), render(post_template, values), f"posts/{post['slug']}")

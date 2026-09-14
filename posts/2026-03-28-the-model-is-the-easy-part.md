@@ -3,6 +3,7 @@ title: "The model is the easy part"
 date: 2026-03-28
 lang: en
 summary: "Scaffolding moves task completion more than model choice does, and what a production agent harness has to hold up under."
+translation: le-modele-cest-la-partie-facile
 ---
 
 Everyone picks the best model. That's the wrong problem.

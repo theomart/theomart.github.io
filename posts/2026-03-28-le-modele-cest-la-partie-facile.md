@@ -3,6 +3,7 @@ title: "Le modèle, c'est la partie facile"
 date: 2026-03-28
 lang: fr
 summary: "Le scaffolding autour d'un agent déplace plus le taux de réussite que le choix du modèle, et ce qu'un harness de production doit tenir."
+translation: the-model-is-the-easy-part
 ---
 
 Tout le monde choisit le meilleur modèle, et ce n'est pas là que se joue la partie.

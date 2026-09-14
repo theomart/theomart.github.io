@@ -3,6 +3,7 @@ title: "Le problème des 99 %"
 date: 2026-03-28
 lang: fr
 summary: "L'erreur composée sur les pipelines d'agents longs, la table de réussite à 99, 95 et 90 % par étape, et pourquoi raccourcir bat améliorer."
+translation: the-99-percent-problem
 ---
 
 99 % de fiabilité par étape, ça sonne bien. Faites tourner vingt étapes et vous êtes à 82 %.

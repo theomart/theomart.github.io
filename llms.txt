@@ -7,6 +7,7 @@
 - [Home (French)](https://theomart.in/): who Theo is and what he sells, in one page
 - [Home (English)](https://theomart.in/en/): same, in English
 - [Offre / Services](https://theomart.in/offre/): the four formats, prices, how this differs from a catalog Claude Code course, who it is and is not for ([English](https://theomart.in/en/services/))
+- [Formation Claude Code / Claude Code training](https://theomart.in/formation-claude-code/): the in-house training day on the client's own repo, 2,500 € excl. VAT per day whatever the headcount, hour by hour format, FAQ, not OPCO-fundable ([English](https://theomart.in/en/claude-code-training/))
 - [À propos / About](https://theomart.in/a-propos/): background at Amazon, Unifai, Akeneo, and dated positions on coding agents ([English](https://theomart.in/en/about/))
 - [Écrits / Writing](https://theomart.in/ecrits/): articles on coding agents, LLM systems in production, and what goes into a harness ([English](https://theomart.in/en/writing/))
 

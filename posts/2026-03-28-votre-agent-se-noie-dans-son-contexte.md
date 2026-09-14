@@ -3,6 +3,7 @@ title: "Votre agent se noie dans son contexte"
 date: 2026-03-28
 lang: fr
 summary: "Le contexte gonflé est le mode de défaillance le moins diagnostiqué : outils chargés d'avance, corpus bruts, et les subagents comme pare-feu."
+translation: your-agent-isnt-confused-its-drowning
 ---
 
 Le contexte gonflé est le mode de défaillance le moins diagnostiqué des systèmes d'agents. On donne à l'agent tout ce dont il pourrait avoir besoin, il n'arrive pas à retrouver la partie pertinente, il fait du pattern matching sur le mauvais signal, et il sort quelque chose de plausible et de faux. C'est le modèle qu'on accuse, et c'est le contexte qui pose problème.
