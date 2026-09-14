@@ -280,7 +280,7 @@ def build():
     write(OUT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{locs}</urlset>\n', "sitemap.xml")
     write(OUT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", "robots.txt")
-    for name, copy in (("static", shutil.copytree), ("CNAME", shutil.copy), ("llms.txt", shutil.copy)):
+    for name, copy in (("static", shutil.copytree), ("CNAME", shutil.copy), ("llms.txt", shutil.copy), ("2ae3a37d2c3836b5db33d3ab780db6b4.txt", shutil.copy)):
         if not (ROOT / name).exists():
             problem(f"{name} est absent de la racine du projet")
             continue

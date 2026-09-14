@@ -28,6 +28,7 @@ pages/fr/*.html            fragments HTML éditables à la main
 pages/en/*.html
 posts/AAAA-MM-JJ-slug.md   front matter plat + markdown
 static/                    style.css, favicon.ico, theo.jpg, theo-portrait.webp, og-image*.png, copié tel quel
+2ae3…b4.txt                la clé IndexNow, copiée à la racine, son nom est la clé, à ne pas renommer
 .github/workflows/deploy.yml
 _site/                     sortie du build, jamais commitée
 ```
