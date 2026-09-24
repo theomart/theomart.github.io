@@ -43,14 +43,14 @@ PAGES = [
      "description": "Éditeur, hébergeur, absence de cookies et de traceurs."},
     {"src": "en/legal.html", "url": "/en/legal/", "other": "/mentions-legales/", "title": "Legal notice · Theo Martin",
      "description": "Publisher, host, and the absence of cookies and trackers."},
-    {"src": "fr/corner-trainer-confidentialite.html", "url": "/corner-trainer/confidentialite/", "other": "/en/corner-trainer/privacy/", "title": "Combo Caller, confidentialité · Theo Martin",
-     "description": "Combo Caller, l'app iOS de muay-thaï, ne collecte rien, pas de compte, pas de serveur, aucune requête réseau, tout reste sur le téléphone."},
-    {"src": "en/corner-trainer-privacy.html", "url": "/en/corner-trainer/privacy/", "other": "/corner-trainer/confidentialite/", "title": "Combo Caller, privacy · Theo Martin",
-     "description": "Combo Caller, the muay thai iOS app, collects nothing, no account, no server, no network request, everything stays on the phone."},
-    {"src": "fr/corner-trainer-support.html", "url": "/corner-trainer/support/", "other": "/en/corner-trainer/support/", "title": "Combo Caller, support · Theo Martin",
-     "description": "Aide et contact pour Combo Caller, l'app iOS qui appelle des enchaînements de muay-thaï à voix haute, hors ligne et sans compte."},
-    {"src": "en/corner-trainer-support.html", "url": "/en/corner-trainer/support/", "other": "/corner-trainer/support/", "title": "Combo Caller, support · Theo Martin",
-     "description": "Help and contact for Combo Caller, the iOS app that calls muay thai combinations out loud, offline and without an account."},
+    {"src": "fr/corner-trainer-confidentialite.html", "url": "/corner-trainer/confidentialite/", "other": "/en/corner-trainer/privacy/", "title": "Combo Caller, confidentialité · Theo Martin", "description": "Combo Caller, l'app iOS de muay-thaï, ne collecte rien, pas de compte, pas de serveur, aucune requête réseau, tout reste sur le téléphone."},
+    {"src": "en/corner-trainer-privacy.html", "url": "/en/corner-trainer/privacy/", "other": "/corner-trainer/confidentialite/", "title": "Combo Caller, privacy · Theo Martin", "description": "Combo Caller, the muay thai iOS app, collects nothing, no account, no server, no network request, everything stays on the phone."},
+    {"src": "fr/corner-trainer-support.html", "url": "/corner-trainer/support/", "other": "/en/corner-trainer/support/", "title": "Combo Caller, support · Theo Martin", "description": "Aide et contact pour Combo Caller, l'app iOS qui appelle des enchaînements de muay-thaï à voix haute, hors ligne et sans compte."},
+    {"src": "en/corner-trainer-support.html", "url": "/en/corner-trainer/support/", "other": "/corner-trainer/support/", "title": "Combo Caller, support · Theo Martin", "description": "Help and contact for Combo Caller, the iOS app that calls muay thai combinations out loud, offline and without an account."},
+    {"src": "fr/euh-beeper-confidentialite.html", "url": "/euh-beeper/confidentialite/", "other": "/en/euh-beeper/privacy/", "title": "Euh Beeper, confidentialité · Theo Martin", "description": "Euh Beeper, l'app iOS qui bipe à chaque euh, ne collecte rien, pas de compte, pas de serveur, pas de transcription, tout reste sur le téléphone."},
+    {"src": "en/euh-beeper-privacy.html", "url": "/en/euh-beeper/privacy/", "other": "/euh-beeper/confidentialite/", "title": "Um Beeper, privacy · Theo Martin", "description": "Um Beeper, the iOS app that beeps on every um, collects nothing, no account, no server, no transcript, everything stays on the phone."},
+    {"src": "fr/euh-beeper-support.html", "url": "/euh-beeper/support/", "other": "/en/euh-beeper/support/", "title": "Euh Beeper, support · Theo Martin", "description": "Aide et contact pour Euh Beeper, l'app iOS qui bipe à chaque hésitation pour perdre ses tics de langage, hors ligne et sans compte."},
+    {"src": "en/euh-beeper-support.html", "url": "/en/euh-beeper/support/", "other": "/euh-beeper/support/", "title": "Um Beeper, support · Theo Martin", "description": "Help and contact for Um Beeper, the iOS app that beeps each time you hesitate to break the filler word habit, offline and without an account."},
 ]
 
 # Pied de page, par langue. Le site n'a pas de moteur de gabarit, donc le lien change ici.
