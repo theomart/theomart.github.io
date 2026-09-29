@@ -6,33 +6,31 @@
 
 <h2>Le parcours</h2>
 
-<p>J’ai commencé chez Amazon, au Luxembourg, cinq ans dont l’essentiel sur le pricing européen. J’y suis entré par l’optimisation de supply chain puis par l’architecture AWS, avec quatre certifications passées en quatre mois de stage, dont la Solutions Architect Professional qui est le plus haut niveau du catalogue.</p>
+<p>J’ai commencé chez Amazon, au Luxembourg : trois ans et demi sur le pricing européen. J’y suis entré par l’optimisation de supply chain puis par l’architecture AWS, avec quatre certifications AWS passées en quatre mois, dont la Solutions Architect Professional.</p>
 
-<p>Ensuite le pricing, comme seul data scientist d’une équipe passée de trois à treize personnes. De l’inférence causale sur des datasets de plusieurs dizaines de téraoctets, des modèles bayésiens hiérarchiques d’élasticité prix, des prix hédoniques estimés sur des embeddings texte et image avec du ELMo puis du BERT fine-tuné en 2019, et une plateforme d’intelligence prix concurrentielle entre pays, autour de 400 millions d’euros de revenu annuel supplémentaire sur les marchés européens.</p>
+<p>Ensuite le pricing, comme seul data scientist d’une équipe passée de trois à treize personnes. De l’inférence causale, avec du contrôle synthétique codé à la main avant que les librairies soient mûres, des modèles bayésiens hiérarchiques d’élasticité prix, et des prix hédoniques estimés sur des embeddings texte et image, avec du ELMo puis du BERT fine-tuné en 2019.</p>
 
-<p>De là est sorti le programme de surveillance de la volatilité des prix, que j’ai lancé et qui a fini par être repris à l’échelle mondiale du groupe. Trente milliards de changements de prix analysés, une anomalie repérée sur un milliard de visites, 500 000 articles sans prix de référence retrouvés juste avant le pic Black Friday, une douzaine de millions d’euros de revenu récupérés, et le Just Do It Award européen à la clé.</p>
+<p>De là est sorti le programme de surveillance de la volatilité des prix, que j’ai lancé et qui a fini par être repris à l’échelle mondiale du groupe. Trente milliards de changements de prix analysés, une anomalie repérée sur un milliard de visites.</p>
 
-<p>Ensuite Unifai, où j’étais le premier ingénieur ML de la boîte. Pipeline MLOps de bout en bout sur GCP pour des groupes retail, et des modèles de langage d’avant ChatGPT, du FLAN-T5 quantizé pour catégoriser des catalogues industriels que personne n’arrivait à normaliser à la main. C’est ce travail qui a mis la boîte en position d’être rachetée, et j’ai porté la due diligence technique côté architecture et infra ML jusqu’au rachat par Akeneo en 2023.</p>
+<p>Ensuite Unifai, où j’étais le premier ingénieur ML de la boîte. Pipeline MLOps de bout en bout sur GCP pour des groupes retail, et des modèles de langage d’avant ChatGPT, FLAN-T5 en zero-shot contre mon extracteur fine-tuné, sur des catalogues industriels réels : meilleur sur les booléens, pire sur les nombres. C’est ce travail qui a mis la boîte en position d’être rachetée : pendant la due diligence, j’ai détaillé l’architecture et l’infra ML aux investisseurs, jusqu’au rachat par Akeneo en 2023.</p>
 
-<p>Puis deux ans et demi chez Akeneo comme Tech Lead de l’équipe Core AI. J’ai architecturé et exploité la plateforme d’inférence interne dont dépendaient toutes les équipes produit, et derrière elles plus de 900 retailers enterprise : une trentaine de millions d’attributs produit générés par LLM chaque mois, 99,999 % de disponibilité, un p95 sous 150 millisecondes, et tout le trafic modèle centralisé derrière un proxy unique, avec failover et cascading entre GPT, Claude, Gemini et Mistral, ce qui a sorti 40 % du coût d’inférence. Et le Data Architect Agent, un système multi-agents avec gates humaines qui a fait passer l’onboarding catalogue d’un retailer enterprise de plusieurs mois à quelques jours.</p>
-
-<p>Depuis 2026 je suis indépendant.</p>
+<p>Puis deux ans et demi chez Akeneo comme Tech Lead de l’équipe Core AI. J’ai architecturé et exploité la plateforme d’inférence interne dont dépendaient toutes les équipes produit, et derrière elles des centaines de retailers enterprise. J’ai écrit la librairie qui fait passer ce trafic vers VertexAI, OpenAI et Anthropic par un proxy LiteLLM unique, avec le coût de chaque client tracé dans les en-têtes de réponse, et le volume de logs par requête a baissé de moitié à trois quarts. Et le Data Architect Agent, un système multi-agents avec gates humaines qui a fait passer l’onboarding catalogue d’un retailer enterprise de plusieurs mois à quelques jours.</p>
 
 <h2>De l’outil au harness</h2>
 
-<p>Chez Akeneo, j’ai fait adopter Cursor à mon équipe, puis Claude Code dès sa sortie. J’étais celui vers qui les équipes transverses venaient pour savoir quel outil valait le coup, et je poussais le sujet au leadership.</p>
+<p>Chez Akeneo, j’ai poussé Cursor dans mon équipe, puis Claude Code dès sa sortie. J’étais celui vers qui les équipes transverses venaient pour savoir quel outil valait le coup, et je poussais le sujet au leadership.</p>
 
-<p>Puis je suis passé de l’outil au harness, et c’est là que se joue l’essentiel : des CLAUDE.md versionnés dans le repo, pour que le harness de tout le monde s’améliore sans que chacun ait à s’en occuper de son côté. Mon setup a essaimé dans d’autres équipes et a fini par servir de base à une formation interne.</p>
+<p>Puis je suis passé de l’outil au harness : des CLAUDE.md versionnés dans le repo, pour que le harness de tout le monde s’améliore sans que chacun ait à s’en occuper de son côté. Mon setup a essaimé dans d’autres équipes et a fini par servir de base à une formation interne.</p>
 
 <h2>Ce que je pense</h2>
 
 <p class="meta">Positions datées d’août 2026. Elles bougent avec les outils, donc la date compte autant que la phrase.</p>
 
-<h3>Les outils sont là, et ils sont sous-utilisés partout où je passe</h3>
+<h3>Le piège n’est pas l’outil, c’est le premier succès</h3>
 
-<p>Je n’ai encore jamais vu une équipe où l’outil était le facteur limitant. Le piège est ailleurs : on installe l’agent, on lui fait écrire quelques tests, ça marche, et cette première réussite suffit à convaincre tout le monde que l’outil est pris en main. C’est en général là que ça se fige. À partir de ce moment, ce qui manque est ce qu’on donne à lire à l’agent avant qu’il commence.</p>
+<p>Je n’ai encore jamais vu d’équipe où l’outil était le facteur limitant. On installe l’agent, il écrit quelques tests, ils passent, et ce premier succès convainc tout le monde que l’outil est pris en main. Ce jour-là il avait lu les bons fichiers avec son outil Read ; le lendemain il passe par <code>cat</code> ou <code>sed -i</code>, une partie des règles ne s’applique plus, et personne ne le voit. C’est en général là que ça se fige.</p>
 
-<p>Ce que je vise est qu’un agent devienne un second cerveau, réactif, à qui on délègue pour de bon. Le gain se prend en ambition, en attaquant des choses qu’on ne se serait pas autorisé à commencer avant. L’équipe Claude Code décrit son propre usage à peu près dans ces termes, ça recoupe ce que j’observe sans le démontrer.</p>
+<p>Ce que je vise, c’est qu’une équipe délègue pour de bon, pas qu’elle fasse écrire des tests à l’agent une fois et s’arrête là. Le gain se prend en ambition, en attaquant des choses qu’on ne se serait pas autorisé à commencer avant. Anthropic décrit son usage interne dans ces termes, jusqu’à laisser Claude écrire une feature entière en boucle autonome à partir de maquettes Figma. Ça recoupe ce que j’observe, sans le démontrer.</p>
 
 <h3>Les harness se valent à peu près aujourd’hui</h3>
 
@@ -42,17 +40,17 @@
 
 <h3>Ce qui vaut, c’est la date, pas l’artefact</h3>
 
-<p>Décrire ce que j’ai construit ne vaut plus grand-chose en soi. La review automatique des pull requests par un agent, GitHub la propose nativement depuis avril 2025, et l’activer tient dans une case à cocher d’un ruleset de branche. La présenter aujourd’hui comme une prouesse, c’est se présenter comme quelqu’un qui découvre le sujet.</p>
+<p>Décrire ce que j’ai construit ne vaut plus grand-chose en soi. La review automatique des PR par un agent, GitHub l’a banalisée depuis avril 2025 : une case à cocher dans un ruleset de branche. La présenter aujourd’hui comme une prouesse, c’est se présenter comme quelqu’un qui découvre le sujet.</p>
 
 <p>Donc la partie de mon travail qui a le plus compté n’est pas l’outillage de review, que GitHub a banalisé depuis. Ce sont les CLAUDE.md versionnés à l’échelle d’une équipe entière, et ça, ça reste rare.</p>
 
-<p class="note">Fin août 2026 j’ai inventorié 269 dépôts publics fichier par fichier, pas par recherche de code qui arrondit ses compteurs, pour savoir qui possède vraiment les fichiers qui pilotent les agents de code. Une seule organisation sur les 269 a automatisé la péremption des siens, avec un responsable nommé par fichier et un cron qui ouvre un ticket quand la date passe, et sept de ses entrées étaient déjà hors cadence le jour où j’ai regardé. Je dis ça de l’extérieur et sur des sources publiques, donc si votre équipe fait mieux, écrivez-moi, ça m’intéresse davantage que l’inverse.</p>
+<p class="note">Fin août 2026 j’ai lu 269 repos publics fichier par fichier, pas par une recherche de code qui arrondit ses compteurs, pour savoir qui possède vraiment les fichiers qui pilotent les agents de code. Une seule organisation sur les 269 a automatisé la péremption des siens, avec un responsable nommé par fichier et un cron, sur son miroir interne, qui ouvre un ticket quand la date passe. Sept de ses entrées étaient déjà en retard le jour où j’ai regardé. Je dis ça de l’extérieur et sur des sources publiques, donc si votre équipe fait mieux, écrivez-moi, ça m’intéresse davantage que l’inverse.</p>
 
 <h2>Ce sur quoi je travaille</h2>
 
-<p>En ce moment je suis en mission dans un groupe du CAC 40, sous NDA. Je n’en dirai rien de plus ici, et c’est la même discrétion que vous aurez de moi si on travaille ensemble. En grand compte, ce qui bloque l’adoption des agents n’est presque jamais technique : c’est qui décide, sur quel critère, et à quel moment quelqu’un écrit la décision quelque part.</p>
+<p>En ce moment je suis en mission dans un groupe du CAC 40, sous NDA, et je n’en dirai rien de plus ici. En grand compte, ce qui bloque l’adoption des agents n’est presque jamais technique : c’est qui décide, sur quel critère, et à quel moment quelqu’un écrit la décision quelque part.</p>
 
-<p>En parallèle je prends un petit nombre de missions courtes, chez des équipes qui veulent que leur harness serve vraiment. Un audit du setup agentique pour savoir où vous en êtes, une journée d’atelier dans votre repo, des office hours régulières pour tenir la chose dans le temps, ou un build quand ce qu’il vous faut est du code livré. L’audit est la porte d’entrée la plus simple.</p>
+<p>En parallèle je prends un petit nombre de missions courtes, chez des équipes qui veulent que leur harness serve vraiment. Un audit pour savoir si vos gardes tiennent quand l’agent change d’outil, une journée d’atelier dans votre repo dont le travail est commité le soir même, des office hours régulières pour rattraper ce qui dérive, ou un build quand ce qu’il vous faut est du code livré. L’audit est la porte d’entrée la plus simple.</p>
 
 <p><a class="cta" href="/offre/">Voir l’offre et les prix</a></p>
 
@@ -64,4 +62,4 @@
 
 <p class="meta">Basé à Paris, fuseau européen. <a href="mailto:contacttheomartin@gmail.com">contacttheomartin@gmail.com</a>, <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a>, <a href="https://github.com/theomart">GitHub</a>.</p>
 
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Theo Martin","address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"image":"https://theomart.in/static/theo.jpg","url":"https://theomart.in/a-propos/","jobTitle":"Consultant indépendant, agents de code en production","description":"Neuf ans de ML et de systèmes LLM en production, dont cinq chez Amazon, puis Tech Lead de l'équipe Core AI chez Akeneo.","sameAs":["https://www.linkedin.com/in/theomart/","https://github.com/theomart"],"alumniOf":[{"@type":"Organization","name":"Amazon"},{"@type":"Organization","name":"Akeneo"}],"knowsAbout":["Agents de code","Systèmes LLM en production","Claude Code","Ingénierie IA","Machine learning"]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Theo Martin","address":{"@type":"PostalAddress","addressLocality":"Paris","addressCountry":"FR"},"image":"https://theomart.in/static/theo.jpg","url":"https://theomart.in/a-propos/","jobTitle":"Consultant indépendant, agents de code en production","description":"Neuf ans de ML et de systèmes LLM en production, avec Amazon comme point de départ, puis Tech Lead de l'équipe Core AI chez Akeneo : plateforme d'inférence LLM interne au service de centaines de retailers enterprise, et le Data Architect Agent, système multi-agents mis en production pour l'onboarding catalogue.","sameAs":["https://www.linkedin.com/in/theomart/","https://github.com/theomart"],"alumniOf":[{"@type":"Organization","name":"Amazon"},{"@type":"Organization","name":"Akeneo"}],"knowsAbout":["Agents de code","Systèmes LLM en production","Claude Code","Ingénierie IA","Machine learning"]}</script>

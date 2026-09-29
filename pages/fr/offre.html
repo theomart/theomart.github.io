@@ -1,6 +1,6 @@
 <h1>Formation Claude Code et audit d’agents, dans votre repo</h1>
 
-<p class="lede">Quatre formats, trois qui n’immobilisent personne et un quatrième pour quand il faut vraiment livrer du code. L’audit est la porte d’entrée normale, il dit où vous en êtes avant que vous décidiez quoi faire.</p>
+<p class="lede">Quatre formats. Trois n’immobilisent personne, l’audit asynchrone, les office hours d’une heure et le build que je code seul. Celui qui prend votre équipe une journée entière, c’est l’atelier.</p>
 
 <p class="note">Prix en euros HT. TVA 20 % en sus pour les clients français. Je ne prends ni régie ni mission longue, seulement ces quatre formats, et un forfait signé ne bouge pas.</p>
 
@@ -9,11 +9,11 @@
 <div class="offer">
 <h3>Audit du setup agentique</h3>
 <p class="offer-price">1 500 € HT par jour, forfait de deux à quatre jours</p>
-<p>Je prends votre repo et je regarde ce qui s’y passe vraiment quand un agent y travaille. Le premier geste est de retirer ce qui existe, CLAUDE.md, skills, hooks, et de voir où l’agent échoue tout seul, avant de décider quoi remettre. Le gros du travail est asynchrone, avec deux ou trois entretiens courts, donc ça n’immobilise pas l’équipe.</p>
+<p>Je prends votre repo et je regarde ce qui s’y passe vraiment quand un agent y travaille, quel CLAUDE.md se charge, quel hook se déclenche, et ce qui cesse de s’appliquer dès que l’agent passe par Bash plutôt que par ses outils d’édition. Le premier geste est de tout retirer, CLAUDE.md, skills, hooks, et de voir où l’agent échoue seul avant de décider quoi remettre. Le gros du travail est asynchrone, avec deux ou trois entretiens courts, donc ça n’immobilise pas l’équipe.</p>
 <ul>
 <li>Les CLAUDE.md, les skills, les hooks, les permissions, et qui les possède</li>
 <li>Les réglages posés au niveau de l’équipe qui ne font pas ce qu’on croit, une clé versionnée dans le repo peut être ignorée sans erreur ni message</li>
-<li>Ce qui est vérifié avant un merge, et ce que donne la review quand la PR vient d’un agent</li>
+<li>Ce qui est vérifié avant un merge, et la review quand elle vient d’un agent, qui rend parfois un verdict sur toute la PR après n’en avoir vérifié qu’une partie</li>
 <li>Le coût en tokens, où il part, et l’écart entre vos développeurs sur le même travail</li>
 <li>Ce que tout ça change, ou pas, dans ce que vous livrez</li>
 </ul>
@@ -23,38 +23,37 @@
 <div class="offer">
 <h3>Atelier intra sur votre repo</h3>
 <p class="offer-price">2 500 € HT par jour, facturé au jour et jamais par tête</p>
-<p>Une journée sur place ou en visio, sur votre propre code, avec vos vrais tickets. Pas de projet d’exemple et pas de sandbox, ce qu’on écrit dans la journée est commité le soir. Le déroulé heure par heure et les questions qu’on me pose avant de réserver sont sur <a href="/formation-claude-code/">la page de la formation Claude Code sur votre repo</a>.</p>
+<p>Une journée sur place ou en visio, sur votre propre code, avec vos vrais tickets. Pas de projet d’exemple ni de sandbox, ce qu’on écrit dans la journée est commité le soir dans votre repo. Le déroulé heure par heure et les questions qu’on me pose avant de réserver sont sur <a href="/formation-claude-code/">la page de la formation Claude Code sur votre repo</a>.</p>
 <ul>
 <li>On prend trois ou quatre tickets du sprint en cours et on les fait passer par l’agent, ensemble</li>
-<li>On écrit les CLAUDE.md du repo pendant la séance, et ce sont vos devs qui les écrivent, pas moi</li>
+<li>On écrit les CLAUDE.md du repo pendant la séance, et ce sont vos devs qui les écrivent, pas moi : d’après une étude récente sur des repos publics, une règle entrée dans un CLAUDE.md en ressort rarement, autant qu’elle ait un auteur qui reste</li>
 <li>On branche les hooks et les skills qui servent chez vous, on jette ceux qui ne servent pas</li>
 <li>On regarde ce que ça coûte, en tokens et en temps de review</li>
 </ul>
-<p>À huit développeurs dans la salle la journée revient à un peu plus de 300 € par personne, et ce prix ne bouge pas si vous en mettez douze. Au-delà d’une quinzaine ça n’a plus de sens, on n’écrit plus rien ensemble et ça redevient une conférence.</p>
+<p>À huit développeurs dans la salle la journée revient à un peu plus de 300 € par personne, et ce prix ne bouge pas si vous en mettez douze.</p>
 </div>
 
 <div class="offer">
 <h3>Office hours</h3>
 <p class="offer-price">300 €/h HT à l’acte, ou 1 400 € HT par mois pour quatre sessions</p>
-<p>Une heure avec vos leads, écran partagé, sur le problème du moment : un CLAUDE.md qui a doublé de taille et que plus personne ne relit, un hook qui bloque toute l’équipe, une facture qui monte sans qu’on sache d’où, une PR écrite par un agent que personne n’ose vraiment relire. Les créneaux de fin de journée marchent très bien pour ça.</p>
+<p>Une heure avec vos leads, écran partagé, sur le problème du moment : un CLAUDE.md qui a doublé de taille et que plus personne ne relit, un hook qui bloque toute l’équipe, une facture qui monte sans qu’on sache d’où, une PR écrite par un agent que personne n’ose vraiment relire.</p>
 <ul>
 <li>À l’acte quand il y a une question précise et qu’une heure suffit</li>
 <li>En retainer, quatre sessions par mois, quand il y a un chantier qui dure, et un créneau tenu chaque mois coûte plus cher qu’une heure prise dans un trou d’agenda</li>
 </ul>
-<p>Le format récurrent existe parce que le gain retombe. DX a publié en mai 2026 que parmi les développeurs ayant atteint un pic de productivité, deux tiers déclarent moins bien les trimestres suivants, et Anthropic recommande de revoir la configuration tous les trois à six mois. Je n’ai pas les moyens de répliquer ces chiffres, je les cite comme sources publiques, mais ils collent à ce que je vois.</p>
+<p>Le format récurrent existe parce que le gain retombe. DX a publié en mai 2026 que parmi les développeurs ayant atteint un pic de productivité, deux tiers déclarent moins bien les trimestres suivants. Je n’ai pas les moyens de répliquer ce chiffre, je le cite comme source publique, mais il colle à ce que je vois.</p>
 </div>
 
 <div class="offer">
 <h3>Build d’un système d’agents</h3>
 <p class="offer-price">7 500 € HT la semaine, deux semaines minimum</p>
-<p>Quand ce qu’il vous faut n’est pas un avis mais du code livré. C’est le métier que j’exerce le reste du temps, neuf ans de ML et de systèmes LLM en production, et ça se vend en semaines pleines plutôt qu’en heures grattées entre deux réunions.</p>
+<p>Quand ce qu’il vous faut n’est pas un avis mais du code livré. C’est le métier que j’exerce le reste du temps, du ML puis des LLM en production depuis 2017, et ça se vend en semaines pleines plutôt qu’en heures grattées entre deux réunions.</p>
 <ul>
 <li>Un agent branché dans votre produit, un socle d’évaluation qui dit si les réponses sont bonnes, un RAG qui tient la charge, une plateforme d’inférence qui ne tombe pas</li>
-<li>Le périmètre est écrit avant qu’on commence, avec ce qui est dedans et ce qui n’y est pas</li>
 <li>Je code, vos développeurs relisent, et tout vit dans votre repo depuis le premier jour</li>
 <li>À la fin il y a un système qui tourne, des tests, et une passation pour que l’équipe reprenne sans moi</li>
 </ul>
-<p>Le forfait ne bouge pas en cours de route, et si le périmètre grossit on en refait un plutôt que de facturer la dérive. Ce que ce format n’est pas, c’est de la régie, un développeur de plus dans l’équipe pendant six mois, ce n’est ni ce que vous achetez ni ce qui m’intéresse.</p>
+<p>Ce que ce format n’est pas, c’est de la régie, un développeur de plus dans l’équipe pendant six mois, ce n’est ni ce que vous achetez ni ce qui m’intéresse.</p>
 </div>
 
 </div>
@@ -63,24 +62,24 @@
 
 <h2>Pour qui, et pour qui pas</h2>
 
-<p>Ça marche quand les agents sont dans le repo depuis quelques mois, que les licences sont payées, et que personne n’arrive à dire ce qui a changé dans les livraisons. C’est là que j’ai quelque chose à apporter, et l’audit suffit à le montrer.</p>
+<p>Ça marche quand les agents sont dans le repo depuis quelques mois, que les licences sont payées, et que personne n’arrive à dire ce qui a changé dans les livraisons.</p>
 
 <h3>Quatre situations où ça ne sert à rien de m’appeler</h3>
 
 <ul>
-<li>Vous n’avez encore mis aucun agent dans le repo. Il n’y a rien à auditer, prenez la journée d’atelier, elle coûte moins cher et elle vous emmène plus loin.</li>
-<li>Vous cherchez un financement OPCO ou un organisme certifié Qualiopi. Je ne le suis pas, contrairement à la plupart des organismes de formation classiques.</li>
+<li>Vous n’avez encore mis aucun agent dans le repo. Il n’y a rien à auditer, prenez la journée d’atelier, elle coûte moins cher et elle pose ce qu’il y aura à auditer ensuite.</li>
+<li>Vous cherchez un financement OPCO ou un organisme certifié Qualiopi. Je ne le suis pas, la mission se paie sur le budget de l’équipe, comme du conseil.</li>
 <li>Vous cherchez un développeur de plus dans l’équipe, en régie, sur plusieurs mois. Le format build existe pour du code livré sur un périmètre écrit, pas pour tenir un poste.</li>
-<li>Vous voulez un tableau de bord d’usage à montrer en comité. Un compteur de tokens se contourne en moins d’un sprint dès qu’il devient l’objectif, d’après ce que je lis de terrain, et j’aime autant ne pas vous vendre ça.</li>
+<li>Vous voulez un tableau de bord d’usage à montrer en comité. Claude Code exporte déjà ses compteurs de lignes et de tokens par OpenTelemetry, et rien dans ces compteurs ne distingue une boucle qui tourne à vide d’un vrai résultat. Ce que je regarde, c’est le délai jusqu’au merge sur du code qui passe la review.</li>
 </ul>
 
 <hr class="rule">
 
 <h2>En quoi ce n’est pas une formation Claude Code au catalogue</h2>
 
-<p>Des formations Claude Code sérieuses existent déjà en France, les programmes sont solides et les gens qui les animent connaissent le sujet. La différence n’est pas de qualité, elle est de nature. Eux forment, dans leur salle, sur leur matériel, au nombre de têtes. Moi j’arrive dans votre repo, sur vos tickets, et ce qui sort de la journée y reste. J’ai relevé leurs prix publics en août 2026 et je les ai mis dans <a href="/ecrits/formations-claude-code-en-france/">un article à part</a>, avec ce que cette méthode vaut et ce qu’elle ne prouve pas.</p>
+<p>Des formations Claude Code sérieuses existent en France, et quand une équipe découvre l’outil c’est le bon format. La différence avec ce que je fais est de nature : j’arrive dans votre repo, sur vos tickets, et ce qui sort de la journée y reste. J’ai relevé leurs prix publics et leurs programmes en août 2026 dans <a href="/ecrits/formations-claude-code-en-france/">un article à part</a>, avec ce que cette méthode vaut et ce qu’elle ne prouve pas.</p>
 
-<p>Le nom des formats ne porte aucun outil, et c’est volontaire. Je travaille surtout avec Claude Code, mais ce que j’entretiens c’est le harness, et il se transpose. Depuis les restrictions d’accès de juin 2026, le choix du fournisseur de modèle se décide très haut dans les grands comptes français, il peut changer en cours d’année pour des raisons qui n’ont rien à voir avec la technique, et ce qui a été écrit dans le repo doit y survivre.</p>
+<p>Le nom des formats ne porte aucun outil, et c’est volontaire. Je travaille surtout avec Claude Code, mais ce que j’entretiens c’est le harness, et il se transpose. Dans un grand compte, le choix du fournisseur de modèle se décide très haut et peut changer en cours d’année pour des raisons qui n’ont rien de technique, et ce qui a été écrit dans le repo doit y survivre.</p>
 
 <hr class="rule">
 
@@ -88,10 +87,10 @@
 
 <p>Vingt minutes, sans deck. Vous me dites ce que vous avez déployé, depuis quand, et ce qui vous fait penser que ça ne rend pas ce que ça devrait rendre. Je vous dis lequel des quatre formats a du sens, et si c’est aucun je le dis aussi.</p>
 
-<p>Écrivez-moi avec deux lignes de contexte, ça suffit pour caler le créneau. Si vous me donnez un accès en lecture au repo avant l’appel, je le regarde avant qu’on parle, et on part de ce que j’y ai vu plutôt que de vos suppositions.</p>
+<p>Dites-moi votre situation, ce qui coince et depuis quand, je réponds si j’ai de quoi juger. Si vous me donnez un accès en lecture au repo avant l’appel, je le regarde avant qu’on parle, et on part de ce que j’y ai vu plutôt que de vos suppositions.</p>
 
 <p><a class="cta" href="mailto:contacttheomartin@gmail.com?subject=Mon%20setup%20agentique">Décrivez-moi votre setup</a></p>
 
-<p class="meta">contacttheomartin@gmail.com · Je suis à Paris, j’interviens sur site en Île-de-France et à distance partout en France. <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a></p>
+<p class="meta">contacttheomartin@gmail.com · <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a></p>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Agents de code en production","provider":{"@type":"Person","name":"Theo Martin","url":"https://theomart.in/"},"areaServed":"FR","hasOfferCatalog":{"@type":"OfferCatalog","name":"Offre","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Audit du setup agentique"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"1500","priceCurrency":"EUR","unitText":"jour"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Atelier intra sur votre repo"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"2500","priceCurrency":"EUR","unitText":"jour"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Office hours"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"300","priceCurrency":"EUR","unitText":"heure"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Build d'un système d'agents"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"7500","priceCurrency":"EUR","unitText":"semaine"}}]}}</script>

@@ -1,6 +1,6 @@
 <h1>Claude Code training and agent audits, on your repo</h1>
 
-<p class="lede">Four formats, three that tie nobody up and a fourth for when code actually has to ship. The audit is the normal way in, it tells you where you stand before you decide what to do about it.</p>
+<p class="lede">Four formats. Three tie nobody up, the async audit, the one-hour office hours and the build I code alone. The one that takes your team off the floor for a whole day is the workshop.</p>
 
 <p class="note">Prices in euros, excluding VAT. French clients pay 20% VAT on top. I take no staff augmentation and no long engagements, only these four formats, and a fixed price that is signed does not move.</p>
 
@@ -9,52 +9,51 @@
 <div class="offer">
 <h3>Agentic setup audit</h3>
 <p class="offer-price">€1,500 excl. VAT per day, fixed price, two to four days</p>
-<p>I take your repo and I look at what actually happens in it when an agent works there. The first move is to strip out what is already there, CLAUDE.md, skills, hooks, and see where the agent fails on its own, before deciding what to put back. Most of the work is asynchronous, with two or three short interviews, so it does not tie up the team.</p>
+<p>I take your repo and look at what actually happens when an agent works in it, which CLAUDE.md loads, which hook fires, and what stops applying as soon as the agent goes through Bash instead of its editing tools. The first move is to strip everything out, CLAUDE.md, skills, hooks, and see where the agent fails on its own before deciding what to put back. Most of the work is async, with two or three short interviews, so it does not tie up the team.</p>
 <ul>
 <li>The CLAUDE.md files, the skills, the hooks, the permissions, and who owns them</li>
 <li>The settings set at team level that do not do what everyone assumes, a key versioned in the repo can be silently ignored, no error, no message</li>
-<li>What gets checked before a merge, and what review looks like when the PR comes from an agent</li>
+<li>What gets checked before a merge, and review when it comes from an agent, which sometimes gives a verdict on a whole PR after checking only part of it</li>
 <li>Token cost, where it goes, and the spread between your developers on the same work</li>
-<li>What all of it changes, or does not change, in what you ship</li>
+<li>What all of it changes, or does not, in what you ship</li>
 </ul>
-<p>At the end you have a written playbook, specific to your repo, with a 90-day plan and an hour to walk through it. The document stays with you and it is built to be run without me.</p>
+<p>At the end you have a written playbook, specific to your repo, with a 90-day plan and an hour to walk through it. The document stays with you and is built to be run without me.</p>
 </div>
 
 <div class="offer">
 <h3>Workshop in your own repo</h3>
 <p class="offer-price">€2,500 excl. VAT per day, billed by the day and never per head</p>
-<p>One day on site or remote, on your own code, with your real tickets. No sample project and no sandbox, what we write during the day is committed that evening. The hour by hour format and the questions I get before a booking are on <a href="/en/claude-code-training/">the Claude Code training page</a>.</p>
+<p>One day on site or remote, on your own code, with your real tickets. No sample project and no sandbox, what we write during the day is committed to your repo that evening. The hour by hour format and the questions I get before a booking are on <a href="/en/claude-code-training/">the Claude Code training page</a>.</p>
 <ul>
 <li>We take three or four tickets from the current sprint and push them through the agent together</li>
-<li>We write the repo’s CLAUDE.md during the session, and your developers write them, not me</li>
-<li>We wire up the hooks and the skills that are useful at your company, and throw out the ones that are not</li>
+<li>We write the repo’s CLAUDE.md files during the session, and your developers write them, not me: according to a recent study of public repos, a rule that lands in a CLAUDE.md rarely comes back out, so it had better have an author who stays</li>
+<li>We wire up the hooks and skills that are useful at your company and throw out the ones that are not</li>
 <li>We look at what it costs, in tokens and in review time</li>
 </ul>
-<p>With eight developers in the room the day lands a little over €300 a head, and that price does not move if you put twelve in. Past fifteen or so it stops making sense, nobody is writing anything together any more and it turns back into a talk.</p>
+<p>With eight developers in the room the day lands a little over €300 a head, and that price does not move if you put twelve in.</p>
 </div>
 
 <div class="offer">
 <h3>Office hours</h3>
 <p class="offer-price">€300 excl. VAT per hour, or €1,400 excl. VAT a month for four sessions</p>
-<p>An hour with your leads, screen shared, on whatever is blocking right now: a CLAUDE.md that has doubled in size and that nobody reads any more, a hook that stops the whole team, a bill that climbs without anyone knowing where from, a PR written by an agent that nobody really dares to review. End of day slots work well for this.</p>
+<p>An hour with your leads, screen shared, on whatever is blocking right now: a CLAUDE.md that has doubled in size and nobody rereads, a hook that blocks the whole team, a bill climbing with nobody sure why, a PR written by an agent that nobody quite dares to review.</p>
 <ul>
 <li>Per session when there is a precise question and an hour is enough</li>
 <li>On retainer, four sessions a month, when there is a piece of work that runs for a while, and a slot held every month costs more than an hour picked out of a gap in the calendar</li>
 </ul>
-<p>The recurring format exists because the gain decays. DX published in May 2026 that among developers who had hit a productivity peak, two thirds report worse quarters afterwards, and Anthropic recommends revisiting the configuration every three to six months. I have no way to replicate those numbers, I cite them as public sources, but they match what I see.</p>
+<p>The recurring format exists because the gain decays. DX published in May 2026 that among developers who had hit a productivity peak, two thirds report worse quarters afterwards. I have no way to replicate that number, I cite it as a public source, but it matches what I see.</p>
 </div>
 
 <div class="offer">
 <h3>Building an agent system</h3>
 <p class="offer-price">€7,500 excl. VAT per week, two weeks minimum</p>
-<p>For when what you need is not an opinion but shipped code. It is the job I do the rest of the time, nine years of ML and production LLM systems, and it sells in solid weeks rather than hours scraped between meetings.</p>
+<p>For when what you need is not an opinion but shipped code. It is the job I do the rest of the time, ML and then LLMs in production since 2017, and it sells in full weeks rather than in hours scraped together between meetings.</p>
 <ul>
 <li>An agent wired into your product, an eval harness that tells you whether the answers are any good, a RAG that holds up under load, an inference platform that does not fall over</li>
-<li>The scope is written down before we start, with what is in it and what is not</li>
 <li>I write the code, your developers review it, and all of it lives in your repo from day one</li>
 <li>At the end there is a system that runs, tests, and a handover so the team carries on without me</li>
 </ul>
-<p>The fixed price does not move along the way, and if the scope grows we write another one rather than billing the drift. What this format is not is staff augmentation, one more developer on the team for six months, that is neither what you are buying nor what interests me.</p>
+<p>What this format is not is staff augmentation, one more developer on the team for six months, that is neither what you are buying nor what interests me.</p>
 </div>
 
 </div>
@@ -63,24 +62,24 @@
 
 <h2>Who this is for, and who it is not for</h2>
 
-<p>It works when the agents have been in the repo for a few months, the licenses are paid for, and nobody can say what changed in what you ship. That is where I have something to bring, and the audit is enough to show it.</p>
+<p>It works when the agents have been in the repo for a few months, the licences are paid for, and nobody can say what changed in what ships.</p>
 
 <h3>Four situations where calling me is a waste of your money</h3>
 
 <ul>
-<li>You have not put an agent in the repo yet. There is nothing to audit, take the workshop day, it costs less and it gets you further.</li>
-<li>You need an accredited training provider so the spend comes out of a training budget. I am not one, plenty of training companies are.</li>
-<li>You are looking for one more developer on the team, staff augmentation, over several months. The build format exists for shipped code on a written scope, not for filling a seat.</li>
-<li>You want a usage dashboard to show in a steering committee. A token counter gets gamed inside a sprint once it becomes the target, from what I read of the field, and I would rather not sell you that.</li>
+<li>You have not put an agent in the repo yet. There is nothing to audit, take the workshop day, it costs less and it sets up what there will be to audit later.</li>
+<li>You are looking for OPCO funding or a Qualiopi-certified training body, the French schemes. I am not one, the engagement comes out of the team’s budget, like consulting.</li>
+<li>You are looking for one more developer on the team, as staff augmentation, for several months. The build format exists for shipped code on a written scope, not to fill a seat.</li>
+<li>You want a usage dashboard to show a steering committee. Claude Code already exports its line and token counters through OpenTelemetry, and nothing in those counters tells an agent looping on nothing apart from real output. What I look at is time to merge on code that passes review.</li>
 </ul>
 
 <hr class="rule">
 
 <h2>Compared to a Claude Code training course</h2>
 
-<p>Serious Claude Code courses already exist in France, the programs are solid and the people running them know the subject. The difference is not quality, it is nature. They teach, in their room, on their material, priced per head. I turn up in your repo, on your tickets, and what comes out of the day stays there. I went through their public prices in August 2026 and put them in <a href="/en/writing/claude-code-training-in-france/">a separate piece</a>, along with what that method is worth and what it does not prove.</p>
+<p>Serious Claude Code courses exist in France, and when a team is discovering the tool they are the right format. The difference with what I do is one of kind: I turn up in your repo, on your tickets, and what comes out of the day stays there. I went through their public prices and programs in August 2026 in <a href="/en/writing/claude-code-training-in-france/">a separate piece</a>, along with what that method is worth and what it does not prove.</p>
 
-<p>None of the formats has a tool in its name, and that is deliberate. I work mostly with Claude Code, but what I maintain is the harness, and it carries over. Since the access restrictions of June 2026, the choice of model vendor is decided very high up at large French companies, it can change mid-year for reasons that have nothing to do with engineering, and what has been written into the repo has to survive that.</p>
+<p>None of the formats has a tool in its name, and that is deliberate. I work mostly with Claude Code, but what I maintain is the harness, and it carries over. At a large company the choice of model vendor is made very high up and can change mid-year for reasons that have nothing to do with engineering, and what was written into the repo has to survive that.</p>
 
 <hr class="rule">
 
@@ -88,10 +87,10 @@
 
 <p>Twenty minutes, no deck. You tell me what you have deployed, since when, and what makes you think it is not returning what it should. I tell you which of the four formats makes sense, and if it is none of them I say that too.</p>
 
-<p>Write to me with two lines of context, that is enough to book a slot. If you give me read access to the repo before the call, I look at it before we talk, and we start from what I found there instead of your guesses.</p>
+<p>Tell me your situation, what is not working, and since when, I reply if that gives me enough to judge. If you give me read access to the repo before the call, I look at it before we talk, and we start from what I found there instead of your guesses.</p>
 
 <p><a class="cta" href="mailto:contacttheomartin@gmail.com?subject=My%20agentic%20setup">Tell me about your setup</a></p>
 
-<p class="meta">contacttheomartin@gmail.com · Based in Paris, EU timezone, overlap with US East until 5pm ET. <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a>, <a href="https://github.com/theomart">GitHub</a>.</p>
+<p class="meta">contacttheomartin@gmail.com · <a href="https://www.linkedin.com/in/theomart/">LinkedIn</a></p>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Coding agents in production","provider":{"@type":"Person","name":"Theo Martin","url":"https://theomart.in/en/"},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Services","itemListElement":[{"@type":"Offer","itemOffered":{"@type":"Service","name":"Agentic setup audit"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"1500","priceCurrency":"EUR","unitText":"day"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Workshop in your own repo"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"2500","priceCurrency":"EUR","unitText":"day"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Office hours"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"300","priceCurrency":"EUR","unitText":"hour"}},{"@type":"Offer","itemOffered":{"@type":"Service","name":"Building an agent system"},"priceSpecification":{"@type":"UnitPriceSpecification","price":"7500","priceCurrency":"EUR","unitText":"week"}}]}}</script>

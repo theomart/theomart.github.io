@@ -1,6 +1,6 @@
 # Theo Martin
 
-> Independent consultant, coding agents in production. Eight years of ML and production LLM systems, five of them at Amazon, then Tech Lead of the Core AI team at Akeneo. Based in Paris, works across France and remotely. Sells four formats: an agentic setup audit, in-house Claude Code training on your own repo, office hours, and building an agent system, priced publicly in euros excluding VAT. Not a Qualiopi-certified training body, so it cannot be funded through a French OPCO.
+> Independent consultant, coding agents in production. Nine years of ML and production LLM systems, three and a half of them at Amazon, then Tech Lead of the Core AI team at Akeneo. Based in Paris, works across France and remotely. Sells four formats: an agentic setup audit, in-house Claude Code training on your own repo, office hours, and building an agent system, priced publicly in euros excluding VAT. Not a Qualiopi-certified training body, so it cannot be funded through a French OPCO.
 
 ## Pages
 
