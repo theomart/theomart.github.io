@@ -13,7 +13,7 @@ body { background:var(--bg); color:var(--text); font:18px/1.55 var(--font); marg
 .intro { max-width:38rem; margin:0 auto; padding:2.5rem 16px 1rem; } .intro h1 { font-size:clamp(1.8rem,1.5rem + 1.4vw,2.4rem); margin:0 0 .6rem; letter-spacing:-.02em; line-height:1.15; text-wrap:balance; }
 .intro p { color:var(--muted); margin:0 0 .8rem; } .lang { font:13px var(--font-mono); } .lang button { font:inherit; background:none; border:0; border-bottom:1px solid var(--rule); color:var(--muted); cursor:pointer; padding:.2rem .5rem .2rem 0; } .lang button.on { color:var(--text); border-color:var(--accent); } .motion { font:14px var(--font-ui); margin-top:.6rem; padding:.55rem .8rem; background:none; border:1px solid var(--text); color:var(--text); cursor:pointer; }
 </style>
-<div class="intro"><p class="lang"><a href="/a-propos/">← theomart.in</a></p><h1 id="h">Parcours, en pixels</h1><p id="p">Faites défiler. Chaque scène avance avec le défilement, les mots s’allument au rythme de l’image, et les petits carrés ouvrent des précisions techniques. Le bouton CARTE, ou la touche M, mène à n’importe quelle étape.</p><div class="lang"><a id="en" href="/en/journey/">EN</a> <a id="fr" href="/parcours/" class=on>FR</a></div></div>
+<div class="intro"><p class="lang"><a href="/a-propos/">← theomart.in</a></p><h1 id="h">Parcours, en pixels</h1><p id="p">Chaque scène se joue toute seule quand elle arrive à l’écran, les mots s’allument au rythme de l’image, et les petits carrés ouvrent des précisions techniques. Le bouton CARTE, ou la touche M, mène à n’importe quelle étape.</p><div class="lang"><a id="en" href="/en/journey/">EN</a> <a id="fr" href="/parcours/" class=on>FR</a></div></div>
 <main id="story"></main>
 <div style="height:30vh"></div>
 <script>
@@ -4897,7 +4897,8 @@ body { background:var(--bg); color:var(--text); font:18px/1.55 var(--font); marg
 <script>
 (function () {
   var lang = 'fr'; try { localStorage.setItem('st-lang', lang); } catch (e) { }
-  try { Story.mount(document.getElementById('story'), { lang: lang }); } catch (err) { return; }
+  window.__stForceMotion = true;
+  try { Story.mount(document.getElementById('story'), { lang: lang, mode: 'play' }); } catch (err) { return; }
   var id = decodeURIComponent(location.hash.slice(1)), a = id && document.querySelector('[data-scene="' + id.replace(/[^\w-]/g, '') + '"]');
   if (a) setTimeout(function () { a.scrollIntoView(); }, 60);
 })();
