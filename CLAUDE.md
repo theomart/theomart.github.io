@@ -27,7 +27,8 @@ templates/post.html        coquille des articles
 pages/fr/*.html            fragments HTML éditables à la main
 pages/en/*.html
 posts/AAAA-MM-JJ-slug.md   front matter plat + markdown
-static/                    style.css, favicon.ico, theo.jpg, theo-portrait.webp, og-image*.png, copié tel quel
+static/                    style.css, pixel-guy.js, favicon.ico, theo.jpg, theo-portrait.webp, og-image*.png, copié tel quel
+parcours/, en/journey/     l'animation du parcours en pixels, pages générées hors de ce repo, copiées telles quelles
 2ae3…b4.txt                la clé IndexNow, copiée à la racine, son nom est la clé, à ne pas renommer
 .github/workflows/deploy.yml
 _site/                     sortie du build, jamais commitée
@@ -38,6 +39,8 @@ URLs : `/`, `/offre/`, `/formation-claude-code/`, `/ecrits/`, `/a-propos/`, `/me
 Deux flux RSS, `/feed.xml` pour l'anglais et `/ecrits/feed.xml` pour le français. `/feed.xml` garde son adresse historique, c'est celle que `jekyll-feed` servait, des abonnés en dépendent peut-être.
 
 Le dictionnaire `REDIRECTS` en haut de `build.py` porte les anciennes URLs du site Jekyll qui n'ont plus de page à elles, `/team`, `/resume`, `/success`, `/talk`, `/aiservices`, les pages `/fr/`. Ne pas le vider, ce sont des liens entrants qui vivent encore.
+
+`/parcours/` et `/en/journey/` sont l'animation du parcours en pixels, une page autonome par langue avec son propre style. Elles sont produites par un script du dépôt privé parent et ne s'éditent jamais ici : une correction se fait à la source puis se republie. `build.py` les copie et les ajoute au sitemap, une ancre `#id-de-scène` ouvre la page sur cette scène.
 
 Les deux pages de liste d'articles sont générées par `build.py` à partir de `posts/`, elles n'ont pas de fragment dans `pages/` et ne s'écrivent pas à la main. Le titre, la meta description et l'URL de bascule de langue de chaque page vivent dans la table `PAGES` en haut de `build.py`. Ajouter une page veut dire ajouter un fragment, une entrée dans `PAGES` et une entrée dans `NAV`.
 
@@ -82,7 +85,7 @@ translation: slug-de-la-jumelle
 
 Trois polices, aucune téléchargée. Une serif système pour tout ce qui se lit, Iowan Old Style sur Apple, Palatino sur Windows, déclarée dans `--font`. Une sans système pour l'interface, nav, `.meta`, `.cta`, déclarée dans `--font-ui`. Une mono pour les dates, les prix et le code. Ne pas charger de police, et surtout ni Inter ni Geist, qui sont devenues la signature des sites générés. Corps à 18 px, interligne 1.55, échelle de titres fluide en `clamp()` avec un ratio de 1.2 à 1.25, letter-spacing négatif sur le `h1` seulement.
 
-Les liens gardent la couleur du texte, seul le souligné porte l'accent. Une seule couleur d'accent, la rouille, et des neutres chauds jusque dans le thème sombre. Pas d'ombre, pas de dégradé, pas de carte, pas d'icône, pas de grain par filtre, au plus deux micro-interactions sur tout le site, le bouton qui s'enfonce et le fondu entre pages par `@view-transition`. Ce qui donne l'air « cher » à une page texte, c'est l'échelle et le rythme, pas une section de plus.
+Les liens gardent la couleur du texte, seul le souligné porte l'accent. Une seule couleur d'accent, la rouille, et des neutres chauds jusque dans le thème sombre. Pas d'ombre, pas de dégradé, pas de carte, pas d'icône, pas de grain par filtre, au plus deux micro-interactions sur tout le site, le bouton qui s'enfonce et le fondu entre pages par `@view-transition`. Une seule exception, voulue par Theo : un lien `a[data-px]` vers l'animation reçoit de `static/pixel-guy.js` un petit bonhomme pixel qui fait coucou au survol et se téléporte au clic, `data-px-walk` le fait marcher ; on en trouve sur l'accueil et à chaque étape du parcours dans « À propos ». Ce qui donne l'air « cher » à une page texte, c'est l'échelle et le rythme, pas une section de plus.
 
 L'accueil ouvre sur la promesse en `h1`, pas sur le nom, puis la phrase d'accroche en `.lede`, une ligne de faits en `.meta` et un seul bouton. La preuve est un artefact inspectable, le CLAUDE.md de ce site cité dans un `pre`, jamais une capture d'écran ni un logo. Le contact est un bouton `mailto:` avec un sujet pré-rempli, l'adresse reste écrite en dessous.
 

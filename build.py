@@ -276,11 +276,11 @@ def build():
         values = shell(own, title, title, "/en/404.html" if lang == "fr" else "/404.html", nav_url="")
         values.update(content=body, robots='<meta name="robots" content="noindex">')
         write(OUT / own.lstrip("/"), render(base, values), f"404 {lang}")
-    locs = "".join(f"  <url><loc>{SITE_URL}{p['url']}</loc>" + (f"<lastmod>{p['date']}</lastmod>" if p.get("date") else "") + "</url>\n" for p in PAGES + live)
+    locs = "".join(f"  <url><loc>{SITE_URL}{p['url']}</loc>" + (f"<lastmod>{p['date']}</lastmod>" if p.get("date") else "") + "</url>\n" for p in PAGES + live + [{"url": "/parcours/"}, {"url": "/en/journey/"}])
     write(OUT / "sitemap.xml", '<?xml version="1.0" encoding="UTF-8"?>\n'
           f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{locs}</urlset>\n', "sitemap.xml")
     write(OUT / "robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {SITE_URL}/sitemap.xml\n", "robots.txt")
-    for name, copy in (("static", shutil.copytree), ("CNAME", shutil.copy), ("llms.txt", shutil.copy), ("2ae3a37d2c3836b5db33d3ab780db6b4.txt", shutil.copy)):
+    for name, copy in (("static", shutil.copytree), ("parcours", shutil.copytree), ("en/journey", shutil.copytree), ("CNAME", shutil.copy), ("llms.txt", shutil.copy), ("2ae3a37d2c3836b5db33d3ab780db6b4.txt", shutil.copy)):
         if not (ROOT / name).exists():
             problem(f"{name} est absent de la racine du projet")
             continue
